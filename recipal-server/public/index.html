@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="recipal" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="recipal" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="recipal" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="recipal" class="no-js">
+<!--<![endif]-->
+
+<head>
+</head>
+
+<body>
+
+Server backend html
+
+<script src="/lib/socket.io.js"></script>
+<script src="/lib//socket.io-stream.js"></script>
+<script src="/lib/jquery-2.1.4.js"></script>
+
+</body>
+
+<script>
+	$(document).ready(function() {
+		var stream = ss.createStream();
+		var socket = io.connect('ec2-54-69-23-151.us-west-2.compute.amazonaws.com:3000/input');
+	});
+</script>
+
+
+</html>
