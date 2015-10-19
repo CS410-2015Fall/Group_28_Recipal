@@ -1,7 +1,7 @@
 {
-  "name": "transferApp",
+  "name": "recipal",
   "version": "0.0.0",
-  "description": "Transfer App",
+  "description": "Cooking app",
   "main": "index.js",
   "author": "",
   "license": "BSD-2-Clause",

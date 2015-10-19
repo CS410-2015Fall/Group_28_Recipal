@@ -57,14 +57,37 @@
             </ons-page>
             </ons-navigator>
 
-        </div> 
+    <div class="app">  
+    <ons-template id="index.html">
+    <ons-page>
+    <ons-button ng-click="app.menu.toggleMenu()">Toggle</ons-button>
+    <ons-button onclick="myNavigator.pushPage('page2.html')">Next Page</ons-button>
+    <div id="my-content"></div>
+    <h1>PhoneGap</h1>
+    <div id="deviceready" class="blink">
+        <p class="event listening">Connecting to Device</p>
+        <p class="event received">Device is Ready</p>
+    </div>
+    </ons-page>
+    </ons-template>
 
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
-        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
-    </body>
+    <ons-template id="menu.html">
+    <ons-page>
+    <!-- menu page's contents -->
+    </ons-page>
+    </ons-template>
+    </div> 
+
+    <script src="cordova.js"></script>
+    <script src="js/index.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
+    <script src="js/onsen/angular/angular.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/onsen/onsenui.js"></script>
+    <script src="js/onsen-init.js"></script>
+    <script src="../../recipal-common/models.js"></script>
+    <script src="js/server-proxy.js"></script>
+    <script>server.connect(); </script>
+    <script>app.initialize();</script>
+</body>
 </html>
