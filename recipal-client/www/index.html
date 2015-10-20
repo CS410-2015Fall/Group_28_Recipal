@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'"/>
 <!--
     Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
 
@@ -36,47 +37,192 @@
             ons.ready(function() {
             // Add another Onsen UI element
             var content = document.getElementById("my-content");
-            content.innerHTML="<ons-button>Another Button</ons-button>";
+            menu.openMenu();
             ons.compile(content);
         });
         </script>
-        <title>Hello World</title>
+        <title>Welcome To Recipal!</title>
     </head>
     <body>
-         <div class="app">
-             <ons-navigator title="Navigator" var="myNavigator">
-            <ons-page>
-            <h1>PhoneGap</h1>
-                <div id="deviceready" class="blink">
-                    <p class="event listening">Connecting to Device</p>
-                    <p class="event received">Device is Ready</p>
-                </div>
-            
-            <ons-button onclick="myNavigator.pushPage('page2.html')">Next Page</ons-button>
-            <div id="my-content"></div>
-            </ons-page>
-            </ons-navigator>
+	
+	<!-- Page Navigator and create sliding menu -->
+	<ons-navigator title="Navigator" var="myNavigator">
+	 <ons-sliding-menu main-page="page.html" menu-page="menu.html" max-slide-distance="310px" type="push" var="menu">
+    </ons-sliding-menu>
 
-    <div class="app">  
-    <ons-template id="index.html">
-    <ons-page>
-    <ons-button ng-click="app.menu.toggleMenu()">Toggle</ons-button>
-    <ons-button onclick="myNavigator.pushPage('page2.html')">Next Page</ons-button>
-    <div id="my-content"></div>
-    <h1>PhoneGap</h1>
-    <div id="deviceready" class="blink">
-        <p class="event listening">Connecting to Device</p>
-        <p class="event received">Device is Ready</p>
-    </div>
-    </ons-page>
+	<!-- Default page when user opens the app -->
+    <ons-template id="page.html">
+      <ons-page>
+        <ons-toolbar>
+          <div class="left">
+            <ons-toolbar-button ng-click="menu.toggleMenu()">
+              <ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+            </ons-toolbar-button>
+          </div>
+          <div class="center">Menu</div>
+        </ons-toolbar>
+			<div class="welcome-page">
+				<img class="welcome" width="250px" src="img/welcome.png"/><br>
+			</div>
+			<div class="logo-page">
+				<img id="logo" height="250px" width="250px" src="img/logo-3.jpg"/>
+			</div>
+      </ons-page>
     </ons-template>
-
+	
+	<!-- Login Page -->
+	<ons-template id="login.html">
+	  <ons-page>
+	    <ons-toolbar>
+		  <div class="left">
+		    <ons-toolbar-button onclick="menu.toggleMenu()">
+			<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+			</ons-toolbar-button>
+		  </div>
+		  <div class="center">Login & Sign Up</div>
+		</ons-toolbar>
+			<p>LOGIN PAGE CONTENTS</p>
+	  </ons-page>
+	</ons-template>
+	
+	<!-- Search Page -->
+	<ons-template id="search.html">
+	  <ons-page>
+	    <ons-toolbar>
+		  <div class="left">
+		    <ons-toolbar-button onclick="menu.toggleMenu()">
+			<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+			</ons-toolbar-button>
+		  </div>
+		  <div class="center">Search</div>
+		</ons-toolbar>
+			<p>SEARCH PAGE CONTENTS</p>
+	  </ons-page>
+	</ons-template>
+	
+	<!-- Browse Page -->
+	<ons-template id="browse.html">
+	  <ons-page>
+	    <ons-toolbar>
+		  <div class="left">
+		    <ons-toolbar-button onclick="menu.toggleMenu()">
+			<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+			</ons-toolbar-button>
+		  </div>
+		  <div class="center">Browse</div>
+		</ons-toolbar>
+			<p>BROWSE PAGE CONTENTS</p>
+	  </ons-page>
+	</ons-template>
+	
+	<!-- Favourites Page -->
+	<ons-template id="favourites.html">
+	  <ons-page>
+	    <ons-toolbar>
+		  <div class="left">
+		    <ons-toolbar-button onclick="menu.toggleMenu()">
+			<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+			</ons-toolbar-button>
+		  </div>
+		  <div class="center">favourites</div>
+		</ons-toolbar>
+			<p>FAVOURITES PAGE CONTENTS</p>
+	  </ons-page>
+	</ons-template>
+	
+	<!-- Accounts Page -->
+	<ons-template id="accounts.html">
+	  <ons-page>
+	    <ons-toolbar>
+		  <div class="left">
+		    <ons-toolbar-button onclick="menu.toggleMenu()">
+			<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+			</ons-toolbar-button>
+		  </div>
+		  <div class="center">Accounts & Settings</div>
+		</ons-toolbar>
+			<p>ACCOUNTS PAGE CONTENTS</p>
+	  </ons-page>
+	</ons-template>
+	
+	<!-- Help Page -->
+	<ons-template id="help.html">
+	  <ons-page>
+	    <ons-toolbar>
+		  <div class="left">
+		    <ons-toolbar-button onclick="menu.toggleMenu()">
+			<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+			</ons-toolbar-button>
+		  </div>
+		  <div class="center">Help</div>
+		</ons-toolbar>
+			<p>HELP PAGE CONTENTS</p>
+	  </ons-page>
+	</ons-template>
+	
+	<!-- Feedback Page -->
+	<ons-template id="feedback.html">
+	  <ons-page>
+	    <ons-toolbar>
+		  <div class="left">
+		    <ons-toolbar-button onclick="menu.toggleMenu()">
+			<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+			</ons-toolbar-button>
+		  </div>
+		  <div class="center">Feedback</div>
+		</ons-toolbar>
+			<p>FEEDBACK PAGE CONTENTS</p>
+	  </ons-page>
+	</ons-template>
+	
+	<!-- Put together the sliding menu -->
     <ons-template id="menu.html">
-    <ons-page>
-    <!-- menu page's contents -->
-    </ons-page>
+      <ons-page modifier="menu-page">
+        <ons-toolbar modifier="transparent">
+          <div class="right">
+            <ons-toolbar-button class="menu-close" ng-click="menu.close()">
+              </ons-icon>Close
+            </ons-toolbar-button>
+          </div>
+        </ons-toolbar>
+
+        <ons-list class="menu-list">
+          <ons-list-item modifier="chevron" class="menu-item" onclick="menu.setMainPage('login.html', {closeMenu: true})">
+            Login & Sign Up
+          </ons-list-item>
+
+          <ons-list-item modifier="chevron" class="menu-item" onclick="menu.setMainPage('search.html', {closeMenu: true})">
+            Search
+          </ons-list-item>
+		  
+		  <ons-list-item modifier="chevron" class="menu-item" onclick="menu.setMainPage('browse.html', {closeMenu: true})">
+            Browse
+          </ons-list-item>
+
+          <ons-list-item modifier="chevron" class="menu-item" onclick="menu.setMainPage('favourites.html', {closeMenu: true})">
+            Favourites
+          </ons-list-item>
+        </ons-list>
+
+        <br>
+
+        <ons-list class="bottom-menu-list">
+          <ons-list-item class="bottom-menu-item" onclick="menu.setMainPage('accounts.html', {closeMenu: true})">
+            Account & Settings
+            <!-- <div class="notification menu-notification">3</div> -->
+          </ons-list-item>
+
+          <ons-list-item class="bottom-menu-item" onclick="menu.setMainPage('help.html', {closeMenu: true})">
+            Help
+          </ons-list-item>
+
+          <ons-list-item class="bottom-menu-item" onclick="menu.setMainPage('feedback.html', {closeMenu: true})">
+            Send feedback
+          </ons-list-item>
+        </ons-list>
+
+      </ons-page>
     </ons-template>
-    </div> 
 
     <script src="cordova.js"></script>
     <script src="js/index.js"></script>
