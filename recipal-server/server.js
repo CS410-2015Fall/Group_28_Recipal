@@ -50,8 +50,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 var server = http.Server(app);
 var io = require('socket.io')(server);
-require('./lib/fileSocket')(io);
-
+require('./lib/searchSocketLib')(io);
 require('./config/routes')(app, log);
 
 server.listen(app.get("port"), function() {
