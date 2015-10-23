@@ -37,6 +37,15 @@ body {
 	top: 30%;
 }
 
+.browse-page {
+	text-align:center;
+	padding: 10px 10px 10px 10px;
+	text-transform: none;
+	width: 95%;
+	height: 95%;
+	
+}
+
 .welcome-page {
 	position: absolute;
 	top: 10%;

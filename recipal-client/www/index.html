@@ -118,6 +118,7 @@
 			<div class="login-form">
 				<input type="email" id="signup-user" class="text-input--underbar" placeholder="Username" value="">
 				<input type="password" id="signup-pass" class="text-input--underbar" placeholder="Password" value="">
+				<input type="email" id="signup-email" class="text-input--underbar" placeholder="Email" value="">
 				<br><br>
 				<ons-button modifier="large" class="login-button" onclick="signup()">Sign Up</ons-button>
 					<script>
@@ -126,8 +127,11 @@
 							var suuser = document.getElementById("signup-user").value;
 							// Password value
 							var supass = document.getElementById("signup-pass").value;
-							alert("username: " + suuser + "\npassword: "  + supass);
+							// Email value
+							var suemail = document.getElementById("signup-email").value;
+							alert("username: " + suuser + "\npassword: "  + supass + "\nemail: " + suemail);
 							//	TODO: Actual sign up function.
+							// Just add user information to database?
 						}
 					</script>
 			</div>
@@ -146,14 +150,18 @@
 		  <div class="center">Forgotten Password</div>
 		</ons-toolbar>
 			<div class="login-form">
-				What is your username?<br><br>
-				<input type="email" id="fpuser" class="text-input--underbar" placeholder="Username" value="" onkeypress="return test(event)"/>
+				What is your email?
+				<input type="email" id="fpuser" class="text-input--underbar" placeholder="Email" value="" onkeypress="return test(event)"/>
 				<script>
 				 function test(e) {
 					if (e.keyCode === 13) {
-						alert("true");
+						// User's email value
+						var fpuser = document.getElementById("fpuser").value;
+						alert("Email: " + fpuser);
+						// TODO: Email user their password after they enter their email.
+						// TODO: Check if email is in the database, if not display error.
 					} else {
-					// do nothing
+					// Do nothing.
 					}
 				}
 				</script>
@@ -171,7 +179,7 @@
 			<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
 			</ons-toolbar-button>
 		  </div>
-		  <div class="center">Search</div>
+		  <div class="center">Recipe Search</div>
 		</ons-toolbar>
 			<p>SEARCH PAGE CONTENTS</p>
 	  </ons-page>
@@ -186,9 +194,13 @@
 			<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
 			</ons-toolbar-button>
 		  </div>
-		  <div class="center">Browse</div>
+		  <div class="center">Browse By Category</div>
 		</ons-toolbar>
-			<p>BROWSE PAGE CONTENTS</p>
+			<div class="browse-page">
+			What category would you like to look through?<br><br>
+			<ons-button class="button button--outline">Test</ons-button><br>
+			<ons-button class="button button--outline">Test</ons-button><br>
+			</div>
 	  </ons-page>
 	</ons-template>
 	
