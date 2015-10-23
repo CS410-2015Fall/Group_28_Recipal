@@ -81,7 +81,84 @@
 		  </div>
 		  <div class="center">Login & Sign Up</div>
 		</ons-toolbar>
-			<p>LOGIN PAGE CONTENTS</p>
+			<!--LOGIN PAGE CONTENTS-->
+		<div class="login-form">
+			<input type="email" id="login-user" class="text-input--underbar" placeholder="Username" value="">
+			<input type="password" id="login-pass" class="text-input--underbar" placeholder="Password" value="">
+			<br><br>
+			<ons-button modifier="large" class="login-button" onclick="login()">Log In</ons-button>
+				<script>
+					function login() {
+						// Username value
+						var user = document.getElementById("login-user").value;
+						// Password value
+						var pass = document.getElementById("login-pass").value;
+						alert("username: " + user + "\npassword: "  + pass);
+						//	TODO: Actual log in function.
+					}
+				</script>
+			<br><br>
+			<ons-button modifier="quiet" onclick="menu.setMainPage('signup.html')">Sign Up!</ons-button><br>
+			<ons-button modifier="quiet" class="forgot-password" onclick="menu.setMainPage('forgotpass.html')">Forgot password?</ons-button>
+		</div>
+	  </ons-page>
+	</ons-template>
+	
+	<!-- Sign Up Page -->
+	<ons-template id="signup.html">
+	  <ons-page>
+	    <ons-toolbar>
+		  <div class="left">
+		    <ons-toolbar-button onclick="menu.toggleMenu()">
+				<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+			</ons-toolbar-button>
+		  </div>
+		  <div class="center">Sign Up</div>
+		</ons-toolbar>
+			<div class="login-form">
+				<input type="email" id="signup-user" class="text-input--underbar" placeholder="Username" value="">
+				<input type="password" id="signup-pass" class="text-input--underbar" placeholder="Password" value="">
+				<br><br>
+				<ons-button modifier="large" class="login-button" onclick="signup()">Sign Up</ons-button>
+					<script>
+						function signup() {
+							// Username value
+							var suuser = document.getElementById("signup-user").value;
+							// Password value
+							var supass = document.getElementById("signup-pass").value;
+							alert("username: " + suuser + "\npassword: "  + supass);
+							//	TODO: Actual sign up function.
+						}
+					</script>
+			</div>
+	   </ons-page>
+	</ons-template>
+	
+	<!-- Forgot Password Page -->
+	<ons-template id="forgotpass.html">
+	  <ons-page>
+	    <ons-toolbar>
+		  <div class="left">
+		    <ons-toolbar-button onclick="menu.toggleMenu()">
+			<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+			</ons-toolbar-button>
+		  </div>
+		  <div class="center">Forgotten Password</div>
+		</ons-toolbar>
+			<div class="login-form">
+				What is your username?<br><br>
+				<input type="email" id="fpuser" class="text-input--underbar" placeholder="Username" value="" onkeypress="return test(event)"/>
+				<script>
+				 function test(e) {
+					if (e.keyCode === 13) {
+						alert("true");
+					} else {
+					// do nothing
+					}
+				}
+				</script>
+				
+			</div>
 	  </ons-page>
 	</ons-template>
 	
