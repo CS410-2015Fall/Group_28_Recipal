@@ -34,16 +34,37 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        proxSensor.enable(function() {
+            console.log("DEBUG: Toggling menu");
+            menu.toggleMenu();
+        });
+
+        var now = new Date();
+
+        cordova.plugins.notification.local.schedule({
+            id: 1,
+            title: "Phonegap Notification",
+            text: "Notification",
+            at: new Date(now.getTime() + 10*1000),
+            every: "minute"
+        });
+
+        cordova.plugins.notification.local.on("schedule", function(notification) {
+            console.log("DEBUG: scheduled: " + notification.id);
+        });
+        cordova.plugins.notification.local.on("trigger", function(notification) {
+            console.log("DEBUG: triggered: " + notification.id);
+        });
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+        // var parentElement = document.getElementById(id);
+        // var listeningElement = parentElement.querySelector('.listening');
+        // var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+        // listeningElement.setAttribute('style', 'display:none;');
+        // receivedElement.setAttribute('style', 'display:block;');
 
-        console.log('Received Event: ' + id);
+        console.log('DEBUG: Received Event: ' + id);
     }
 };
