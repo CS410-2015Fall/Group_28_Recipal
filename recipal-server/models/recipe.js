@@ -11,14 +11,14 @@ RecipeSchema = mongoose.Schema({
     // 0 to 5
     difficulty:     Number,
     rating:         Number,
-    steps:          [String],
+    steps:          [],
     ingredients:    [{type: mongoose.Schema.Types.ObjectId, ref: 'Ingredient'}],
     categories:     [{type: mongoose.Schema.Types.ObjectId, ref: 'Category'}],
     accountRef:     { type: mongoose.Schema.Types.ObjectId, ref: 'Account' },
     dateCreated:    { type: Date, default: Date.now }
 });
 
-RecipeSchema.statics.addRecipe = function(name, duration, difficulty, rating, steps, categories, accountRef, done) {
+RecipeSchema.statics.addRecipe = function(name, duration, difficulty, rating, steps, ingredients, categories, accountRef, done) {
     var Recipe = this;
     return Recipe.create({
         name       :    name,
@@ -26,6 +26,7 @@ RecipeSchema.statics.addRecipe = function(name, duration, difficulty, rating, st
         difficulty :    difficulty,
         rating     :    rating,
         steps      :    steps,
+        ingredients:    ingredients,
         categories :    categories,
         accountRef :    accountRef,
     }, function(err, object) {

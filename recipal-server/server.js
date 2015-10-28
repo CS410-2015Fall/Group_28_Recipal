@@ -47,6 +47,11 @@ app.set("ipaddr", config.host);
 app.set("port", config.port);
 
 app.use(express.static(path.join(__dirname, 'public')));
+var bodyParser = require('body-parser')
+// parse application/x-www-form-urlencoded 
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json 
+app.use(bodyParser.json())
 
 var server = http.Server(app);
 var io = require('socket.io')(server);
