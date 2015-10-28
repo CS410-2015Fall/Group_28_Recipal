@@ -25,7 +25,7 @@ var server = {
 			invokeFunc(connectCb);
 			return;
 		}
-		this.socket = io.connect('http://localhost:3000');
+		this.socket = io.connect('http://ec2-54-69-23-151.us-west-2.compute.amazonaws.com:3000');
 		this.initSocket(connectCb, disconnectCb, infoUpdateCb,
 		newMessageCb);
 	},	
@@ -35,6 +35,11 @@ var server = {
 			console.log("Connected");
 			this.isConnected = true;
 			invokeFunc(connectCb);
+
+			console.log(this.searchRecipes);
+
+			console.log(typeof this.searchRecipes);
+			this.searchRecipes(null, null);
 		});
 		this.socket.on('disconnect', function() {
 			console.log("Disconnected");
@@ -50,19 +55,30 @@ var server = {
 			console.log("New message incoming");
 			invokeFunc(newMessageCb, message);
 		});
-		this.socket.on('recipe-list', function(recipeArr, resultHead) {
-			console.log("Receiving recipe list");
-			invokeFunc(resultHead.callback, recipeArr, resultHead);
+		// this.socket.on('recipe-list', function(recipeArr, resultHead) {
+		// 	console.log("Receiving recipe list");
+		// 	invokeFunc(resultHead.callback, recipeArr, resultHead);
+		// });
+	},
+	searchRecipes: function(query, callback) {
+		console.log("send search");
+		this.socket.to('search').emit('search', query);
+
+
+			console.log(this.socket.to);
+
+			console.log(typeof this.socket.to);
+			this.searchRecipes(null, null);
+
+		this.socket.on('search', function(recipeArr) {
+			console.log("Receiving search results");
+			invokeFunc(recipeArr, callback);
 		});
-	},
-	getRecipes: function(query) {
-		console.log("send get-recipes");
-		this.socket.emit('get-recipes', query);
-	},
-	nextResults: function(resultHead) {
-		console.log("send next-results");
-		this.socket.emit('next-results', resultHead);
 	}
+	// nextResults: function(resultHead) {
+	// 	console.log("send next-results");
+	// 	this.socket.emit('next-results', resultHead);
+	// }
 };
 
 // TODO: a better way to combine these 3?
