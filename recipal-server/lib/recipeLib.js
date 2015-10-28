@@ -8,7 +8,11 @@ exports.createRecipe = function(req, res) {
     var steps      =    req.body.steps;
     var categories =    req.body.categories;
     var accountRef =    req.body.accountRef;
-	Recipe.addRecipe(name, duration, difficulty, rating, steps, categories, accountRef, function(err, recipe){
+    var ingredients =   req.body.ingredients;
+    if (typeof name === 'string') {
+        name = name.toLowerCase();
+    }
+	Recipe.addRecipe(name, duration, difficulty, rating, steps, ingredients, categories, accountRef, function(err, recipe){
 		if (err) {
     		console.log("error creating recipe: " + err);
     		res.status(400).send();

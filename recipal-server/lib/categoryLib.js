@@ -3,7 +3,9 @@ var Category = require("../models/category");
 exports.addCategory = function(req, res) {
     var name       =    req.body.name;
     var description =    req.body.description;
-    
+    if (typeof name === 'string') {
+        name = name.toLowerCase();
+    }    
 	Category.addCategory(name, description, function(err, category){
 		if (err) {
     		console.log("error creating category: " + err);

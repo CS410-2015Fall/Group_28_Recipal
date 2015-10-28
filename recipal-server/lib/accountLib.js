@@ -9,9 +9,10 @@ exports.createAccount = function(req, res) {
 	var username = req.body.username;
 	var password = req.body.password;
 	var name 	 = req.body.name;
+    var email    = req.body.email;
 	var age		 = req.body.age;
 	var gender 	 = req.body.gender;
-	Account.addAccount(username, password, name, gender, age, 0, function(err, account){
+	Account.addAccount(username, password, name, email, gender, age, 0, function(err, account){
 		if (err) {
     		console.log("error creating user: " + err);
     		res.status(400).send();
