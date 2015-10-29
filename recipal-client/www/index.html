@@ -44,11 +44,43 @@
         <title>Welcome To Recipal!</title>
     </head>
     <body>
-	
 	<!-- Page Navigator and create sliding menu -->
 	<ons-navigator title="Navigator" var="myNavigator">
 	 <ons-sliding-menu main-page="page.html" menu-page="menu.html" max-slide-distance="310px" type="push" var="menu">
     </ons-sliding-menu>
+        <h1>Countdown Clock</h1>
+        <div id="clockdiv">
+          <div>
+            <span class="days"></span>
+            <div class="smalltext">Days</div>
+          </div>
+          <div>
+            <span class="hours"></span>
+            <div class="smalltext">Hours</div>
+          </div>
+          <div>
+            <span class="minutes"></span>
+            <div class="smalltext">Minutes</div>
+          </div>
+          <div>
+            <span class="seconds"></span>
+            <div class="smalltext">Seconds</div>
+          </div>
+        </div>
+
+         <div class="app">
+             <ons-navigator title="Navigator" var="myNavigator">
+            <ons-page>
+            <h1>PhoneGap</h1>
+                <div id="deviceready" class="blink">
+                    <p class="event listening">Connecting to Device</p>
+                    <p class="event received">Device is Ready</p>
+                </div>
+            
+            <ons-button onclick="myNavigator.pushPage('page2.html')">Next Page</ons-button>
+            <div id="my-content"></div>
+            </ons-page>
+            </ons-navigator>
 
 	<!-- Default page when user opens the app -->
     <ons-template id="page.html">

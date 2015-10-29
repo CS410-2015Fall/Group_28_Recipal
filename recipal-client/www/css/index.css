@@ -28,6 +28,7 @@ body {
     padding:0px;
     text-transform:uppercase;
     width:100%;
+    text-align: center;
 }
 
 /* Center logo in the  middle of the page (portrait mode only) */
@@ -137,4 +138,38 @@ input[type=email], input[type=password] {
   display: block;
   margin: 8px auto 0 auto;
   font-size: 14px;
+}
+h1{
+  color: #396;
+  font-weight: 100;
+  font-size: 40px;
+  margin: 40px 0px 20px;
+}
+
+#clockdiv{
+    font-family: sans-serif;
+    color: #fff;
+    display: inline-block;
+    font-weight: 100;
+    text-align: center;
+    font-size: 30px;
+}
+
+#clockdiv > div{
+    padding: 10px;
+    border-radius: 3px;
+    background: #00BF96;
+    display: inline-block;
+}
+
+#clockdiv div > span{
+    padding: 15px;
+    border-radius: 3px;
+    background: #00816A;
+    display: inline-block;
+}
+
+.smalltext{
+    padding-top: 5px;
+    font-size: 16px;
 }
