@@ -95,8 +95,8 @@
 						var pass = document.getElementById("login-pass").value;
 						//alert("username: " + user + "\npassword: "  + pass);
 						//	TODO: Actual log in function.
-						server.login(user, pass, function(response) {
-							console.log(response);});
+						server.login(user, pass, function(success, data) {
+							if (success === true) console.log(data)});
 					}
 				</script>
 			<br><br>
@@ -135,7 +135,8 @@
 							//	TODO: Actual sign up function.
 							// Just add user information to database?
 							server.createAccount("tam" + Math.random(), suuser, supass, suemail, 
-								function(response) {console.log(response);});
+								function(success, data) {
+									if (success === true) console.log(data)});
 						}
 					</script>
 			</div>
@@ -319,7 +320,7 @@
 
     <script src="cordova.js"></script>
     <script src="js/socket.io-1.3.7.js"></script>
-    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/jquery-compat-3.0.0-alpha1.js"></script>
     <script src="js/onsen/onsenui.js"></script>
     <script src="js/models.js"></script>
     <script src="js/server-proxy.js"></script>

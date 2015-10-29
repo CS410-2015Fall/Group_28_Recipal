@@ -59,18 +59,26 @@ var server = {
 		});
 	},
 	createAccount: function(name, username, password, email, callback) {
-		jQuery.post(url + '/createAccount', {name: name, username: username, password: password, email: email}, 
-			function(response, txtStatus) {
-				console.log("Receive createAccount response status: " + txtStatus);
-				invokeFunc(callback, response);
-			});
+		jQuery.post({url: url + '/createAccount', data: {name: name, username: username, password: password, email: email},
+			success: function(data, txtStatus) {
+				console.log("Receive createAccount success status: " + txtStatus);
+				invokeFunc(callback, true, data);
+			},
+			error: function (data, txtStatus) {
+				console.log("Receive createAccount error status: " + txtStatus);
+				invokeFunc(callback, false);	
+			}});
 	},
 	login: function(username, password, callback) {
-		jQuery.post(url + '/login', {username: username, password: password}, 
-			function(response, txtStatus) {
-				console.log("Receive login response status: " + txtStatus);
-				invokeFunc(callback, response);
-			});
+		jQuery.post({url: url + '/login', data: {username: username, password: password}, 
+			success: function(data, txtStatus) {
+				console.log("Receive login success status: " + txtStatus);
+				invokeFunc(callback, true, data);
+			},
+			error: function (data, txtStatus) {
+				console.log("Receive login error status: " + txtStatus);
+				invokeFunc(callback, false);	
+			}});
 	}
 };
 

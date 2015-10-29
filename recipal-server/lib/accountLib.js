@@ -15,7 +15,7 @@ exports.createAccount = function(req, res) {
 	Account.addAccount(username, password, name, email, gender, age, 0, function(err, account){
 		if (err) {
     		console.log("error creating user: " + err);
-    		res.status(400).send();
+    		res.status(400).send("Account creation failed");
     	} else {
     		res.status(200).send(account);
     	}
@@ -37,7 +37,7 @@ exports.login = function(req, res) {
     	} else {
     		if (typeof(account) != "undefined" && account != null) {
     			if (account.length === 1) {
-    				res.status(200).send("Successful login");
+    				res.status(200).send(account);
     			} else {
     				res.status(400).send("Incorrect credentials");
     			}
