@@ -17,35 +17,48 @@ steps: array of cooking Step objects
 // var recipe = {
 // 	name: "",
 // 	duration: 0,
-// 	authorRef: "",
+//  dateCreated: new Date(),
+// 	authorName: "",
 // 	rating: 0,
 // 	difficulty: 0,
 // 	ingredients: [""],
 // 	categories: [""], // tags form
 // 	steps: [new step()],
-// 	recipe: function(name, authorRef, rating, difficulty, ingredients, categories, steps) {
-// 		this.name = name;
-// 		this.authorName = authorName;
-// 		this.rating = rating;
-// 		this.difficulty = difficulty;
-// 		this.ingredients = ingredients;
-// 		this.categories = categories;
-// 		this.steps = steps;
-// 	},
-// 	numSteps: function() {
-// 		return this.steps.size();
-// 	}
 // };
 
-function Recipe(name, authorName, rating, difficulty, ingredients, categories, steps) {
+function Recipe(name, author, duration, dateCreated, rating, difficulty, ingredients, categories, steps) {
 		this.name = name;
-		this.authorName = authorName;
+		this.author = author;
+		this.duration = duration;
+		this.dateCreated = dateCreated;
 		this.rating = rating;
 		this.difficulty = difficulty;
 		this.ingredients = ingredients;
 		this.categories = categories;
 		this.steps = steps;
 }
+
+/* 
+Search query, arguments correspond to Recipe's arguments of same name
+*/
+// var query = {
+// 	name: "",
+// 	author: "",
+// 	rating: {min: 0, max: 0},
+// 	difficulty: {min: 0, max: 0},
+// 	ingredients: [""],
+// 	categories: [""], // tags form
+// };
+
+function Query(name, author, rating, difficulty, ingredients, categories) {
+		this.name = name;
+		this.authorName = author;
+		this.rating = rating;
+		this.difficulty = difficulty;
+		this.ingredients = ingredients;
+		this.categories = categories;
+}
+
 
 
 /*
@@ -60,75 +73,6 @@ ingredientArr: non-empty list of ingredient (element: str)
 
 Elements in regionArr, timeOfDayArr and courseArr corresponds to values in 
 	3 enum-like objects with same name
-Note: If browsing/searching for recipes, this object can also be used as criteria,
-	so rating, difficulty and suggestedTime can become an array of 2 (a range)
-// */
-// var categories = {
-// 	rating: 0.0,
-// 	difficulty: 0.0,
-// 	regionArr: [""],
-// 	timeOfDayArr: [""],
-// 	courses: [""],
-// 	ingredientArr: [""],
-// 	categories: function(regions, rating, difficulty, suggestedTime, 
-// 		timesOfDay, courses) {
-// 		this.regions = regions;
-// 		this.rating = rating;
-// 		this.difficulty = difficulty;
-// 		this.suggestedTime = suggestedTime;
-// 		this.timesOfDay = timesOfDay;
-// 		this.courses = courses;
-// 	}
-// };
-
-/* 
-Search query
-categories: search Categories object (see its Note section)
-maxNumResults: max number of results to be returned by server
-callback: invoked when receiving search results and result head,
-	passing them as arguments
-*/
-// var query = {
-// 	name: "",
-// 	author: "",
-// 	rating: {min: 0, max: 0},
-// 	difficulty: {min: 0, max: 0},
-// 	ingredients: [""],
-// 	categories: [""], // tags form, 
-// 	// maxNumResults: 0, 
-// 	// callback: null,
-// 	query: function(name, author, rating, difficulty, ingredients, categories) {
-// 		this.name = name;
-// 		this.author = author;
-// 		this.rating = rating;
-// 		this.difficulty = difficulty;
-// 		this.ingredients = ingredients;
-// 		this.categories = categories;
-// 	}
-// };
-
-function Query(name, authorName, rating, difficulty, ingredients, categories) {
-		this.name = name;
-		this.authorName = authorName;
-		this.rating = rating;
-		this.difficulty = difficulty;
-		this.ingredients = ingredients;
-		this.categories = categories;
-}
-
-/*
-"Header" of a returned search, contains the original search Query object, 
-	and id of last recipe
-TODO: use id array instead of sending the resultHead back and forth
-*/
-// var resultHead = {
-// 	query: null,
-// 	lastId: 0,
-// 	result: function(query, lastId) {
-// 		this.query = query;
-// 		this.lastId = lastId;
-// 	}
-// };
 
 /*
 text: step description
@@ -141,12 +85,6 @@ toolTipArr: list of possible pop up ToolTip objects
 // 	media: [],
 // 	sysEventArr: [],
 // 	toolTipArr: [],
-// 	step: function (text, mediaArr, sysEventArr, toolTipArr) {
-// 		this.text = text;
-// 		this.media = media;
-// 		this.sysEvents = sysEvents;
-// 		this.toolTips = toolTips;
-// 	}
 //};
 function Step(instruction, timer, media, notes) {
 		this.instruction = instruction;

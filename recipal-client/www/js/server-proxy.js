@@ -1,7 +1,9 @@
 "use strict";
+var url = "http://localhost:3000";
+
 // TODO: Disconnect on switch task? Disable network components if not connected?
 /*
-connect(connectCb, disconnectCb) :
+connect(connectCb, disconnectCb, infoUpdateCb, newMessageCb) :
 connectCb: invoked on connection success
 disconnectCb: invoked whenever connection is interrupted
 infoUpdateCb: invoked when saved information (recipe, profile, categories, etc)
@@ -9,12 +11,8 @@ infoUpdateCb: invoked when saved information (recipe, profile, categories, etc)
 newMessageCb: invoked when there's any other notification from server,
 	passed in argument is the message content (str)
 
-getRecipes(query)
+searchRecipes(query, callback)
 query: the Query object used to search for recipes
-
-nextResults(resultHead)
-repeat the search query stored in resultHead, but advance past lastId,
-	calling the same callback in resultHead when results are returned
 */ 
 var server = {
 	socket: null,
@@ -25,7 +23,7 @@ var server = {
 			invokeFunc(connectCb);
 			return;
 		}
-		this.socket = io.connect('http://ec2-54-69-23-151.us-west-2.compute.amazonaws.com:3000');
+		this.socket = io.connect(url + '/search');
 		this.initSocket(connectCb, disconnectCb, infoUpdateCb,
 		newMessageCb);
 	},	
@@ -33,17 +31,12 @@ var server = {
 		newMessageCb) {
 		this.socket.on('connect', function(categories) {
 			console.log("Connected");
-			this.isConnected = true;
+			server.isConnected = true;
 			invokeFunc(connectCb);
-
-			console.log(this.searchRecipes);
-
-			console.log(typeof this.searchRecipes);
-			this.searchRecipes(null, null);
 		});
 		this.socket.on('disconnect', function() {
 			console.log("Disconnected");
-			this.isConnected = false;
+			server.isConnected = false;
 			invokeFunc(disconnectCb);
 		});
 		this.socket.on('info-update', function(infoUpdateArr) {
@@ -55,42 +48,31 @@ var server = {
 			console.log("New message incoming");
 			invokeFunc(newMessageCb, message);
 		});
-		// this.socket.on('recipe-list', function(recipeArr, resultHead) {
-		// 	console.log("Receiving recipe list");
-		// 	invokeFunc(resultHead.callback, recipeArr, resultHead);
-		// });
 	},
 	searchRecipes: function(query, callback) {
-		console.log("send search");
-		this.socket.to('search').emit('search', query);
-
-
-			console.log(this.socket.to);
-
-			console.log(typeof this.socket.to);
-			this.searchRecipes(null, null);
+		this.socket.emit('search',new Query(query.name, query.author, query.rating, 
+			query.difficulty, query.ingredients, query.categories));
 
 		this.socket.on('search', function(recipeArr) {
-			console.log("Receiving search results");
-			invokeFunc(recipeArr, callback);
+			console.log("Receive search results");
+			invokeFunc(callback, recipeArr);
 		});
+	},
+	createAccount: function(name, username, password, email, callback) {
+		jQuery.post(url + '/createAccount', {name: name, username: username, password: password, email: email}, 
+			function(response, txtStatus) {
+				console.log("Receive createAccount response status: " + txtStatus);
+				invokeFunc(callback, response);
+			});
+	},
+	login: function(username, password, callback) {
+		jQuery.post(url + '/login', {username: username, password: password}, 
+			function(response, txtStatus) {
+				console.log("Receive login response status: " + txtStatus);
+				invokeFunc(callback, response);
+			});
 	}
-	// nextResults: function(resultHead) {
-	// 	console.log("send next-results");
-	// 	this.socket.emit('next-results', resultHead);
-	// }
 };
-
-// TODO: a better way to combine these 3?
-function invokeFunc(func) {
-	if (typeof func === "function" && func !== null)
-		func();
-}
-
-function invokeFunc(func, arg1) {
-	if (typeof func === "function" && func !== null)
-		func(arg1);
-}
 
 function invokeFunc(func, arg1, arg2) {
 	if (typeof func === "function" && func !== null)
