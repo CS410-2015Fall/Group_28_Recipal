@@ -1,5 +1,5 @@
 "use strict";
-var url = "http://localhost:3000";
+var url = "http://ec2-54-69-23-151.us-west-2.compute.amazonaws.com:3000";
 
 // TODO: Disconnect on switch task? Disable network components if not connected?
 /*

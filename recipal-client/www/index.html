@@ -19,7 +19,7 @@
      KIND, either express or implied.  See the License for the
     specific language governing permissions and limitations
     under the License.
--->
+-->ec2-54-69-23-151.us-west-2.compute.amazonaws.com
 <html>
     <head>
         <meta charset="utf-8" />
@@ -32,6 +32,7 @@
         <link rel="stylesheet" href="css/onsen/onsen-css-components.css">
         <script src="js/onsen/angular/angular.js"></script>
         <script src="js/onsen/onsenui.js"></script>
+        <script src="js/jquery-compat-3.0.0-alpha1.js"></script>
         <script>
             ons.bootstrap();
             ons.ready(function() {
@@ -61,12 +62,15 @@
           </div>
           <div class="center">Menu</div>
         </ons-toolbar>
+        	<div id="welcomeMessage"></div>
+
 			<div class="welcome-page">
-				<img class="welcome" width="250px" src="img/welcome.png"/><br>
+				<img class="welcome" fixed-width="250px" src="img/welcome.png"/><br>
 			</div>
 			<div class="logo-page">
 				<img id="logo" height="250px" width="250px" src="img/logo-3.jpg"/>
 			</div>
+
       </ons-page>
     </ons-template>
 	
@@ -82,6 +86,7 @@
 		  <div class="center">Login & Sign Up</div>
 		</ons-toolbar>
 			<!--LOGIN PAGE CONTENTS-->
+		<center><div id="loginStatusMessage"></div></center>
 		<div class="login-form">
 			<input type="email" id="login-user" class="text-input--underbar" placeholder="Username" value="">
 			<input type="password" id="login-pass" class="text-input--underbar" placeholder="Password" value="">
@@ -96,7 +101,19 @@
 						//alert("username: " + user + "\npassword: "  + pass);
 						//	TODO: Actual log in function.
 						server.login(user, pass, function(success, data) {
-							if (success === true) console.log(data)});
+							if (success === true) {
+								console.log(JSON.stringify(data));
+								menu.setMainPage('page.html');
+								if (typeof data.name === 'string') {
+									console.log("data.name is a string");
+									welcomeMessage = "Welcome Back " + data.name;
+								}
+
+							} else {
+								$('#login-pass').val("");
+								$('#loginStatusMessage').replaceWith("Please try again!");
+							}
+						});
 					}
 				</script>
 			<br><br>
@@ -320,7 +337,6 @@
 
     <script src="cordova.js"></script>
     <script src="js/socket.io-1.3.7.js"></script>
-    <script src="js/jquery-compat-3.0.0-alpha1.js"></script>
     <script src="js/onsen/onsenui.js"></script>
     <script src="js/models.js"></script>
     <script src="js/server-proxy.js"></script>

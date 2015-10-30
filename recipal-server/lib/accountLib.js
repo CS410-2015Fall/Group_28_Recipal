@@ -37,7 +37,7 @@ exports.login = function(req, res) {
     	} else {
     		if (typeof(account) != "undefined" && account != null) {
     			if (account.length === 1) {
-    				res.status(200).send(account);
+    				res.status(200).send(account[0]);
     			} else {
     				res.status(400).send("Incorrect credentials");
     			}
