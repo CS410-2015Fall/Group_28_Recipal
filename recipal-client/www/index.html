@@ -21,74 +21,74 @@
     under the License.
 -->
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-tap-highlight" content="no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <link rel="stylesheet" href="css/onsen/onsenui.css">
-        <link rel="stylesheet" href="css/onsen/onsen-css-components.css">
-        <script src="js/onsen/angular/angular.js"></script>
-        <script src="js/onsen/onsenui.js"></script>
-        <script>
-            ons.bootstrap();
-            ons.ready(function() {
+<head>
+	<meta charset="utf-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="msapplication-tap-highlight" content="no" />
+	<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+	<link rel="stylesheet" type="text/css" href="css/index.css" />
+	<link rel="stylesheet" href="css/onsen/onsenui.css">
+	<link rel="stylesheet" href="css/onsen/onsen-css-components.css">
+	<script src="js/onsen/angular/angular.js"></script>
+	<script src="js/onsen/onsenui.js"></script>
+	<script>
+	ons.bootstrap();
+	ons.ready(function() {
             // Add another Onsen UI element
             var content = document.getElementById("my-content");
             menu.openMenu();
             ons.compile(content);
         });
-        </script>
-        <title>Welcome To Recipal!</title>
-    </head>
-    <body>
+	</script>
+	<title>Welcome To Recipal!</title>
+</head>
+<body>
 	
 	<!-- Page Navigator and create sliding menu -->
 	<ons-navigator title="Navigator" var="myNavigator">
-	 <ons-sliding-menu main-page="page.html" menu-page="menu.html" max-slide-distance="310px" type="push" var="menu">
-    </ons-sliding-menu>
+	<ons-sliding-menu main-page="page.html" menu-page="menu.html" max-slide-distance="310px" type="push" var="menu">
+</ons-sliding-menu>
 
-	<!-- Default page when user opens the app -->
-    <ons-template id="page.html">
-      <ons-page>
-        <ons-toolbar>
-          <div class="left">
-            <ons-toolbar-button ng-click="menu.toggleMenu()">
-              <ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
-            </ons-toolbar-button>
-          </div>
-          <div class="center">Menu</div>
-        </ons-toolbar>
-			<div class="welcome-page">
-				<img class="welcome" width="250px" src="img/welcome.png"/><br>
-			</div>
-			<div class="logo-page">
-				<img id="logo" height="250px" width="250px" src="img/logo-3.jpg"/>
-			</div>
-      </ons-page>
-    </ons-template>
-	
-	<!-- Login Page -->
-	<ons-template id="login.html">
-	  <ons-page>
-	    <ons-toolbar>
-		  <div class="left">
-		    <ons-toolbar-button onclick="menu.toggleMenu()">
-			<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
-			</ons-toolbar-button>
-		  </div>
-		  <div class="center">Login & Sign Up</div>
-		</ons-toolbar>
-			<!--LOGIN PAGE CONTENTS-->
-		<div class="login-form">
-			<input type="email" id="login-user" class="text-input--underbar" placeholder="Username" value="">
-			<input type="password" id="login-pass" class="text-input--underbar" placeholder="Password" value="">
-			<br><br>
-			<ons-button modifier="large" class="login-button" onclick="login()">Log In</ons-button>
-				<script>
-					function login() {
+<!-- Default page when user opens the app -->
+<ons-template id="page.html">
+<ons-page>
+<ons-toolbar>
+<div class="left">
+	<ons-toolbar-button ng-click="menu.toggleMenu()">
+	<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+</ons-toolbar-button>
+</div>
+<div class="center">Menu</div>
+</ons-toolbar>
+<div class="welcome-page">
+	<img class="welcome" width="250px" src="img/welcome.png"/><br>
+</div>
+<div class="logo-page">
+	<img id="logo" height="250px" width="250px" src="img/logo-3.jpg"/>
+</div>
+</ons-page>
+</ons-template>
+
+<!-- Login Page -->
+<ons-template id="login.html">
+<ons-page>
+<ons-toolbar>
+<div class="left">
+	<ons-toolbar-button onclick="menu.toggleMenu()">
+	<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+</ons-toolbar-button>
+</div>
+<div class="center">Login & Sign Up</div>
+</ons-toolbar>
+<!--LOGIN PAGE CONTENTS-->
+<div class="login-form">
+	<input type="email" id="login-user" class="text-input--underbar" placeholder="Username" value="">
+	<input type="password" id="login-pass" class="text-input--underbar" placeholder="Password" value="">
+	<br><br>
+	<ons-button modifier="large" class="login-button" onclick="login()">Log In</ons-button>
+	<script>
+	function login() {
 						// Username value
 						var user = document.getElementById("login-user").value;
 						// Password value
@@ -97,34 +97,35 @@
 						//	TODO: Actual log in function.
 						server.login(user, pass, function(success, data) {
 							if (success === true) console.log(data)});
+						speech.toggleRecognition();
 					}
-				</script>
-			<br><br>
-			<ons-button modifier="quiet" onclick="menu.setMainPage('signup.html')">Sign Up!</ons-button><br>
-			<ons-button modifier="quiet" class="forgot-password" onclick="menu.setMainPage('forgotpass.html')">Forgot password?</ons-button>
-		</div>
-	  </ons-page>
-	</ons-template>
-	
-	<!-- Sign Up Page -->
-	<ons-template id="signup.html">
-	  <ons-page>
-	    <ons-toolbar>
-		  <div class="left">
-		    <ons-toolbar-button onclick="menu.toggleMenu()">
-				<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
-			</ons-toolbar-button>
-		  </div>
-		  <div class="center">Sign Up</div>
-		</ons-toolbar>
-			<div class="login-form">
-				<input type="email" id="signup-user" class="text-input--underbar" placeholder="Username" value="">
-				<input type="password" id="signup-pass" class="text-input--underbar" placeholder="Password" value="">
-				<input type="email" id="signup-email" class="text-input--underbar" placeholder="Email" value="">
-				<br><br>
-				<ons-button modifier="large" class="login-button" onclick="signup()">Sign Up</ons-button>
-					<script>
-						function signup() {
+					</script>
+					<br><br>
+					<ons-button modifier="quiet" onclick="menu.setMainPage('signup.html')">Sign Up!</ons-button><br>
+					<ons-button modifier="quiet" class="forgot-password" onclick="menu.setMainPage('forgotpass.html')">Forgot password?</ons-button>
+				</div>
+			</ons-page>
+		</ons-template>
+
+		<!-- Sign Up Page -->
+		<ons-template id="signup.html">
+		<ons-page>
+		<ons-toolbar>
+		<div class="left">
+			<ons-toolbar-button onclick="menu.toggleMenu()">
+			<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+		</ons-toolbar-button>
+	</div>
+	<div class="center">Sign Up</div>
+</ons-toolbar>
+<div class="login-form">
+	<input type="email" id="signup-user" class="text-input--underbar" placeholder="Username" value="">
+	<input type="password" id="signup-pass" class="text-input--underbar" placeholder="Password" value="">
+	<input type="email" id="signup-email" class="text-input--underbar" placeholder="Email" value="">
+	<br><br>
+	<ons-button modifier="large" class="login-button" onclick="signup()">Sign Up</ons-button>
+	<script>
+	function signup() {
 							// Username value
 							var suuser = document.getElementById("signup-user").value;
 							// Password value
@@ -138,28 +139,28 @@
 								function(success, data) {
 									if (success === true) console.log(data)});
 						}
-					</script>
-			</div>
-	   </ons-page>
-	</ons-template>
-	
-	<!-- Forgot Password Page -->
-	<ons-template id="forgotpass.html">
-	  <ons-page>
-	    <ons-toolbar>
-		  <div class="left">
-		    <ons-toolbar-button onclick="menu.toggleMenu()">
-			<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+						</script>
+					</div>
+				</ons-page>
+			</ons-template>
+
+			<!-- Forgot Password Page -->
+			<ons-template id="forgotpass.html">
+			<ons-page>
+			<ons-toolbar>
+			<div class="left">
+				<ons-toolbar-button onclick="menu.toggleMenu()">
+				<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
 			</ons-toolbar-button>
-		  </div>
-		  <div class="center">Forgotten Password</div>
-		</ons-toolbar>
-			<div class="login-form">
-				What is your email?
-				<input type="email" id="fpuser" class="text-input--underbar" placeholder="Email" value="" onkeypress="return test(event)"/>
-				<script>
-				 function test(e) {
-					if (e.keyCode === 13) {
+		</div>
+		<div class="center">Forgotten Password</div>
+	</ons-toolbar>
+	<div class="login-form">
+		What is your email?
+		<input type="email" id="fpuser" class="text-input--underbar" placeholder="Email" value="" onkeypress="return test(event)"/>
+		<script>
+		function test(e) {
+			if (e.keyCode === 13) {
 						// User's email value
 						var fpuser = document.getElementById("fpuser").value;
 						alert("Email: " + fpuser);
@@ -167,173 +168,173 @@
 						// TODO: Check if email is in the database, if not display error.
 					} else {
 					// Do nothing.
-					}
 				}
-				</script>
-				
-			</div>
-	  </ons-page>
-	</ons-template>
-	
-	<!-- Search Page -->
-	<ons-template id="search.html">
-	  <ons-page>
-	    <ons-toolbar>
-		  <div class="left">
-		    <ons-toolbar-button onclick="menu.toggleMenu()">
-			<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
-			</ons-toolbar-button>
-		  </div>
-		  <div class="center">Recipe Search</div>
-		</ons-toolbar>
-			<p>SEARCH PAGE CONTENTS</p>
-	  </ons-page>
-	</ons-template>
-	
-	<!-- Browse Page -->
-	<ons-template id="browse.html">
-	  <ons-page>
-	    <ons-toolbar>
-		  <div class="left">
-		    <ons-toolbar-button onclick="menu.toggleMenu()">
-			<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
-			</ons-toolbar-button>
-		  </div>
-		  <div class="center">Browse By Category</div>
-		</ons-toolbar>
-			<div class="browse-page">
-			What category would you like to look through?<br><br>
-			<ons-button class="button button--outline">Test</ons-button><br>
-			<ons-button class="button button--outline">Test</ons-button><br>
-			</div>
-	  </ons-page>
-	</ons-template>
-	
-	<!-- Favourites Page -->
-	<ons-template id="favourites.html">
-	  <ons-page>
-	    <ons-toolbar>
-		  <div class="left">
-		    <ons-toolbar-button onclick="menu.toggleMenu()">
-			<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
-			</ons-toolbar-button>
-		  </div>
-		  <div class="center">favourites</div>
-		</ons-toolbar>
-			<p>FAVOURITES PAGE CONTENTS</p>
-	  </ons-page>
-	</ons-template>
-	
-	<!-- Accounts Page -->
-	<ons-template id="accounts.html">
-	  <ons-page>
-	    <ons-toolbar>
-		  <div class="left">
-		    <ons-toolbar-button onclick="menu.toggleMenu()">
-			<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
-			</ons-toolbar-button>
-		  </div>
-		  <div class="center">Accounts & Settings</div>
-		</ons-toolbar>
-			<p>ACCOUNTS PAGE CONTENTS</p>
-	  </ons-page>
-	</ons-template>
-	
-	<!-- Help Page -->
-	<ons-template id="help.html">
-	  <ons-page>
-	    <ons-toolbar>
-		  <div class="left">
-		    <ons-toolbar-button onclick="menu.toggleMenu()">
-			<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
-			</ons-toolbar-button>
-		  </div>
-		  <div class="center">Help</div>
-		</ons-toolbar>
-			<p>HELP PAGE CONTENTS</p>
-	  </ons-page>
-	</ons-template>
-	
-	<!-- Feedback Page -->
-	<ons-template id="feedback.html">
-	  <ons-page>
-	    <ons-toolbar>
-		  <div class="left">
-		    <ons-toolbar-button onclick="menu.toggleMenu()">
-			<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
-			</ons-toolbar-button>
-		  </div>
-		  <div class="center">Feedback</div>
-		</ons-toolbar>
-			<p>FEEDBACK PAGE CONTENTS</p>
-	  </ons-page>
-	</ons-template>
-	
-	<!-- Put together the sliding menu -->
-    <ons-template id="menu.html">
-      <ons-page modifier="menu-page">
-        <ons-toolbar modifier="transparent">
-          <div class="right">
-            <ons-toolbar-button class="menu-close" ng-click="menu.close()">
-              </ons-icon>Close
-            </ons-toolbar-button>
-          </div>
-        </ons-toolbar>
+			}
+			</script>
 
-        <ons-list class="menu-list">
-          <ons-list-item modifier="chevron" class="menu-item" onclick="menu.setMainPage('login.html', {closeMenu: true})">
-            Login & Sign Up
-          </ons-list-item>
+		</div>
+	</ons-page>
+</ons-template>
 
-          <ons-list-item modifier="chevron" class="menu-item" onclick="menu.setMainPage('search.html', {closeMenu: true})">
-            Search
-          </ons-list-item>
-		  
-		  <ons-list-item modifier="chevron" class="menu-item" onclick="menu.setMainPage('browse.html', {closeMenu: true})">
-            Browse
-          </ons-list-item>
+<!-- Search Page -->
+<ons-template id="search.html">
+<ons-page>
+<ons-toolbar>
+<div class="left">
+	<ons-toolbar-button onclick="menu.toggleMenu()">
+	<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+</ons-toolbar-button>
+</div>
+<div class="center">Recipe Search</div>
+</ons-toolbar>
+<p>SEARCH PAGE CONTENTS</p>
+</ons-page>
+</ons-template>
 
-          <ons-list-item modifier="chevron" class="menu-item" onclick="menu.setMainPage('favourites.html', {closeMenu: true})">
-            Favourites
-          </ons-list-item>
-        </ons-list>
+<!-- Browse Page -->
+<ons-template id="browse.html">
+<ons-page>
+<ons-toolbar>
+<div class="left">
+	<ons-toolbar-button onclick="menu.toggleMenu()">
+	<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+</ons-toolbar-button>
+</div>
+<div class="center">Browse By Category</div>
+</ons-toolbar>
+<div class="browse-page">
+	What category would you like to look through?<br><br>
+	<ons-button class="button button--outline">Test</ons-button><br>
+	<ons-button class="button button--outline">Test</ons-button><br>
+</div>
+</ons-page>
+</ons-template>
 
-        <br>
+<!-- Favourites Page -->
+<ons-template id="favourites.html">
+<ons-page>
+<ons-toolbar>
+<div class="left">
+	<ons-toolbar-button onclick="menu.toggleMenu()">
+	<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+</ons-toolbar-button>
+</div>
+<div class="center">favourites</div>
+</ons-toolbar>
+<p>FAVOURITES PAGE CONTENTS</p>
+</ons-page>
+</ons-template>
 
-        <ons-list class="bottom-menu-list">
-          <ons-list-item class="bottom-menu-item" onclick="menu.setMainPage('accounts.html', {closeMenu: true})">
-            Account & Settings
-            <!-- <div class="notification menu-notification">3</div> -->
-          </ons-list-item>
+<!-- Accounts Page -->
+<ons-template id="accounts.html">
+<ons-page>
+<ons-toolbar>
+<div class="left">
+	<ons-toolbar-button onclick="menu.toggleMenu()">
+	<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+</ons-toolbar-button>
+</div>
+<div class="center">Accounts & Settings</div>
+</ons-toolbar>
+<p>ACCOUNTS PAGE CONTENTS</p>
+</ons-page>
+</ons-template>
 
-          <ons-list-item class="bottom-menu-item" onclick="menu.setMainPage('help.html', {closeMenu: true})">
-            Help
-          </ons-list-item>
+<!-- Help Page -->
+<ons-template id="help.html">
+<ons-page>
+<ons-toolbar>
+<div class="left">
+	<ons-toolbar-button onclick="menu.toggleMenu()">
+	<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+</ons-toolbar-button>
+</div>
+<div class="center">Help</div>
+</ons-toolbar>
+<p>HELP PAGE CONTENTS</p>
+</ons-page>
+</ons-template>
 
-          <ons-list-item class="bottom-menu-item" onclick="menu.setMainPage('feedback.html', {closeMenu: true})">
-            Send feedback
-          </ons-list-item>
-        </ons-list>
+<!-- Feedback Page -->
+<ons-template id="feedback.html">
+<ons-page>
+<ons-toolbar>
+<div class="left">
+	<ons-toolbar-button onclick="menu.toggleMenu()">
+	<ons-icon icon="ion-navicon" size="28px" fixed-width="false"></ons-icon>
+</ons-toolbar-button>
+</div>
+<div class="center">Feedback</div>
+</ons-toolbar>
+<p>FEEDBACK PAGE CONTENTS</p>
+</ons-page>
+</ons-template>
 
-      </ons-page>
-    </ons-template>
+<!-- Put together the sliding menu -->
+<ons-template id="menu.html">
+<ons-page modifier="menu-page">
+<ons-toolbar modifier="transparent">
+<div class="right">
+	<ons-toolbar-button class="menu-close" ng-click="menu.close()">
+</ons-icon>Close
+</ons-toolbar-button>
+</div>
+</ons-toolbar>
 
-    <script src="cordova.js"></script>
-    <script src="js/socket.io-1.3.7.js"></script>
-    <script src="js/jquery-compat-3.0.0-alpha1.js"></script>
-    <script src="js/onsen/onsenui.js"></script>
-    <script src="js/models.js"></script>
-    <script src="js/server-proxy.js"></script>
-    <script src="js/proximity-sensor.js"></script>
-    <script src="js/index.js"></script>
-    <script>
-    server.connect(function() {
-    	server.searchRecipes(
-    		new Query("", "name3", {min: 2, max: 4}, {min: 1, max: 5}, ["bread"], ["breakfast"]), 
-    		function(recipeArr) {
-    			console.log(recipeArr);});
-    });
-    </script>
-    <script>app.initialize();</script>
+<ons-list class="menu-list">
+<ons-list-item modifier="chevron" class="menu-item" onclick="menu.setMainPage('login.html', {closeMenu: true})">
+Login & Sign Up
+</ons-list-item>
+
+<ons-list-item modifier="chevron" class="menu-item" onclick="menu.setMainPage('search.html', {closeMenu: true})">
+Search
+</ons-list-item>
+
+<ons-list-item modifier="chevron" class="menu-item" onclick="menu.setMainPage('browse.html', {closeMenu: true})">
+Browse
+</ons-list-item>
+
+<ons-list-item modifier="chevron" class="menu-item" onclick="menu.setMainPage('favourites.html', {closeMenu: true})">
+Favourites
+</ons-list-item>
+</ons-list>
+
+<br>
+
+<ons-list class="bottom-menu-list">
+<ons-list-item class="bottom-menu-item" onclick="menu.setMainPage('accounts.html', {closeMenu: true})">
+Account & Settings
+<!-- <div class="notification menu-notification">3</div> -->
+</ons-list-item>
+
+<ons-list-item class="bottom-menu-item" onclick="menu.setMainPage('help.html', {closeMenu: true})">
+Help
+</ons-list-item>
+
+<ons-list-item class="bottom-menu-item" onclick="menu.setMainPage('feedback.html', {closeMenu: true})">
+Send feedback
+</ons-list-item>
+</ons-list>
+
+</ons-page>
+</ons-template>
+
+<script src="cordova.js"></script>
+<script src="js/socket.io-1.3.7.js"></script>
+<script src="js/jquery-compat-3.0.0-alpha1.js"></script>
+<script src="js/onsen/onsenui.js"></script>
+<script src="js/models.js"></script>
+<script src="js/server-proxy.js"></script>
+<!--<script src="js/proximity-sensor.js"></script>-->
+<script src="js/speech.js"></script>
+<script src="js/index.js"></script>
+<script>
+server.connect();
+// server.addRecipe("Bread and omelette", 5, 4, 3, [], ["bread","eggs"],["breakfast"], "6319b6e86aad8b25bccd340",
+// 	function(recipe) {console.log(recipe)});
+// server.searchRecipes(new Query("", "BruceWayne", {min: 2, max: 4},{min: 1, max: 5}, ["bread"], ["breakfast"]),
+// 	function(recipeArr) {console.log(recipeArr)});
+</script>
+<script>app.initialize();</script>
 </body>
 </html>

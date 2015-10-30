@@ -60,9 +60,9 @@ var server = {
 	},
 	createAccount: function(name, username, password, email, callback) {
 		jQuery.post({url: url + '/createAccount', data: {name: name, username: username, password: password, email: email},
-			success: function(data, txtStatus) {
+			success: function(account, txtStatus) {
 				console.log("Receive createAccount success status: " + txtStatus);
-				invokeFunc(callback, true, data);
+				invokeFunc(callback, true, account);
 			},
 			error: function (data, txtStatus) {
 				console.log("Receive createAccount error status: " + txtStatus);
@@ -71,12 +71,24 @@ var server = {
 	},
 	login: function(username, password, callback) {
 		jQuery.post({url: url + '/login', data: {username: username, password: password}, 
-			success: function(data, txtStatus) {
+			success: function(account, txtStatus) {
 				console.log("Receive login success status: " + txtStatus);
-				invokeFunc(callback, true, data);
+				invokeFunc(callback, true, account);
 			},
 			error: function (data, txtStatus) {
 				console.log("Receive login error status: " + txtStatus);
+				invokeFunc(callback, false);	
+			}});
+	},	
+	addRecipe: function(name, duration, difficulty, rating, steps, ingredients, categories, accountRef, callback) {
+		jQuery.post({url: url + '/createRecipe', data: {name: name, duration: duration, difficulty: difficulty, 
+			rating: rating, steps: steps, ingredients: ingredients, categories: categories, accountRef: accountRef}, 
+			success: function(recipe, txtStatus) {
+				console.log("Receive addRecipe success status: " + txtStatus);
+				invokeFunc(callback, true, recipe);
+			},
+			error: function (data, txtStatus) {
+				console.log("Receive addRecipe error status: " + txtStatus);
 				invokeFunc(callback, false);	
 			}});
 	}

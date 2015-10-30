@@ -1,4 +1,4 @@
-var k_proxSensorCheck_ms = 100;
+var k_proxSensorCheck_ms = 1000;
 
 var proxSensor = {
     lastState: false,
@@ -11,15 +11,16 @@ var proxSensor = {
     		return;
     	}
     	navigator.proximity.enableSensor();
-    	navigator.proximity.getProximityState(null);
+    	//navigator.proximity.getProximityState(null);
     	this.stateChangeCb = stateChangeCb;
-    	setInterval(navigator.proximity.getProximityState(this.getStateCb), k_proxSensorCheck_ms);
+    	//setInterval(navigator.proximity.getProximityState(this.getStateCb), k_proxSensorCheck_ms);
     	console.log("DEBUG: Proximity on");
     },
     getStateCb: function(state) {
+        console.log("DEBUG: Proximity state: " + state);
     	if (state != this.lastState) 
     	{
-    		console.log("DEBUG: Proximity change: " + state);
+            console.log("DEBUG: Proximity state change");
     		if (this.lastState == 0)
                 invokeFunc(this.stateChangeCb);
     	}
