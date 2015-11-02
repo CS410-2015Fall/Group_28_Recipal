@@ -39,17 +39,38 @@ body {
 
 .browse-page {
 	text-align:center;
-	padding: 10px 10px 10px 10px;
+	padding: 50px 10px 10px 10px;
 	text-transform: none;
 	width: 95%;
+	height: 95%;	
+}
+
+.ingredients-page {
+	text-transform: none;
+}
+
+.title-page {
+	font-family: courier;
+	text-align:center;
+	padding: 30px 10px 10px 10px;
+	text-transform: none;
+	width: 95%;
+	height: 95%;	
+}
+
+
+.search-page {
+	text-align: center;
+	padding: 30px 10px 10px 10px;
+	width: 95%;
 	height: 95%;
-	
+	text-transform: none;
 }
 
 .welcome-page {
 	position: absolute;
 	top: 10%;
-	left: 15%;
+	left: 10%;
 	animation: blink 2s;
     animation-iteration-count: infinite;
 }
@@ -137,4 +158,84 @@ input[type=email], input[type=password] {
   display: block;
   margin: 8px auto 0 auto;
   font-size: 14px;
+}
+
+.profile-wrapper {
+  padding: 16px 10px 0 10px;
+}
+
+.profile-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border: inset 1px rgba(0, 0, 0, 0.3);
+}
+
+.profile-name {
+  font-size: 18px;
+  padding: 4px 0 2px 0;
+}
+
+.profile-email {
+  font-size: 15px;
+  opacity: 0.4;
+}
+
+.switch--list-item {
+  margin-right: 0px;
+}
+
+.settings-header {
+  font-weight: 500;
+  font-size: 14px;
+  opacity: 0.4;
+  padding: 10px 0 0px 10px;
+  margin-bottom: -4px;
+}
+
+.settings-list {
+  margin-top: 10px;
+}
+
+.alignright {
+	float: right;
+}
+
+#clockdiv {
+    font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  margin: 0px;
+  padding: 0px;
+  text-transform: uppercase;
+  width: 100%;
+  font-family: sans-serif;
+  color: #fff;
+  display: inline-block;
+  font-weight: 100;
+  text-align: center;
+  font-size: 30px;
+}
+
+#clockdiv > div {
+  padding: 10px;
+  
+  background: #00BF96;
+  display: inline-block;
+}
+
+#clockdiv div > span {
+  padding: 15px;
+  border-radius: 3px;
+  background: #00816A;
+  display: inline-block;
+}
+
+.smalltext {
+  padding-top: 5px;
+  font-size: 16px;
+}
+
+.hidden {
+  display: none !important;
 }
