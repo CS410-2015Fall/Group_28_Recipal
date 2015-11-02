@@ -390,16 +390,34 @@
 		</ons-toolbar>
 			<div class="search-page">
 			<input id="searchinput" class="search-input" placeholder="SEARCH..." value="" onkeypress="return search(event)"/>
+				<p>Name  Author  Difficulty Rating</p>
 				<div id="searchresults">
 				<!-- display search results -->
+				
+
 				</div>
 			</div>
 				<script>
+				var searchResults;
+				function openRecipe(recipeIndex) {
+					console.log("Opening " + JSON.stringify(searchResults[recipeIndex], null, 2));
+				}
+
 				function search(e) {
 				if (e.keyCode === 13) {
 					var input = document.getElementById("searchinput").value;
 					console.log(input);
 						//TO DO: search function for user input
+						server.searchRecipes(
+                            new Query("", "", {min: 0, max: 5}, {min: 0, max: 5}, null, [input]), 
+                            function(recipeArr) {
+                                //console.log("Search results: " + recipeArr);});
+								searchResults = recipeArr;
+								for (i = 0; i < recipeArr.length; i++) { 
+  								  //console.log("Search result " + i + ": " + recipeArr[i].name + " " + recipeArr[i].duration + " " + recipeArr[i].difficulty);
+  								  document.getElementById("searchresults").innerHTML += "<button id=" + i + " onclick='openRecipe(" + i + ")'>" + recipeArr[i].name + " " + recipeArr[i].accountRef + " " + recipeArr[i].difficulty + " " + recipeArr[i].rating + "</button><br>";
+								}
+							});
 					} else {
 					// Do nothing.
 					}
@@ -530,12 +548,7 @@
     <script src="js/proximity-sensor.js"></script>
     <script src="js/index.js"></script>
     <script>
-    server.connect(function() {
-    	server.searchRecipes(
-    		new Query("", "name3", {min: 2, max: 4}, {min: 1, max: 5}, ["bread"], ["breakfast"]), 
-    		function(recipeArr) {
-    			console.log(recipeArr);});
-    });
+    server.connect();
     </script>
     <script>app.initialize();</script>
 </body>
