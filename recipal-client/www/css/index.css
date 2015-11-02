@@ -58,6 +58,10 @@ body {
 	height: 95%;	
 }
 
+.searchresults {
+	text-align:center;
+	padding: 10px 10px 10px 10px;
+}
 
 .search-page {
 	text-align: center;
@@ -73,6 +77,15 @@ body {
 	left: 10%;
 	animation: blink 2s;
     animation-iteration-count: infinite;
+}
+
+.finish-page {
+	text-align:center;
+	padding: 50px 10px 10px 10px;
+	width: 95%;
+	height: 95%;
+	text-transform: none;
+	font-family: courier;
 }
 
 .page--menu-page__background {

@@ -32,7 +32,13 @@
       if (t.total <= 0) {
         console.log("HIT 0!");
         clearInterval(timeinterval);
-        $('#clockPrompt').text(step.timer.completedPrompt);
+        //$('#clockPrompt').text(step.timer.completedPrompt);
+		var audio = new Audio('alarm.mp3');
+		audio.play();
+		audio.addEventListener("ended", showAlert);
+		function showAlert() {
+			alert("REMOVE FROM OVEN!");
+		}
       }
     }
 
