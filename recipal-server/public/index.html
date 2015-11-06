@@ -34,11 +34,7 @@ Server backend html
 	var searchTest = function() {
 		var data = {};
 		data["name"] = "";
-		// data["categories"] = ["breakfast"];
-		data["difficulty"] = {"max":5, "min":1};
-		data["rating"] = {"max":4, "min":2};
-		data["ingredients"] = ["bread"];
-		data["author"] = "name3";
+		data["categories"] = ["italian"];
 		socket.emit("search", data);
 	}
 

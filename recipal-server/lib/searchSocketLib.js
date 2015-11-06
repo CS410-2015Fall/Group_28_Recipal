@@ -111,7 +111,7 @@ var filterCategory = function(categories, recipes, done) {
 			Q.all(categoryPromiss).then(function() {
 				// console.log("listOfCategories is " + listOfCategories);
 				if (recipes.length) {
-					// console.log(recipes);
+					console.log(recipes);
 					
 					for (var j = 0; j < recipes.length; j++) {
 						var success = [];
@@ -121,7 +121,7 @@ var filterCategory = function(categories, recipes, done) {
 							result.push(recipes[j]);
 						}
 					}
-					// console.log("Result is? " + result);
+					console.log("Result is? " + result);
 					done(result);
 					return;
 				} else {
