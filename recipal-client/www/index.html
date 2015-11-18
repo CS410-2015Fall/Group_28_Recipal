@@ -104,7 +104,7 @@
 						server.login(user, pass, function(success, data) {
 							if (success === true) {
 								console.log(JSON.stringify(data));
-								myNavigator.resetToPage('page.html');
+								myNavigator.popPage();
 								if (typeof data.name === 'string') {
 									console.log("data.name is a string");
 									welcomeMessage = "Welcome Back " + data.name;
