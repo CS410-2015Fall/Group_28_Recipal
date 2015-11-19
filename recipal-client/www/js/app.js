@@ -1,3 +1,4 @@
+"use strict"
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -28,15 +29,15 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     .state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'pages/menu.html',
-    controller: 'AppCtrl'
+    templateUrl: 'views/menu.html'
   })
   
   .state('app.search', {
     url: '/search',
     views: {
       'menuContent': {
-        templateUrl: 'pages/search.html'
+        templateUrl: 'views/search.html',
+        controller: 'SearchCtrl'
       }
     }
   })
@@ -44,7 +45,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/login',
     views: {
       'menuContent': {
-        templateUrl: 'pages/login.html'
+        templateUrl: 'views/login.html'
       }
     }
   })
@@ -52,7 +53,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/login/create_account',
     views: {
       'menuContent': {
-        templateUrl: 'pages/create.html',
+        templateUrl: 'views/create.html',
       }
     }
   })
@@ -60,7 +61,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/login/forgot_password',
     views: {
       'menuContent': {
-        templateUrl: 'pages/forgot.html',
+        templateUrl: 'views/forgot.html',
       }
     }
   })
@@ -68,7 +69,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/account',
     views: {
       'menuContent': {
-        templateUrl: 'pages/account.html',
+        templateUrl: 'views/account.html',
           // controller: 'PlaylistsCtrl'
         }
       }
@@ -77,7 +78,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/favorites',
     views: {
       'menuContent': {
-        templateUrl: 'pages/favorites.html'
+        templateUrl: 'views/favorites.html'
       }
     }
   })
@@ -85,7 +86,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/help',
     views: {
       'menuContent': {
-        templateUrl: 'pages/help.html'
+        templateUrl: 'views/help.html'
+      }
+    }
+  })
+  .state('app.recipe', {
+    url: '/recipe/:recipeId',
+    views: {
+      'menuContent': {
+        templateUrl: 'views/recipe.html',
+        controller: 'RecipeCtrl'
       }
     }
   });

@@ -1,4 +1,5 @@
-"use strict";
+"use strict"
+
 var url = "http://ec2-54-69-23-151.us-west-2.compute.amazonaws.com:3000";
 
 // TODO: Disconnect on switch task? Disable network components if not connected?
@@ -14,29 +15,29 @@ newMessageCb: invoked when there's any other notification from server,
 searchRecipes(query, callback)
 query: the Query object used to search for recipes
 */ 
-var server = {
+var socket = {
 	socket: null,
 	isConnected: false,
 	connect: function(connectCb, disconnectCb, infoUpdateCb,
 		newMessageCb) {
-		if (server.isConnected) {
+		if (this.isConnected) {
 			invokeFunc(connectCb);
 			return;
 		}
 		this.socket = io.connect(url + '/search');
 		this.initSocket(connectCb, disconnectCb, infoUpdateCb,
-		newMessageCb);
+			newMessageCb);
 	},	
 	initSocket: function(connectCb, disconnectCb, infoUpdateCb,
 		newMessageCb) {
 		this.socket.on('connect', function(categories) {
 			console.log("Connected");
-			server.isConnected = true;
+			socket.isConnected = true;
 			invokeFunc(connectCb);
 		});
 		this.socket.on('disconnect', function() {
 			console.log("Disconnected");
-			server.isConnected = false;
+			socket.isConnected = false;
 			invokeFunc(disconnectCb);
 		});
 		this.socket.on('info-update', function(infoUpdateArr) {
@@ -47,15 +48,6 @@ var server = {
 		this.socket.on('message', function(message) {
 			console.log("New message incoming");
 			invokeFunc(newMessageCb, message);
-		});
-	},
-	searchRecipes: function(query, callback) {
-		this.socket.emit('search',new Query(query.name, query.author, query.rating, 
-			query.difficulty, query.ingredients, query.categories));
-
-		this.socket.on('search', function(recipeArr) {
-			console.log("Receive search results");
-			invokeFunc(callback, recipeArr);
 		});
 	},
 	createAccount: function(name, username, password, email, callback) {
@@ -79,6 +71,22 @@ var server = {
 				console.log("Receive login error status: " + txtStatus);
 				invokeFunc(callback, false);	
 			}});
+	},
+	on: function(eventName, callback) {
+		if (!this.isConnected)
+		{
+			console.log("DEBUG: not connected");
+			return;	
+		}
+		this.socket.on(eventName, callback);
+	},
+	emit: function(eventName, data, callback) {
+		if (!this.isConnected)
+		{
+			console.log("DEBUG: not connected");
+			return;	
+		}
+		this.socket.emit(eventName, data, callback);
 	}
 };
 
