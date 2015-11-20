@@ -5,7 +5,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('starter', ['ionic', 'search.controllers', 'recipe.controllers', 'login.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -45,7 +45,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: '/login',
     views: {
       'menuContent': {
-        templateUrl: 'views/login.html'
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
       }
     }
   })
@@ -54,6 +55,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     views: {
       'menuContent': {
         templateUrl: 'views/create.html',
+        controller: 'LoginCtrl'
       }
     }
   })
@@ -62,6 +64,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     views: {
       'menuContent': {
         templateUrl: 'views/forgot.html',
+        controller: 'LoginCtrl'
       }
     }
   })
