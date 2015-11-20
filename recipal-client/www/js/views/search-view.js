@@ -1,5 +1,12 @@
 "use strict"
 
+angular.$rootscope.$watch(
+  "SearchCtrl.searchResults",
+  function handleFooChange( newValue, oldValue ) {
+    console.log( "Test: ", newValue );
+  }
+);
+
 function buildTable(searchResults) {
   var resultTable = "<div class='row'>"
                 + "<div class='col col-67'>Recipe</div>"
