@@ -1,11 +1,12 @@
 <ion-view view-title="Recipe Search">
 <ion-content>
 <h1>Recipe Search</h1>
+<div ng-controller="SearchCtrl as searchCtrl">
 <form ng-submit="search()">
     <div class="list list-inset">
       <label class="item item-input">
         <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" placeholder="Search" ng-model="searchInput"></input>
+        <input type="text" placeholder="Search" ng-model="searchCtrl.searchInput"></input>
     </label>
     <button class="button button-block button-energized" type="submit">Search</button>
 
@@ -24,6 +25,7 @@
     -->
 </div>
 </form>
+</div>
 </ion-content>
 </ion-view>
 

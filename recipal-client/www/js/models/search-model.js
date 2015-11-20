@@ -6,6 +6,7 @@ var searchModel = {
 	setResults: function(recipeArr) { 
 		this.searchResults = recipeArr;
 		this.updateNotify();
+		console.log("recipe is?" + recipeArr);
 	},
 	getResults: function() { return this.searchResults; },
 	updateSubscribe: function(handler) {

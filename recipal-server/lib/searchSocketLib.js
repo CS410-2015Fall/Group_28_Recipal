@@ -121,7 +121,7 @@ var filterCategory = function(categories, recipes, done) {
 							result.push(recipes[j]);
 						}
 					}
-					// console.log("Result is? " + result);
+					console.log("Result is? " + result);
 					done(result);
 					return;
 				} else {
