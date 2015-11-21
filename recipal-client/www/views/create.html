@@ -1,23 +1,23 @@
-<ion-view view-title="Login & Sign Up">
+<ion-view view-title="Sign Up">
 <ion-content>
 <h1>Sign Up</h1>
-<div ng-controller="LoginCtrl as loginCtrl">
-	<form ng-submit="loginCtrl.createAccount()">
+<div ng-controller="CreateAccountCtrl as createAccountCtrl">
+	<form ng-submit="createAccountCtrl.createAccount()">
 		<div class="list list-inset">
 			<label class="item item-input">
-				<input type="text" placeholder="Full name" ng-model="loginCtrl.createData.name">
+				<input type="text" placeholder="Full name" ng-model="createAccountCtrl.createData.name">
 			</label>
 			<label class="item item-input">
-				<input type="text" placeholder="Username" ng-model="loginCtrl.createData.username">
+				<input type="text" placeholder="Username" ng-model="createAccountCtrl.createData.username">
 			</label>
 			<label class="item item-input">
-				<input type="password" placeholder="Password" ng-model="loginCtrl.createData.password">
+				<input type="password" placeholder="Password" ng-model="createAccountCtrl.createData.password">
 			</label>
 			<label class="item item-input">
-				<input type="email" placeholder="Email" ng-model="loginCtrl.createData.email">
+				<input type="email" placeholder="Email" ng-model="createAccountCtrl.createData.email">
 			</label>
 		</div>
-		<p>{{errorTxt}}</p>
+		<p>{{status.error}}</p>
 		<button class="button button-block button-energized" type="submit">Sign up</button>
 	</form>
 </div>
