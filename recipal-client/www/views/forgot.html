@@ -1,0 +1,19 @@
+<ion-view view-title="Forgot password">
+<ion-content>
+<h1>Forgot password?</h1>
+<div ng-controller="ForgotPassCtrl as forgotPassCtrl">
+	<form ng-submit="forgotPassCtrl.resetPass()">
+		<div class="list list-inset">
+			<label class="item item-input">
+				<input type="text" placeholder="Username" ng-model="forgotPassCtrl.resetData.username">
+			</label>
+			<label class="item item-input">
+				<input type="email" placeholder="Email" ng-model="forgotPassCtrl.resetData.email">
+			</label>
+		</div>
+		<p>{{status.error}}</p>
+		<button class="button button-block button-energized" type="submit">Reset password</button>
+	</form>
+</div>
+</ion-content>
+</ion-view>
