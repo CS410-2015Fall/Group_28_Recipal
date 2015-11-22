@@ -282,43 +282,69 @@ module.exports = function(io) {
 
 
 			var searchName = toLower(data.name);
-			var nameCriteria = {};
-			if (searchName != null) {
-				 nameCriteria = {'name' : searchName};
-			} else {
-				console.log("got empty search for name");
-			}
-			// list of categories, must be exact
-			var searchCategories = toLower(data.categories);
-			// rating is of {max, min}, must be numbers
-			var searchRating	 = data.rating;
+			if (searchName == "") {
+				Recipe.find({}, function(err, results){
+					if (err) {
+						console.log("error when searching all recipes: " + err);
+					} else {
+						socket.emit('search', results);
+					}
+					return;
+				})
+			} 
+			Recipe.find( {$or:[ 
 
-			// difficulty is of {max, min}, must be numbers
-			var searchDifficulty = data.difficulty;
+				{'name': new RegExp('^'+searchName, "i")}, 
+				{'categories':new RegExp('^'+searchName+'$', "i")}, 
+				{'ingredients':new RegExp('^'+searchName+'$', "i")}, 
+				{'author':new RegExp('^'+searchName+'$', "i")} ]}, 
+				function(err, results) {
+					console.log("search resuls are " + results);
+					if (err) {
+						console.log("error when searching all recipes: " + err);
+					} else {
+						console.log("emitting results");
+						socket.emit('search', results);
+					}
+					return;
+				});
+			// var nameCriteria = {};
+			// if (searchName != null) {
+			// 	 nameCriteria = {'name' : searchName};
+			// } else {
+			// 	console.log("got empty search for name");
+			// }
+			// // list of categories, must be exact
+			// var searchCategories = toLower(data.categories);
+			// // rating is of {max, min}, must be numbers
+			// var searchRating	 = data.rating;
 
-			// list of ingredients
-			var searchIngredients = toLower(data.ingredients);
-			// author name, must be exact
-			var searchAuthor = data.author;
-			var results = [];
-			Recipe.find(nameCriteria, null, null, function(err, recipes) {
-				if (err) {
-					console.log("error finding recipes: " + err);
-				} else {
-					filterCategory(searchCategories, recipes, function(filteredResultCategory) {
-						filterRating(searchRating, filteredResultCategory, function(filteredResultRating) {
-							filterDifficulty(searchDifficulty, filteredResultRating, function(filteredResultDifficulty) {
-								filterIngredients(searchIngredients, filteredResultDifficulty, function(filteredResultIngredients) {
-									filterAuthor(searchAuthor, filteredResultIngredients, function(filteredResultAuthor) {
-										results = filteredResultAuthor;
-										socket.emit("search", results);
-									});
-								});		
-							});
-						});
-					});
-				}
-			});
+			// // difficulty is of {max, min}, must be numbers
+			// var searchDifficulty = data.difficulty;
+
+			// // list of ingredients
+			// var searchIngredients = toLower(data.ingredients);
+			// // author name, must be exact
+			// var searchAuthor = data.author;
+			// var results = [];
+			// Recipe.find(nameCriteria, null, null, function(err, recipes) {
+			// 	if (err) {
+			// 		console.log("error finding recipes: " + err);
+			// 	} else {
+			// 		filterCategory(searchCategories, recipes, function(filteredResultCategory) {
+			// 			filterRating(searchRating, filteredResultCategory, function(filteredResultRating) {
+			// 				filterDifficulty(searchDifficulty, filteredResultRating, function(filteredResultDifficulty) {
+			// 					filterIngredients(searchIngredients, filteredResultDifficulty, function(filteredResultIngredients) {
+			// 						filterAuthor(searchAuthor, filteredResultIngredients, function(filteredResultAuthor) {
+			// 							results = filteredResultAuthor;
+			// 							socket.emit("search", results);
+			// 						});
+			// 					});		
+			// 				});
+			// 			});
+			// 		});
+			// 	}
+			// });
 		});
 
 	});

@@ -1,21 +1,6 @@
 <ion-view view-title="Recipe Search">
 <ion-content>
 <h1>Recipe Search</h1>
-<<<<<<< HEAD
-<div ng-controller="SearchCtrl as searchCtrl">
-<form ng-submit="search()">
-    <div class="list list-inset">
-      <label class="item item-input">
-        <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" placeholder="Search" ng-model="searchCtrl.searchInput"></input>
-    </label>
-    <button class="button button-block button-energized" type="submit">Search</button>
-
-    <!-- Dynamic search results -->
-    <div id="searchresults">
-    </div>
-=======
->>>>>>> 34b73151501808787a0b3258e632267234ddd447
 
 <div ng-controller="SearchCtrl as searchCtrl">
     <form ng-submit="searchCtrl.search()">
@@ -29,12 +14,11 @@
      var myTable= "<table><tr><td style='width: 120px; cell-padding:5px;'>Recipe</td>";
         myTable+= "<td style='width: 50px; text-align: right;'>Difficulty</td>";
         myTable+="<td style='width: 50px; text-align: right;'>Select</td></tr>";
-
         myTable+="<tr><td style='width: 120px;                  '></td>";
         myTable+="<td     style='width: 50px; text-align: right;'></td>";
         myTable+="<td     style='width: 50px; text-align: right;'></td></tr>";
     -->
-
+        </div>
     </form>
     <!-- Dynamic search results -->
         <div class='row'>
@@ -49,14 +33,7 @@
                 <div class='col'><button onclick='onRecipeSelect()'>Select</button></div>
             </div>
         </div>
-        </div>
 </div>
-<<<<<<< HEAD
-</form>
-</div>
-=======
 
->>>>>>> 34b73151501808787a0b3258e632267234ddd447
 </ion-content>
 </ion-view>
-

@@ -8,9 +8,8 @@ angular.module('search.controllers', [])
     searchController.search = function() {
         console.log(searchController.searchInput);
 
-        socket.emit('search', new Query("", "", {min: 0, max: 5}, {min: 0, max: 5}, null, [searchController.searchInput]));
+        socket.emit('search', {name: searchController.searchInput});
         socket.on('search', function(recipeArr) {
-            console.log("recipeArr is " + recipeArr);
             console.log("DEBUG: Receive search results");
             $scope.searchResults = recipeArr;
             $scope.$evalAsync();

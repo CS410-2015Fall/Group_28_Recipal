@@ -21,7 +21,8 @@ var socket = {
 	connect: function(connectCb, disconnectCb, infoUpdateCb,
 		newMessageCb) {
 		if (this.isConnected) {
-			invokeFunc(connectCb);
+			// invokeFunc(connectCb);
+			// connectCb();
 			return;
 		}
 		this.socket = io.connect(URL + '/search');
@@ -33,21 +34,21 @@ var socket = {
 		this.socket.on('connect', function(categories) {
 			console.log("Connected");
 			socket.isConnected = true;
-			invokeFunc(connectCb);
+			// connectCb();
 		});
 		this.socket.on('disconnect', function() {
 			console.log("Disconnected");
 			socket.isConnected = false;
-			invokeFunc(disconnectCb);
+			// disconnectCb();
 		});
 		this.socket.on('info-update', function(infoUpdateArr) {
 			console.log("New info incoming");
 			//handleInfoUpdate(infoUpdateArr); change the 3 enum-like objects 
-			invokeFunc(infoUpdateCb, infoUpdateArr);
+			// infoUpdateCb(infoUpdateArr);
 		});
 		this.socket.on('message', function(message) {
 			console.log("New message incoming");
-			invokeFunc(newMessageCb, message);
+			// newMessageCb(message);
 		});
 	},
 	on: function(eventName, callback) {
