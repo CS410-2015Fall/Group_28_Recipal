@@ -1,64 +1,47 @@
 <ion-view view-title="Account & Settings">
 <ion-content>
-
+<div class="settings-page">
 <div ng-controller="ProfileCtrl as profileCtrl">
-<h1>Hi {{accountInfo.name}} !</h1>
-
-<img src="res/img/logo-3.jpg" class="profile-image">
-<div>{{accountInfo.email}}</div>
+	<div id="welcomebar" class="row">
+		<div class="col col-33">
+			<img src="res/img/logo-3.jpg" width="100px" class="profile-image">
+		</div>
+		<div class="col">
+			<h2>Hi, <br> {{accountInfo.name}}!</h2>
+		</div>
+	</div>
+	<div id="email" class="row">{{accountInfo.email}}</div>
+	
 <div class="list">
-      <label class="item item-divider">Share</label>
-      <label class="item">Twitter</label>
-      <label class="item">Facebook</label>
+		  <li class="item item-toggle">
+			Notifications
+			<label class="toggle toggle-energized">
+			<input type="checkbox">
+			<div class="track"><div class="handle"></div></div>
+			</label>
+		  </li>
+		  <li class="item item-toggle">
+			Voice Recognition
+			<label class="toggle toggle-energized">
+			<input type="checkbox">
+			<div class="track"><div class="handle"></div></div>
+			</label>
+		  </li>
+		  <li class="item item-toggle">
+			Local Storage
+			<label class="toggle toggle-energized">
+			<input type="checkbox">
+			<div class="track"><div class="handle"></div></div>
+			</label>
+		  </li>
       <label class="item item-divider">Legal</label>
       <label class="item">Terms of Use</label>
       <label class="item">Privacy Policy</label>
 </div>
 <button class="button button-block button-energized"  ng-click="profileCtrl.logout()">Log out</button>
 </div>
+</div>
 </ion-content>
 </ion-view>
-
-<!--	
-          <img src="res/img/logo-3.jpg" class="profile-image">
-          <div class="profile-name">{{acountInfo.name}}</div>
-          <div class="profile-email">{{accountInfo.email}}</div>
-         
-      <div class="settings-header">Share</div>
-
-      <ons-list modifier="inset" class="settings-list">
-        <ons-list-item>
-          Twitter
-          <ons-switch modifier="list-item"></ons-switch>
-        </ons-list-item>
-
-        <ons-list-item>
-          Facebook
-          <ons-switch modifier="list-item" checked></ons-switch>
-        </ons-list-item>
-      </ons-list>
-
-      <div class="settings-header">Others</div>
-
-      <ons-list modifier="inset" class="settings-list">
-        <ons-list-item modifier="chevron">
-          Terms of Use
-        </ons-list-item>
-
-        <ons-list-item modifier="chevron">
-          Privacy Policy
-        </ons-list-item>
-      </ons-list>
-  
-      <br>
-
-      <ons-list modifier="inset" class="settings-list">
-        <ons-list-item modifier="tappable">
-          <ons-icon icon="ion-log-out" style="opacity: 0.8"></ons-icon>
-          Sign out
-        </ons-list-item>
-      </ons-list>
-	  </ons-page>
-	</ons-template> -->
 	
 	
