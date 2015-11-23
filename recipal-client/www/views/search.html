@@ -1,5 +1,6 @@
 <ion-view view-title="Recipe Search">
 <ion-content>
+<div class="search-page"><br>
 <h1>Recipe Search</h1>
 
 <div ng-controller="SearchCtrl as searchCtrl">
@@ -14,12 +15,11 @@
      var myTable= "<table><tr><td style='width: 120px; cell-padding:5px;'>Recipe</td>";
         myTable+= "<td style='width: 50px; text-align: right;'>Difficulty</td>";
         myTable+="<td style='width: 50px; text-align: right;'>Select</td></tr>";
-
         myTable+="<tr><td style='width: 120px;                  '></td>";
         myTable+="<td     style='width: 50px; text-align: right;'></td>";
         myTable+="<td     style='width: 50px; text-align: right;'></td></tr>";
     -->
-
+        </div>
     </form>
     <!-- Dynamic search results -->
         <div class='row'>
@@ -34,9 +34,7 @@
                 <div class='col'><button onclick='onRecipeSelect()'>Select</button></div>
             </div>
         </div>
-        </div>
 </div>
-
+</div>
 </ion-content>
 </ion-view>
-

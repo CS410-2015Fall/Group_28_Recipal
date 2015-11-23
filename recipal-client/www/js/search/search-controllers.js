@@ -7,7 +7,8 @@ angular.module('search.controllers', ['socket.services'])
     $scope.searchResults = [];
     searchController.search = function() {
         console.log(searchController.searchInput);
-        socketService.emit('search', new Query("", "", {min: 0, max: 5}, {min: 0, max: 5}, null, [searchController.searchInput]));
+
+        socketService.emit('search', {name: searchController.searchInput});
         socketService.on('search', function(recipeArr) {
             console.log("DEBUG: Receive search results");
             $scope.searchResults = recipeArr;
