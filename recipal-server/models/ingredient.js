@@ -2,7 +2,7 @@ var mongoose  = require('mongoose');
 var log       = require('winston');
 
 IngredientSchema = mongoose.Schema({
-    name:           String, 
+    name:           {type: String, required: true, index:{unique:true}}, 
     details:        String,
     dateCreated:    { type: Date, default: Date.now }
 });

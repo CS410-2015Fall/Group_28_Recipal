@@ -12,10 +12,8 @@ RecipeSchema = mongoose.Schema({
     difficulty:     Number,
     rating:         Number,
     steps:          [],
-    // ingredients:    [{type: mongoose.Schema.Types.ObjectId, ref: 'Ingredient'}],
     ingredients:    [String],
-    categories:     [{type: mongoose.Schema.Types.ObjectId, ref: 'Category'}],
-    // accountRef:     { type: mongoose.Schema.Types.ObjectId, ref: 'Account' },
+    categories:     [String],
     accountRef:     String,
     dateCreated:    { type: Date, default: Date.now }
 });

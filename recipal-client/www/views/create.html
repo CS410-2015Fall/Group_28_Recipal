@@ -1,5 +1,6 @@
 <ion-view view-title="Sign Up">
 <ion-content>
+<div class="login-page"><br>
 <h1>Sign Up</h1>
 <div ng-controller="CreateAccountCtrl as createAccountCtrl">
 	<form ng-submit="createAccountCtrl.createAccount()">
@@ -17,9 +18,14 @@
 				<input type="email" placeholder="Email" ng-model="createAccountCtrl.createData.email">
 			</label>
 		</div>
+<<<<<<< HEAD
 		<p>{{status.error}}</p>
+=======
+		<p class="error-text">{{errorTxt}}</p>
+>>>>>>> 750bd55cd1fc63e38537c130e3c19aac20682bb6
 		<button class="button button-block button-energized" type="submit">Sign up</button>
 	</form>
+</div>
 </div>
 </ion-content>
 </ion-view>
