@@ -5,7 +5,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic', 'socket.services', 'search.controllers', 'account.loginControllers', 'account.profileControllers'/*'recipe.controllers', , 'login.controllers'*/])
+angular.module('app', ['ionic', 'socket.services', 'search.controllers', 'account.loginControllers', 'account.profileControllers', 'recipe.controllers', /*, 'login.controllers'*/])
 
 .run(function($ionicPlatform, socketService) {
   $ionicPlatform.ready(function() {
@@ -100,7 +100,7 @@ angular.module('app', ['ionic', 'socket.services', 'search.controllers', 'accoun
     views: {
       'menuContent': {
         templateUrl: 'views/recipe.html',
-        //controller: 'RecipeCtrl'
+        controller: 'RecipeCtrl'
       }
     }
   });

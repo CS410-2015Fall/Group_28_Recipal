@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module('search.controllers', ['socket.services'])
-.controller('SearchCtrl', function($scope, socketService) {
+.controller('SearchCtrl', ['$scope', '$state', '$rootScope', 'socketService', function($scope, $state, $rootScope, socketService) {
     var searchController = this;
     searchController.searchInput = "";
     $scope.searchResults = [];
@@ -15,4 +15,10 @@ angular.module('search.controllers', ['socket.services'])
             $scope.$evalAsync();
         });
     };
-})
+
+    searchController.onRecipeSelect = function(recipe) {
+        $rootScope.$broadcast('setRecipe', recipe);
+        $state.go('app.recipe');
+        console.log("pushing event");
+    }
+}])
