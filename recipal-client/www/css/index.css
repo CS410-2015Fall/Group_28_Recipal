@@ -1,1 +1,57 @@
 /* Empty. Add your own CSS if you like */
+
+h1 {
+	font-family: Courier;
+	margin: 25px 25px 10px 10px;
+}
+
+h2 {
+	font-family: Courier;
+}
+
+p.error-text {
+	color: #FF0000;
+	text-transform: uppercase;
+	font-family: Courier;
+	font-size: 15px;
+}
+
+a.login-links {
+	text-decoration: none;
+	font-size: 20px;
+	font-family: Courier;
+	
+}
+
+.login-page {
+	text-align: center;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 95%;
+}
+
+.search-page {
+	text-align: center;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 95%;
+}
+
+.recipe-page {
+	text-align: center;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 95%;
+}

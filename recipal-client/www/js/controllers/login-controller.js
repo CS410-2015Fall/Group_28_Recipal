@@ -43,6 +43,21 @@ angular.module('login.controllers', [])
     			});
 	}
 	
+	loginController.forgotPass = function() {
+		$http({ method: 'POST', url: URL + '/forgotpass',
+			data: {email: this.createData.email}})
+		.then(function successCallback(response) {
+			console.log("Send password to email: " + response.statusText);
+			//	SEND EMAIL?
+			console.log("Data: " + JSON.stringify(response.data));
+			}, function errorCallback(response) {
+				// TODO: clear fields
+				console.log("Forgotten password status: " + response.statusText);
+				$scope.errorTxt = "Email not found"
+				$scope.$evalAsync();
+			});
+	}
+	
 });
 			// welcomeMessage = "Welcome Back " + data.name;
 				// 				}

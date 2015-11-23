@@ -1,5 +1,6 @@
 <ion-view view-title="Login">
 <ion-content>
+<div class="login-page"><br>
 <h1>Login</h1>
 <div ng-controller="LoginCtrl as loginCtrl">
 	<form ng-submit="loginCtrl.login()">
@@ -11,12 +12,13 @@
 				<input type="password" placeholder="Password" ng-model="loginCtrl.loginData.password">
 			</label>
 		</div>
-		<p>{{errorTxt}}</p>
+		<p class="error-text">{{errorTxt}}</p>
 		<button class="button button-block button-energized" type="submit">Log in</button>
 	</form>
-
-	<a nav-direction="forward" href="#/app/login/create_account">Sign Up!</a><br>
-	<a nav-direction="forward" href="#/app/login/forgot_password">Forgot password?</a>
+	<br>
+	<a class="login-links" nav-direction="forward" href="#/app/login/create_account">Sign Up!</a><br><br>
+	<a class="login-links" nav-direction="forward" href="#/app/login/forgot_password">Forgot password?</a>
+</div>
 </div>
 </ion-content>
 </ion-view>
