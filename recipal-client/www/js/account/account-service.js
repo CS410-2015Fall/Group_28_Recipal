@@ -5,7 +5,7 @@ angular.module('account.services', ['socket.services'])
 	var defaultAcc = {name: "Guest"};
 	return {
 		accountInfo: {name: "Guest"},
-		status: {txt: "Not logged in", error: ""},
+		status: {code: 0, error: ""},
 		login: function(loginInfo, successCb, errorCb) {
 			var accountService = this;
 			$http({ method: 'POST', url: socketService.url + '/login', data: loginInfo})
@@ -13,7 +13,7 @@ angular.module('account.services', ['socket.services'])
 				console.log("Receive login success status: " + response.statusText);
 				console.log(JSON.stringify(response.data));
 				angular.copy(response.data, accountService.accountInfo);
-				accountService.status.txt = "Logged in";
+				accountService.status.code = 1;
 				accountService.status.error = "Log in successful";
 				successCb(response.data);
 			}, function errorCallback(response) {
@@ -39,7 +39,7 @@ angular.module('account.services', ['socket.services'])
 		logout: function() {
 			//console.log("this.accountInfo" + this.accountInfo.name);
 			angular.copy(defaultAcc, this.accountInfo);
-			this.status.txt = "Not logged in";
+			this.status.code = 0;
 			this.status.error = "Log out successful";
 		},
 		resetPassword: function(resetInfo, successCb, errorCb) {
