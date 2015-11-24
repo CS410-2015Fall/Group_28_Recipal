@@ -96,7 +96,7 @@ angular.module('app', ['ionic', 'socket.services', 'search.controllers', 'accoun
     }
   })
   .state('app.recipe', {
-    url: '/recipe/:recipeId',
+    url: '/recipe',
     views: {
       'menuContent': {
         templateUrl: 'views/recipe.html',

@@ -1,10 +1,57 @@
 <ion-view view-title="Recipe"> <!-- Can we make it show recipe title here? -->
 <ion-content>
-<div class="recipe-page"><br>
-<h1>Sign Up</h1>
+<div class="pagelayout"><br>
+	
 <div ng-controller="RecipeCtrl as recipeCtrl">
+	<form ng-submit="recipeCtrl.next()">
+		
+			<div id="recipe-title-img" class="row">
+			  <div class="col"><img width="100px" src="img/logo-3.jpg"/></div>
+			  <div class="col"><h2>RECIPE NAME</h2></div>
+			</div>
+			
+			<div id="previoustimer" class="row">
+				<div class="col"><div id="previousTimerHeader">PREVIOUS TIMER</div>
+				</div>
+			</div>
 
-</div>
+			<div id="timer" class="row">
+			<div class="col">
+				<div id="clockdiv" class="hidden">
+					<div>
+						<span class="hours"> ##</span>
+						<div class="smalltext">Hours</div>
+					</div>
+					<div>
+						<span class="minutes">##</span>
+						<div class="smalltext">Minutes</div>
+					</div>
+					<div>
+						<span class="seconds">##</span>
+						<div class="smalltext">Seconds</div>
+					</div>
+				</div>
+			</div>
+			</div>
+
+			<div id="timer-prompt" class="row">
+			  <div class="col">
+				<div id="clockPrompt">CLOCK PROMPT</div>
+			  </div>
+			</div>
+
+			<div id="instructions" class="row">
+			  <div class="col">
+				<font size="6"><p id="instructions">INSTRUCTIONS</p></font>
+			  </div>
+			</div>
+
+			<div id="nav-buttons" class="row">
+			  <div class="col col-33"><button class="button button-energized">Back</button></div>
+			  <div class="col col-33 col-offset-33"><button class="button button-energized">Next</button></div>
+			  
+			</div>
+	
 </div>
 </ion-content>
 </ion-view>
