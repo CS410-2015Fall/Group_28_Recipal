@@ -1,9 +1,11 @@
 "use strict";
 
-angular.module('account.loginControllers', ['account.services'])
-.controller('LoginCtrl', function($scope, $state, $ionicHistory, accountService){
-	this.loginData = {};
+angular.module('account.loginControllers', ['account.services', 'settings.services'])
+.controller('LoginCtrl', function($scope, $state, $ionicHistory, accountService, settingsService){
+	this.loginData = {username: accountService.accountInfo.username,
+					 password: accountService.accountInfo.password};
 	$scope.status = accountService.status;
+	$scope.saveLoginInfo = settingsService.saveLoginInfo;
 
 	this.login = function() {
 		accountService.login(this.loginData, 

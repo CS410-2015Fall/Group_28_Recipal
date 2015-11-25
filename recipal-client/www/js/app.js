@@ -31,7 +31,7 @@ angular.module('app', ['ionic', 'socket.services', 'search.controllers', 'accoun
     url: '/app',
     abstract: true,
     templateUrl: 'views/menu.html',
-	controller: 'MenuCtrl'
+    controller: 'MenuCtrl'
   })
   
   .state('app.search', {
