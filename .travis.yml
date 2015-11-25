@@ -1,0 +1,8 @@
+install: true
+language: node_js
+node_js:
+  - "0.10"
+  # whitelist
+branches:
+  only:
+    - tam
