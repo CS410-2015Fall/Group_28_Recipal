@@ -8,6 +8,7 @@ angular.module('account.services', ['socket.services', 'settings.services'])
 		status: {code: 0, error: ""},
 		login: function(loginInfo, successCb, errorCb) {
 			var accountService = this;
+			this.status.error = "Logging in...";
 			$http({ method: 'POST', url: socketService.url + '/login', data: loginInfo})
 			.then(function successCallback(response) {
 				console.log("Receive login success status: " + response.statusText);
@@ -24,6 +25,7 @@ angular.module('account.services', ['socket.services', 'settings.services'])
 		},
 		createAccount: function(createInfo, successCb, errorCb) {
 			var accountService = this;
+			this.status.error = "Creating account...";
 			$http({ method: 'POST', url: socketService.url + '/createAccount', data: createInfo})
 			.then(function successCallback(response) {
 				console.log("Receive createAccount success status: " + response.statusText);
@@ -50,6 +52,7 @@ angular.module('account.services', ['socket.services', 'settings.services'])
 			this.status.error = "Log out successful";
 		},
 		resetPassword: function(resetInfo, successCb, errorCb) {
+			this.status.error = "Resetting password...";
 			// TODO: Randomly pass/fail for fun for now
 			if (Math.random() < 0.5) {
 				successCb();

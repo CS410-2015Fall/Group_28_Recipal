@@ -16,7 +16,8 @@
     "angular-mocks": "~1.4.8",
     "requirejs": "~2.1.22",
     "karma-requirejs": "~0.2.2",
-    "ionic": "~1.7.10"
+    "ionic": "~1.7.10",
+    "angular-route": "~1.4.8"
   },
   "scripts": {
     "test": "karma start"

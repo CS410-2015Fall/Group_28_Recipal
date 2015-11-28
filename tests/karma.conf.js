@@ -16,10 +16,12 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'node_modules/angular/angular.js',
+      'node_modules/angular-route/angular-route.js',
       'node_modules/angular-mocks/angular-mocks.js',
       '../recipal-client/www/js/**/*.js',
       'node_modules/hackify-server/test/controllers.test.js',
-      'spec/search-spec.js'
+      'mocks/*.js',
+      'spec/*.js'
     ],
 
 
