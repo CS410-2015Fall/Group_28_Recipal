@@ -4,24 +4,40 @@ describe('search', function() {
     var $controller;
     var $rootScope;
     var socketMock;
+    var $state = {go: function() {}};
 
     beforeEach(inject(function(_$controller_, _$rootScope_) {
-        $controller = _$controller_;
         $rootScope = _$rootScope_;
         socketMock = new sockMock($rootScope);
+        $controller = _$controller_('SearchCtrl', { $scope: $rootScope , socketService: socketMock, 
+                $rootScope: $rootScope, $state: $state});
     }));
 
-    var $state = {};
-
     describe('$scope.search', function() {
-        it('emit search event with user input to socket and set searchResults on receiving response', function() {
+        it('set results array returned by server', function() { 
+            socketMock.expect('search', {name: ""}, []);
+            socketMock.expect('search', {name: "garlic"}, [{name: "best brownies"}]);
 
-            var $scope = {};
-            var controller = $controller('SearchCtrl', { $scope: $scope , socketService: socketMock, 
-                $rootScope: $rootScope, $state: $state});
-            controller.search();
-            expect(true).toBe(true);
-            //expect($scope.searchResults).toEqual([]);
+            $controller.searchInput = "garlic";
+            $controller.search();
+            // Simulate receive search event from server, received data is already "expected"
+            socketMock.receive('search');
+
+            expect($rootScope.searchResults).toEqual([{name: "best brownies"}]);
+        });
+    });
+
+    describe('$scope.onRecipeSelect', function() {
+        it('broadcast recipe to other controllers', function() {
+            var received = false;
+            var recipe = {name: "best brownies"};
+            // listen to expected event
+            $rootScope.$on('setRecipe', function(event, _recipe_) {
+                expect(recipe).toEqual(_recipe_);
+                received = true;
+            });
+            $controller.onRecipeSelect(recipe);
+            expect(received).toBe(true);
         });
     });
 });
