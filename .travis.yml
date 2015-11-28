@@ -1,12 +1,9 @@
 before_install
-  - cd tests
-  - cd node_modules
+  - cd tests/node_modules
   - npm install hackify-server
   - bower install hackify-server
-  - cd ..
-  - cd ..
 install:
-  - npm install tests
+  - cd .. && cd .. && npm install tests
   - npm install recipal-server
 language: node_js
 node_js:
