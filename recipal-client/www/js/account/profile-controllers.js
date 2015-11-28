@@ -5,6 +5,7 @@ angular.module('account.profileControllers', ['account.services', 'settings.serv
 	$scope.accountInfo = accountService.accountInfo;
 	$scope.settings = {voiceRecog: settingsService.voiceRecog, notification: settingsService.notification,
 		cache: settingsService.cache};
+	$scope.status = accountService.status;
 	
 	this.logout = function() {
 		accountService.logout();
