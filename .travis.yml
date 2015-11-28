@@ -1,4 +1,7 @@
-install: true
+install:
+  - npm install tests
+  - npm install recipal-server
+  - npm install tests/hackify-server
 language: node_js
 node_js:
   - "0.10"
@@ -6,3 +9,4 @@ node_js:
 branches:
   only:
     - tam
+script: karma start tests/karma.conf.js
