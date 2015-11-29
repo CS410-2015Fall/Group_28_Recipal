@@ -6,8 +6,5 @@ install: ./install-dependencies.sh
 language: node_js
 node_js:
   - "0.10"
-  # whitelist
-branches:
-  only:
-    - tam
-script: tests/node_modules/karma/bin/karma start tests/karma.conf.js --single-run
+script: tests/node_modules/grunt-cli/bin/grunt --force -v
+

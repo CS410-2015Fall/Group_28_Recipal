@@ -20,15 +20,8 @@ module.exports = function(config) {
       'node_modules/angular-mocks/angular-mocks.js',
       '../recipal-client/www/js/**/*.js',
       'node_modules/hackify-server/test/controllers.test.js',
-      'spec/**/*.js'
+      'spec/client/**/*.js'
     ],
-
-
-    // // list of files to exclude
-    // exclude: [
-    //   '../recipal-server/node_modules/**/*.js'
-    // ],
-
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
@@ -61,18 +54,18 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome', 'ChromeCanary'],
+    browsers: ['PhantomJS'],
 
-    customLaunchers: {
-        Chrome_travis_ci: {
-            base: 'Chrome',
-            flags: ['--no-sandbox']
-        }
-    },
+    //customLaunchers: {
+    //   Chrome_travis_ci: {
+    //        base: 'Chrome',
+    //        flags: ['--no-sandbox']
+    //    }
+    //},
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
+    singleRun: true
   };
 
     if (process.env.TRAVIS) {
