@@ -34,7 +34,7 @@ exports.createRecipe = function(req, res) {
         });
     }
     
-    Recipe.addRecipe(name, duration, difficulty, 0, steps, ingredients, categories, author, function(err, recipe){
+    Recipe.addRecipe(name, duration, difficulty, {count: 0, rating: 0}, steps, ingredients, categories, author, function(err, recipe){
         if (err) {
             console.log("error creating recipe: " + err);
             res.status(400).send("error making your recipe D:");
