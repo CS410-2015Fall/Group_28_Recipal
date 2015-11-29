@@ -1,8 +1,11 @@
 "use strict";
 
-angular.module('account.profileControllers', ['account.services'])
-.controller('ProfileCtrl', function($scope, $ionicHistory, $state, accountService) {
+angular.module('account.profileControllers', ['account.services', 'settings.services'])
+.controller('ProfileCtrl', function($scope, $ionicHistory, $state, accountService, settingsService) {
 	$scope.accountInfo = accountService.accountInfo;
+	$scope.settings = {voiceRecog: settingsService.voiceRecog, notification: settingsService.notification,
+		cache: settingsService.cache};
+	$scope.status = accountService.status;
 	
 	this.logout = function() {
 		accountService.logout();

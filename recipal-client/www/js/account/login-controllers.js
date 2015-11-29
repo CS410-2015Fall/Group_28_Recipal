@@ -1,15 +1,17 @@
 "use strict";
 
-angular.module('account.loginControllers', ['account.services'])
-.controller('LoginCtrl', function($scope, $state, $ionicHistory, accountService){
-	this.loginData = {};
-	$scope.status = accountService.status;
+angular.module('account.loginControllers', ['account.services', 'settings.services'])
+.controller('LoginCtrl', function($scope, $state, $ionicHistory, accountService, settingsService){
+	this.loginData = {username: accountService.accountInfo.username,
+		password: accountService.accountInfo.password};
+		$scope.status = accountService.status;
+		$scope.saveLoginInfo = settingsService.saveLoginInfo;
 
-	this.login = function() {
-		accountService.login(this.loginData, 
-			function(data) {
-				$scope.status = accountService.status;
-				$scope.$evalAsync();
+		this.login = function() {
+			accountService.login(this.loginData, 
+				function(data) {
+					$scope.status = accountService.status;
+					$scope.$evalAsync();
 				// Go to account page and turn off back button to prevent going back to login page
 				$ionicHistory.nextViewOptions({ disableBack: true });
 				$state.go('app.account');
@@ -18,8 +20,8 @@ angular.module('account.loginControllers', ['account.services'])
 				$scope.status = accountService.status;
 				$scope.$evalAsync();
 			});
-	};
-})
+		};
+	})
 .controller('CreateAccountCtrl', function($scope, $state, accountService) {
 	this.createData = {};
 	$scope.status = accountService.status;

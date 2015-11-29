@@ -13,3 +13,5 @@ results
 build
 
 recipal-server/node_modules
+recipal-client/node_modules
+tests/node_modules
