@@ -10,7 +10,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'requirejs'],
 
 
     // list of files / patterns to load in the browser
@@ -20,15 +20,17 @@ module.exports = function(config) {
       'node_modules/angular-mocks/angular-mocks.js',
       '../recipal-client/www/js/**/*.js',
       'node_modules/hackify-server/test/controllers.test.js',
+      '../recipal-server/**/*.js',
+      'test-main.js',
       'mocks/*.js',
       'spec/*.js'
     ],
 
 
-    // list of files to exclude
-    exclude: [
-      '../recipal-server/node_modules/**/*.js'
-    ],
+    // // list of files to exclude
+    // exclude: [
+    //   '../recipal-server/node_modules/**/*.js'
+    // ],
 
 
     // preprocess matching files before serving them to the browser
