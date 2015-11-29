@@ -2,7 +2,7 @@
 // Generated on Thu Nov 26 2015 15:17:32 GMT-0800 (PST)
 
 module.exports = function(config) {
-  config.set({
+  var cfg = {
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
@@ -10,7 +10,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine', 'requirejs'],
+    frameworks: ['jasmine'],
 
 
     // list of files / patterns to load in the browser
@@ -20,10 +20,7 @@ module.exports = function(config) {
       'node_modules/angular-mocks/angular-mocks.js',
       '../recipal-client/www/js/**/*.js',
       'node_modules/hackify-server/test/controllers.test.js',
-      '../recipal-server/**/*.js',
-      'test-main.js',
-      'mocks/*.js',
-      'spec/*.js'
+      'spec/**/*.js'
     ],
 
 
@@ -59,20 +56,28 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
+    autoWatch: false,
 
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['Chrome', 'ChromeCanary'],
 
+    customLaunchers: {
+        Chrome_travis_ci: {
+            base: 'Chrome',
+            flags: ['--no-sandbox']
+        }
+    },
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true,
+    singleRun: false
+  };
 
-    // Concurrency level
-    // how many browser should be started simultanous
-    concurrency: Infinity
-  })
-}
+    if (process.env.TRAVIS) {
+        cfg.browsers = ['Chrome_travis_ci'];
+    }
+
+    config.set(cfg);
+};
