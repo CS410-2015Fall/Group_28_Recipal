@@ -6,5 +6,5 @@ install: ./install-dependencies.sh
 language: node_js
 node_js:
   - "0.10"
-script: tests/node_modules/grunt-cli/bin/grunt --force -v
+script: cd tests && node_modules/grunt-cli/bin/grunt --force -v
 
