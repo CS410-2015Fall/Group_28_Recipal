@@ -10,10 +10,6 @@ angular.module('socket.services', [])
 		socket: null,
 		connect: function(connectCb, disconnectCb, infoUpdateCb,
 			newMessageCb) {
-			if (this.isConnected) {
-				invokeFunc(connectCb);
-				return;
-			}
 			this.socket = io.connect(URL + '/search');
 			this.initSocket(connectCb, disconnectCb, infoUpdateCb,
 				newMessageCb);

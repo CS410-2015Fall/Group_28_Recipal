@@ -38,7 +38,7 @@
       <label class="item">Terms of Use</label>
       <label class="item">Privacy Policy</label>
 </div>
-<button class="button button-block button-energized"  ng-click="profileCtrl.logout()">Log out</button>
+<button class="button button-block button-energized" ng-hide="!status.code" ng-click="profileCtrl.logout()">Log out</button>
 </div>
 </div>
 </ion-content>

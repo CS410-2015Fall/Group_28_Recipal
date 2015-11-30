@@ -1,6 +1,6 @@
 {
-  "name": "recipal",
-  "version": "0.0.0",
+  "name": "recipalServer",
+  "version": "0.0.1",
   "description": "Cooking app",
   "main": "index.js",
   "author": "",
