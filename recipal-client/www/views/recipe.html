@@ -3,15 +3,23 @@
 <div class="pagelayout"><br>
 	
 <div ng-controller="RecipeCtrl as recipeCtrl">
-	<form ng-submit="recipeCtrl.next()">
 		
-			<div id="recipe-title-img" class="row">
-			  <div class="col"><img width="100px" src="img/logo-3.jpg"/></div>
-			  <div class="col"><h2>RECIPE NAME</h2></div>
-			</div>
+	<div id="recipe-title-img" class="row" margin-bottom="5px">
+	  <div class="col"><img width="100px" src="img/logo-3.jpg"/></div>
+	  <div class="col"><h2>{{recipe.name}}</h2></div>
+	</div>
+	
+	<div id="ingredientslist-container">
+		<form ng-click="recipeCtrl.ingredientsChecker()">
+		<div ng-repeat="ingredients in recipe.ingredients">
+			<ion-checkbox ng-model="isChecked">{{ingredients}}</ion-checkbox>
+		</div>
+		</form>
+	</div>
 			
+	<div id="page-container">
 			<div id="previoustimer" class="row">
-				<div class="col"><div id="previousTimerHeader">PREVIOUS TIMER</div>
+				<div class="col"><div id="previousTimerHeader"></div>
 				</div>
 			</div>
 
@@ -36,22 +44,34 @@
 
 			<div id="timer-prompt" class="row">
 			  <div class="col">
-				<div id="clockPrompt">CLOCK PROMPT</div>
+				<div id="clockPrompt"></div>
 			  </div>
 			</div>
 
-			<div id="instructions" class="row">
+			<div id="instructions-container" class="row">
 			  <div class="col">
-				<font size="6"><p id="instructions">INSTRUCTIONS</p></font>
+				<font size="6">
+					<div id="instructions">
+						{{ recipe.steps[0].description }}
+					</div>
+				</font>
 			  </div>
 			</div>
 
 			<div id="nav-buttons" class="row">
-			  <div class="col col-33"><button class="button button-energized">Back</button></div>
-			  <div class="col col-33 col-offset-33"><button class="button button-energized">Next</button></div>
-			  
+			  <div class="col col-33">
+				<form ng-click="recipeCtrl.back()">
+				<button class="button button-energized">Back</button>
+				</form>
+			  </div>
+			  <div class="col col-33 col-offset-33">
+			  	<form ng-click="recipeCtrl.next()">
+				<button class="button button-energized">Next</button>
+				</form>
+			  </div>  
 			</div>
-	
+	</div>
+</div>
 </div>
 </ion-content>
 </ion-view>
