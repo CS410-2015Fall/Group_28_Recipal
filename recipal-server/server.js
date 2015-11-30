@@ -56,6 +56,7 @@ app.use(bodyParser.json())
 var server = http.Server(app);
 var io = require('socket.io')(server);
 require('./lib/searchSocketLib')(io);
+require('./lib/accountSocketLib')(io);
 require('./config/routes')(app, log);
 
 server.listen(app.get("port"), function() {
