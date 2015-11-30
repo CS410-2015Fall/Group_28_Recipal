@@ -10,7 +10,7 @@ RecipeSchema = mongoose.Schema({
     duration:       Number,
     // 0 to 5
     difficulty:     Number,
-    rating:         Number,
+    rating:         {},
     steps:          [],
     ingredients:    [String],
     categories:     [String],

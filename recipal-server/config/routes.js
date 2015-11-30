@@ -7,6 +7,7 @@ var recipeLib = require('../lib/recipeLib');
 var ingredientLib = require('../lib/ingredientLib');
 var categoryLib = require('../lib/categoryLib');
 
+
 module.exports = function(app, log) {
 	app.use(function(req, res, next) {
 	  res.header("Access-Control-Allow-Origin", "*");
@@ -20,4 +21,6 @@ module.exports = function(app, log) {
 	app.post("/createRecipe", recipeLib.createRecipe);
 	app.post("/addIngredient", ingredientLib.addIngredient);
 	app.post("/addCategory", categoryLib.addCategory);
+	app.post("/addBookmark", accountLib.bookmark);
+
 };
