@@ -18,8 +18,8 @@ angular.module('recipe.controllers', [])
 	$rootScope.$on('setRecipe', function(event, recipe) {
 		console.log("received event");
 		onRecipeSelect(recipe);
-		document.getElementById('instructions-container').style.display = 'none';
-	});
+		document.getElementById('page-container').style.display = 'none';
+	}); 
 	
 	recipeCtrl.ingredientsChecker = function() {
 		ingredientsCollected++;
@@ -27,7 +27,7 @@ angular.module('recipe.controllers', [])
 		if (ingredientsCollected === ingredientsNeeded) {
 				console.log("got all");
 				document.getElementById('ingredientslist-container').style.display = 'none';
-				document.getElementById('instructions-container').style.display = 'block';
+				document.getElementById('page-container').style.display = 'block';
 		}		
 	}
 	
