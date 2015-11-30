@@ -8,6 +8,7 @@ AccountSchema = mongoose.Schema({
     gender:        String,
     age:           Number,
     email:         String,
+    bookmarks:     [],
     dateCreated:   { type: Date, default: Date.now }, 
     // 0 = normal, 1 = premium, 2 = super premium, 3 = admin
     level:         { type: Number, default: 0}
