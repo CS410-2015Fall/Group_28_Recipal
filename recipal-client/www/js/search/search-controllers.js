@@ -15,8 +15,9 @@ angular.module('search.controllers', ['socket.services'])
     };
 
     searchController.onRecipeSelect = function(recipe) {
-        $rootScope.$broadcast('setRecipe', recipe);
+        $rootScope.currentRecipe = recipe;
         $state.go('app.recipe');
+        $rootScope.$broadcast('setRecipe', recipe);
         console.log("pushing event");
     }
 }])

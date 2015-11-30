@@ -17,6 +17,7 @@ exports.createRecipe = function(req, res) {
     }
     for (var i = 0; i < categories.length; i++) {
         Categories.findOne({name: categories[i]}).exec(function(err, category) {
+            console.log("category for " + i " is " + categories[i]);
             if (!category) {
                 Categories.addCategory(categories[i], "", function(err, category) {
                     // Perhaps use Promises, but assuming server doesn't fail, this is not necessary
@@ -26,6 +27,7 @@ exports.createRecipe = function(req, res) {
     }
     for (var i = 0; i < ingredients.length; i++) {
         Ingredients.findOne({name: ingredients[i]}).exec(function(err, ingredient) {
+            console.log("category for " + i " is " + ingredients[i]);
             if (!ingredient) {
                 Ingredients.addIngredient(ingredients[i], "", function(err, ingredient) {
                     // Perhaps use Promises, but assuming server doesn't fail, this is not necessary

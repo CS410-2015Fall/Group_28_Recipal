@@ -105,6 +105,7 @@ angular.module('app', ['ionic', 'socket.services', 'search.controllers', 'accoun
       }
     }
   });
-  // // if none of the above states are matched, use this as the fallback
+
+
   $urlRouterProvider.otherwise('/app/search');
 });
