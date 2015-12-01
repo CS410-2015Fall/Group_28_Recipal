@@ -3,5 +3,7 @@
   "version": "0.1.0",
   "description": "Recipe app",
   "cordovaPlugins": [],
-  "cordovaPlatforms": [],
+  "cordovaPlatforms": [
+    "android"
+  ]
 }

@@ -10,17 +10,17 @@ angular.module('search.controllers', ['socket.services'])
         socketService.emit('search', {name: searchController.searchInput});
 
         socketService.on('search', function(recipeArr) {
-            console.log("DEBUG: Receive search results");
+            console.log("INFO: Receive search results");
             $scope.searchResults = recipeArr;
             $scope.$evalAsync();
         });
     };
 
     searchController.onRecipeSelect = function(recipe) {
+        // TODO: move currentRecipe into a service?
         $rootScope.currentRecipe = recipe;
+        $rootScope.$evalAsync();
         $state.go('app.recipe');
-        $rootScope.$broadcast('setRecipe', recipe);
-        console.log("pushing event");
     }
 
     // 1 = ascending
