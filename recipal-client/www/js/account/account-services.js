@@ -43,9 +43,9 @@ angular.module('account.services', ['socket.services', 'settings.services'])
 			// TODO: can avoid copy?
 			angular.copy(this.accountInfo, savedInfo);
 			angular.copy(defaultAcc, this.accountInfo);
-			if (settingsService.saveLoginInfo.username)
+			if (settingsService.settings.saveLoginInfo.username)
 				this.accountInfo.username = savedInfo.username;
-			if (settingsService.saveLoginInfo.password)
+			if (settingsService.settings.saveLoginInfo.password)
 				this.accountInfo.password = savedInfo.password;
 
 			this.status.code = 0;

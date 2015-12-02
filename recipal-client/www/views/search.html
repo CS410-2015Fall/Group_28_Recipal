@@ -23,14 +23,14 @@
     </form>
     <!-- Dynamic search results -->
         <div class='row' ng-hide="searchResults.length == 0">
-            <div class='col col-67'>Recipe</div>
+            <div class='col-33'>Recipe</div>
             <div class='col' ng-click='searchCtrl.sortRating()'>Rating</div>
             <div class='col' ng-click='searchCtrl.sortDifficulty()'>Difficulty</div>
             <div class='col'>Select</div>
         </div>
         <div ng-repeat="result in searchResults">
             <div class='row'>
-                <div class='col col-67'>{{result.name}}</div>
+                <div class='col-33'>{{result.name}}</div>
                 <div class='col'>{{result.rating.rating}}</div>
                 <div class='col'>{{result.difficulty}}</div>
                 <div class='col'><button ng-click='searchCtrl.onRecipeSelect(result)'>Select</button></div>

@@ -5,7 +5,11 @@ angular.module('account.loginControllers', ['account.services', 'settings.servic
 	this.loginData = {username: accountService.accountInfo.username,
 		password: accountService.accountInfo.password};
 		$scope.status = accountService.status;
-		$scope.saveLoginInfo = settingsService.saveLoginInfo;
+		$scope.saveLoginInfo = settingsService.settings.saveLoginInfo;
+		
+		$scope.$on('$ionicView.leave', function() {
+			settingsService.saveAllSettings();
+		});
 
 		this.login = function() {
 			accountService.login(this.loginData, 

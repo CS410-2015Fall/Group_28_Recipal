@@ -2,8 +2,23 @@
   "name": "Recipal",
   "version": "0.1.0",
   "description": "Recipe app",
-  "cordovaPlugins": [],
+  "cordovaPlugins": [
+    {
+      "locator": "https://github.com/katzer/cordova-plugin-local-notifications.git",
+      "id": "de.appplant.cordova.plugin.local-notification"
+    },
+    "cordova-plugin-whitelist",
+    "cordova-plugin-device"
+  ],
   "cordovaPlatforms": [
-    "android"
-  ]
+    "android",
+    {
+      "platform": "android",
+      "version": "",
+      "locator": "android"
+    }
+  ],
+  "devDependencies": {
+    "bower": "^1.6.8"
+  }
 }

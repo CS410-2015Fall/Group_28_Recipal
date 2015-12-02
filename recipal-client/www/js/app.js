@@ -5,9 +5,10 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic', 'socket.services', 'search.controllers', 'account.loginControllers', 'account.profileControllers', 'recipe.controllers', 'menu.controllers'])
+angular.module('app', ['ionic', 'socket.services', 'search.controllers', 'account.loginControllers', 
+  'account.profileControllers', 'recipe.controllers', 'menu.controllers', 'favorites.controllers', 'settings.services'])
 
-.run(function($ionicPlatform, $rootScope, socketService) {
+.run(function($ionicPlatform, $rootScope, socketService, settingsService) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -26,8 +27,10 @@ angular.module('app', ['ionic', 'socket.services', 'search.controllers', 'accoun
     $rootScope.deviceReady = {isReady: true};
     console.log("DEBUG: Device ready.");
   }
-});
+
   socketService.connect();
+  settingsService.init();
+});
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -90,7 +93,8 @@ angular.module('app', ['ionic', 'socket.services', 'search.controllers', 'accoun
     url: '/favorites',
     views: {
       'menuContent': {
-        templateUrl: 'views/favorites.html'
+        templateUrl: 'views/favorites.html',
+        controller: 'FavoritesCtrl'
       }
     }
   })
