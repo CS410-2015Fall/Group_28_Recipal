@@ -8,7 +8,7 @@ angular.module('notification.services', ['settings.services'])
 		status: function() {
 			return $rootScope.deviceReady 
 			&& $rootScope.deviceReady.isReady === true
-			&& settingsService.notification.value === true;
+			&& settingsService.settings.notification === true;
 		},
 		schedule: function(options) {
 			if (!this.status())

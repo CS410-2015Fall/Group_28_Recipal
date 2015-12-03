@@ -6,9 +6,10 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('app', ['ionic', 'socket.services', 'search.controllers', 'account.loginControllers', 
-  'account.profileControllers', 'recipe.controllers', 'menu.controllers', 'favorites.controllers', 'settings.services'])
+  'account.profileControllers', 'recipe.controllers', 'menu.controllers', 
+  'favorites.controllers', 'favorites.services', 'settings.services', 'account.services'])
 
-.run(function($ionicPlatform, $rootScope, socketService, settingsService) {
+.run(function($ionicPlatform, $rootScope, socketService, settingsService, favoritesService, accountService) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -28,8 +29,10 @@ angular.module('app', ['ionic', 'socket.services', 'search.controllers', 'accoun
     console.log("DEBUG: Device ready.");
   }
 
-  socketService.connect();
+ // socketService.connect("/");
   settingsService.init();
+  accountService.init();
+  favoritesService.init();
 });
 })
 

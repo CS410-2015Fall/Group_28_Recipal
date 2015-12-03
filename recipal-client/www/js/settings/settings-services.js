@@ -2,26 +2,23 @@
 
 angular.module('settings.services', ['storage.services'])
 .factory('settingsService', ['storageService', function(storageService) {
-	var settings = {saveLoginInfo: {username: true, password: false},
-		voiceRecog: {value: false},
-		notification: {value: true},
-		localStor: {value: false}};
-
+	var defaultSettings = {saveUsername: true, rememberMe: false,
+		voiceRecog: false,
+		notification: true,
+		localStor: true};
+	var watchers = {};
 	return {
-		settings: settings,
+		settings: defaultSettings,
 		init: function() {
 			var savedSettings = storageService.get("settings");
 			if (!savedSettings) {
 				console.log("Could not load local saved settings, using default");
-				return;
-			}
-			
-			this.settings = savedSettings;
-		},
-		saveAllSettings: function() {
-			//if (!storageService.set("settings", this.settings))
-				//console.log("Failed to save settings locally");
 				storageService.set("settings", this.settings);
+			}
+			else {
+				this.settings = savedSettings;
+				console.log("DEBUG: Got settings from storage: " + JSON.stringify(this.settings));
+			}
 		}
 	}
 }]);
