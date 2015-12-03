@@ -17,20 +17,20 @@ angular.module('socket.services', [])
 		initSocket: function(connectCb, disconnectCb, infoUpdateCb,
 			newMessageCb) {
 			this.socket.on('connect', function(categories) {
-				console.log("Connected");
+				console.log("DEBUG: Connected");
 				invokeFunc(connectCb);
 			});
 			this.socket.on('disconnect', function() {
-				console.log("Disconnected");
+				console.log("DEBUG: Disconnected");
 				invokeFunc(disconnectCb);
 			});
 			this.socket.on('info-update', function(infoUpdateArr) {
-				console.log("New info incoming");
+				console.log("DEBUG: New info incoming");
 			//handleInfoUpdate(infoUpdateArr); change the 3 enum-like objects 
 			invokeFunc(infoUpdateCb, infoUpdateArr);
 		});
 			this.socket.on('message', function(message) {
-				console.log("New message incoming");
+				console.log("DEBUG: New message incoming");
 				invokeFunc(newMessageCb, message);
 			});
 		},
