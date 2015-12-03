@@ -4,9 +4,10 @@
 	
 <div ng-controller="RecipeCtrl as recipeCtrl">
 		
-	<div id="recipe-title-img" class="row" margin-bottom="5px">
-	  <div class="col"><img width="100px" src="res/img/brownies.jpg"/></div>
+	<div id="recipe-title-img" class="row" margin-bottom="5px" >
+	  <div class="col" ng-show="{{recipeImageAvailable}}"><img width="100px" ng-src="{{recipeImage}}"/></div>
 	  <div class="col"><h2>{{recipe.name}}</h2></div>
+
 	</div>
 	
 	<div id="ingredientslist-container" ng-show="(currentPage == 0)">
@@ -40,6 +41,8 @@
 		</div>
 		</div>
 
+		<div><img class="recipeimage" ng-src="{{currentImage}}" ng-show="imageAvailable"></div>
+
 
 		<div id="instructions-container" class="row">
 		  <div class="col">
@@ -51,6 +54,13 @@
 		  </div>
 		</div>
 	</div>
+	<div ng-show="currentPage == (recipe.steps.length + 1)">
+		{{ratingDescription}}
+		<div style='display: inline-block; margin: 0px; padding: 0px; cursor:pointer;' ng-repeat='idx in ratings track by $index'>
+            <img ng-src="{{imageSource[$index + 1]}}" ng-Click='recipeCtrl.rate($index + 1)'>
+        </div>
+	</div>
+
 	<div id="nav-buttons" class="row">
 	  <div class="col col-33">
 		<form ng-click="recipeCtrl.back()">

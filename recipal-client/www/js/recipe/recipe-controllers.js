@@ -1,7 +1,9 @@
 "use strict";
 
-angular.module('recipe.controllers', ['notification.services'])
-.controller('RecipeCtrl', ['notificationService','$scope', '$rootScope', function(notificationService, $scope, $rootScope) {
+
+angular.module('recipe.controllers', [])
+.controller('RecipeCtrl', ['$http', '$scope', '$rootScope', 'socketService', function($http, $scope, $rootScope, socketService) {
+
 	var recipeCtrl = this;
 	$scope.recipe = $rootScope.currentRecipe;
 	$scope.currentPage = 0;
@@ -48,6 +50,11 @@ angular.module('recipe.controllers', ['notification.services'])
 	$scope.timerSeconds = 0;
 	$scope.timerMinutes = 0;
 	$scope.timerHours = 0;
+
+	if ($scope.recipe.image) {
+		$scope.recipeImageAvailable = true;
+		$scope.recipeImage = $scope.recipe.image;
+	}
 
 	var timer = 0;
 
@@ -144,6 +151,13 @@ angular.module('recipe.controllers', ['notification.services'])
 				recipeCtrl.loadTimer();
 			}
 			$scope.currentDescription = $scope.recipe.steps[$scope.currentPage - 1].description;
+			if ($scope.recipe.steps[$scope.currentPage - 1].img) {
+				$scope.currentImage = $scope.recipe.steps[$scope.currentPage - 1].img;
+				$scope.imageAvailable = true; 
+			} else {
+				$scope.currentImage = "";
+				$scope.imageAvailable = false;
+			}
 		}
 
 		console.log("DEBUG: next step");
@@ -165,7 +179,55 @@ angular.module('recipe.controllers', ['notification.services'])
 				recipeCtrl.loadTimer();
 			}
 			$scope.currentDescription = $scope.recipe.steps[$scope.currentPage - 1].description;
+			if ($scope.recipe.steps[$scope.currentPage - 1].img) {
+				$scope.currentImage = $scope.recipe.steps[$scope.currentPage - 1].img;
+				$scope.imageAvailable = true; 
+			} else {
+				$scope.currentImage = "";
+				$scope.imageAvailable = false;
+			}
+			
 		}
-		console.log("DEBUG: back");
-	};
+		console.log("back");
+	}
+	console.log("recipe controller loaded");
+
+	$scope.ratings = [1, 2, 3, 4, 5];
+	var currentRating = $scope.recipe.rating.rating;
+	$scope.imageSource = [];
+	recipeCtrl.loadRating = function() {
+		for (var i = 1; i < 6; i++) {
+			if (i < currentRating) {
+				$scope.imageSource[i] = "img/fillstar.jpg";
+			} else {
+				$scope.imageSource[i] = "img/emptystar.jpg";
+			}
+		}
+	}
+	$scope.ratingDescription = "How did you like this Recipe?"
+	recipeCtrl.loadRating();
+	var rated = false;
+	recipeCtrl.rate = function (rating) {
+		if (rated) {
+			return;
+		}
+		var data = {
+	        name: $scope.recipe.name,
+	        rating: rating,
+        };
+        // console.log("data is " + JSON.stringify(data));
+		var postReq = {
+            method: 'POST',
+            url: socketService.url + '/rateRecipe',
+            data: data,
+        }
+        $http(postReq).success(function(data) {
+	        currentRating = rating + 1;
+	        recipeCtrl.loadRating();
+	        $scope.ratingDescription = "Thank you for rating!"
+	        rated = true;
+        });
+
+    };	
+	
 }]);
