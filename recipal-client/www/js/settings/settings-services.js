@@ -17,7 +17,7 @@ angular.module('settings.services', ['storage.services'])
 			}
 			else {
 				this.settings = savedSettings;
-				console.log("DEBUG: Got settings from storage: " + JSON.stringify(this.settings));
+				//console.log("DEBUG: Got settings from storage: " + JSON.stringify(this.settings));
 			}
 		}
 	}

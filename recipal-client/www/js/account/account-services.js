@@ -79,7 +79,7 @@ angular.module('account.services', ['socket.services', 'settings.services', 'sto
 			// Add favorites
 			$http({ method: 'POST', url: socketService.url + '/addBookmark', data: {username: this.accountInfo.username, password: this.accountInfo.password, name: recipe.name}})
 			.then(function successCallback(response) {
-				console.log("INFO: Receive add favorites success status: " + response.statusText);
+				console.log("INFO: Receive add favorites success status: " + response.statusText + "\n" + JSON.stringify(response.data));
 			}, function errorCallback(response) {
 				console.log("INFO: Receive add favorites error status: " + response.statusText);
 			});
@@ -90,6 +90,7 @@ angular.module('account.services', ['socket.services', 'settings.services', 'sto
 				callback([]);
 			}
 			socketService.emit(accountSockId, "bookmarks", {username: this.accountInfo.username, password: this.accountInfo.password});
+			socketService.on(accountSockId, "bookmarks", callback);
 	}
 };
 });

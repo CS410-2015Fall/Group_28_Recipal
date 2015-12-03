@@ -1,8 +1,8 @@
 "use strict";
 
 
-angular.module('recipe.controllers', [])
-.controller('RecipeCtrl', ['$http', '$scope', '$rootScope', 'socketService', function($http, $scope, $rootScope, socketService) {
+angular.module('recipe.controllers', ['socket.services', 'notification.services'])
+.controller('RecipeCtrl', ['$http', '$scope', '$rootScope', 'socketService', 'notificationService', function($http, $scope, $rootScope, socketService, notificationService) {
 
 	var recipeCtrl = this;
 	$scope.recipe = $rootScope.currentRecipe;
@@ -37,7 +37,7 @@ angular.module('recipe.controllers', [])
 	recipeCtrl.ingredientsChecker = function() {
 		console.log("DEBUG: " + $scope.checked);
 		for (var i = 0;  i < $scope.checked.length; i++) {
-		    if ($scope.checked[i] == false) {
+		    if ($scope.checked[i] !== true) {
 		        $scope.ingredientsChecked = false;
 		        return;
 		    }

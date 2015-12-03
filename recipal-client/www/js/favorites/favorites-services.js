@@ -9,10 +9,12 @@ angular.module('favorites.services', ['socket.services', 'settings.services', 's
 				var savedFavorites = storageService.get("favorites");
 				if (savedFavorites)	{
 					favorites = storageService.get("favorites");
-					console.log("DEBUG: Got favorites from storage: " + JSON.stringify(favorites));
+					//console.log("DEBUG: Got favorites from storage: " + JSON.stringify(favorites));
 				}
-				else console.log("DEBUG: could not load favorites from storage");
+				//else console.log("DEBUG: could not load favorites from storage");
 			}
+			else 
+				storageService.remove("favorites");
 			// accountService.getFavorites(function(favorites) {
 			// 	this.favorites
 			// });
@@ -41,31 +43,31 @@ angular.module('favorites.services', ['socket.services', 'settings.services', 's
 			this.setLocalFavorites(favorites);
 			return true;
 		},
-		// addFavorites: function(recipe) {
-		// 	if (favorites[recipe._id])
-		// 		console.log("INFO: Recipe already existed");
-		// 	else {
-		// 		if (accountService.status.code === 1)
-		// 			accountService.addFavorites(recipe);
-
-		// 		console.log("INFO: Adding recipe to favorites: " + JSON.stringify(recipe));
-		// 		favorites[recipe._id] = recipe;
-		// 	}
-		// },
 		setLocalFavorites: function(_favorites_) {
-			console.log("DEBUG: " + JSON.stringify(settingsService.settings));
 			if (settingsService.settings.localStor === true)
 				storageService.set("favorites", _favorites_);
 			favorites = storageService.get("favorites");
-			console.log("DEBUG: Saving favorites to storage");
 		},
 		getFavorites: function(callback) {
 			var favoritesService = this;
 			if (accountService.status.code === 1)
 				accountService.getFavorites(function(_favorites_) {
-					favoritesService.setFavorites(_favorites_);
-					console.log("DEBUG: Processed favorites received");
-					callback(_favorites_);
+					// TODO: better way to do this?
+					var i;
+					for (i = 0; i < favorites.length; i++) {
+						var j;
+						for (j = 0; j < _favorites_.length; j++) {
+							if (favorites[i]._id === _favorites_[j]._id) {
+							_favorites_.splice(j--, 1);
+							break;
+							}
+						}
+						if (j === _favorites_.length)
+							accountService.addFavorites(favorites[i]);
+					}
+					favorites = favorites.concat(_favorites_);
+					favoritesService.setLocalFavorites(favorites);
+					callback(favorites);
 				});
 
 			else callback(favorites);

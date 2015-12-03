@@ -17,6 +17,7 @@ angular.module('search.controllers', ['socket.services', 'account.services', 'fa
 
     $scope.$on('$ionicView.beforeEnter', function() { 
         favoritesService.getFavorites(function(favorites) {
+                console.log("DEBUG: Got favorites: " + "\n" + JSON.stringify(favorites));
                 $scope.favorites = favorites;
                 matchFavorites();
         });
@@ -41,10 +42,11 @@ angular.module('search.controllers', ['socket.services', 'account.services', 'fa
 
     searchController.search = function() {
         $scope.searching.value = true;
+        console.log("Starting search");
         socketService.emit($scope.searchSockId, 'search', {name: searchController.searchInput});
 
         socketService.on($scope.searchSockId, 'search', function(recipeArr) {
-            console.log("INFO: Receive search results");
+            console.log("INFO: Receive " + (recipeArr? recipeArr.length : 0) + " search result(s)");
             $rootScope.searchResults = recipeArr;
             matchFavorites();
             $scope.$evalAsync();
