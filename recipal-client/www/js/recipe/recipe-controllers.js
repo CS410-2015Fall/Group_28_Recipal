@@ -51,6 +51,11 @@ angular.module('recipe.controllers', [])
 	$scope.timerMinutes = 0;
 	$scope.timerHours = 0;
 
+	if ($scope.recipe.image) {
+		$scope.recipeImageAvailable = true;
+		$scope.recipeImage = $scope.recipe.image;
+	}
+
 	var timer = 0;
 
 	var timeLeft = 0;
@@ -146,6 +151,13 @@ angular.module('recipe.controllers', [])
 				recipeCtrl.loadTimer();
 			}
 			$scope.currentDescription = $scope.recipe.steps[$scope.currentPage - 1].description;
+			if ($scope.recipe.steps[$scope.currentPage - 1].img) {
+				$scope.currentImage = $scope.recipe.steps[$scope.currentPage - 1].img;
+				$scope.imageAvailable = true; 
+			} else {
+				$scope.currentImage = "";
+				$scope.imageAvailable = false;
+			}
 		}
 
 		console.log("DEBUG: next step");
@@ -167,6 +179,14 @@ angular.module('recipe.controllers', [])
 				recipeCtrl.loadTimer();
 			}
 			$scope.currentDescription = $scope.recipe.steps[$scope.currentPage - 1].description;
+			if ($scope.recipe.steps[$scope.currentPage - 1].img) {
+				$scope.currentImage = $scope.recipe.steps[$scope.currentPage - 1].img;
+				$scope.imageAvailable = true; 
+			} else {
+				$scope.currentImage = "";
+				$scope.imageAvailable = false;
+			}
+			
 		}
 		console.log("back");
 	}
