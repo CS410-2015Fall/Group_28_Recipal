@@ -12,8 +12,8 @@ logs
 results
 build
 
-recipal-server/node_modules
-recipal-server/www/lib
-recipal-client/node_modules
-tests/node_modules
+recipal-server/node_modules/
+recipal-server/www/lib/
+recipal-client/node_modules/
+tests/node_modules/
 
