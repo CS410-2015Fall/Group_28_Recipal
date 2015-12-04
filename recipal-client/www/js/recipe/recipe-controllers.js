@@ -1,8 +1,9 @@
 "use strict";
 
 
-angular.module('recipe.controllers', ['socket.services', 'notification.services'])
-.controller('RecipeCtrl', ['$http', '$scope', '$rootScope', 'socketService', 'notificationService', function($http, $scope, $rootScope, socketService, notificationService) {
+angular.module('recipe.controllers', ['socket.services', 'notification.services', 'txt2speech-services'])
+.controller('RecipeCtrl', ['$http', '$scope', '$rootScope', 'socketService', 'notificationService', 'txt2speechService', 
+	function($http, $scope, $rootScope, socketService, notificationService, txt2speechService) {
 
 	var recipeCtrl = this;
 	$scope.recipe = $rootScope.currentRecipe;
@@ -140,6 +141,7 @@ angular.module('recipe.controllers', ['socket.services', 'notification.services'
 			$scope.currentPage++;
 		}
 
+		txt2speechService.stop();
 		if (($scope.currentPage - 1) == $scope.recipe.steps.length) {
 			console.log("DEBUG: last page");
 		} else {
@@ -159,7 +161,7 @@ angular.module('recipe.controllers', ['socket.services', 'notification.services'
 				$scope.imageAvailable = false;
 			}
 		}
-
+		txt2speechService.speak($scope.currentDescription);
 		console.log("DEBUG: next step");
 	};
 
@@ -168,6 +170,7 @@ angular.module('recipe.controllers', ['socket.services', 'notification.services'
 			return;
 		}
 
+		txt2speechService.stop();
 		$scope.currentPage--;
 		if ($scope.currentPage == 0) {
 			$scope.currentDescription = "";
@@ -188,6 +191,7 @@ angular.module('recipe.controllers', ['socket.services', 'notification.services'
 			}
 			
 		}
+		txt2speechService.speak($scope.currentDescription);
 		console.log("back");
 	}
 	console.log("recipe controller loaded");

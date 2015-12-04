@@ -4,6 +4,7 @@ angular.module('settings.services', ['storage.services'])
 .factory('settingsService', ['storageService', function(storageService) {
 	var defaultSettings = {saveUsername: true, rememberMe: false,
 		voiceRecog: false,
+		speak: false,
 		notification: true,
 		localStor: true};
 	var watchers = {};

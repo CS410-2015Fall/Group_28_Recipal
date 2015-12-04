@@ -8,7 +8,8 @@
       "id": "de.appplant.cordova.plugin.local-notification"
     },
     "cordova-plugin-whitelist",
-    "cordova-plugin-device"
+    "cordova-plugin-device",
+    "cordova-plugin-tts"
   ],
   "cordovaPlatforms": [
     "android",

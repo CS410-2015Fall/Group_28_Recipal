@@ -11,7 +11,7 @@
                     <input type="text" placeholder="Search" ng-model="searchCtrl.searchInput"></input>
                 </label>
                 <div ng-switch="searching.value">
-                <button ng-switch-when="true" class="button button-block button-dark" value="disable" >Please wait...</button>
+                <button ng-switch-when="true" class="button button-block button-dark" disabled>Please wait...</button>
                 <button ng-switch-default class="button button-block button-energized" type="submit">Search</button>
                 </div>	
 			<div id="searchlist" align="center" class="row">
