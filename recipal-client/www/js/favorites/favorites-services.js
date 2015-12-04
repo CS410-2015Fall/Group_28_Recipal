@@ -31,7 +31,11 @@ angular.module('favorites.services', ['socket.services', 'settings.services', 's
 				if (favorites[i]._id === recipe._id) {
 					console.log("DEBUG: Removing recipe from favorites: " + recipe.name);
 					favorites.splice(i, 1);
-					if (accountService.status.code === 1) console.log("WARN: Won't be removed from server");
+					if (accountService.status.code === 0) {
+						console.log("WARN: Won't be removed from server");
+					} else {
+						accountService.removeFavorites(recipe);
+					}
 					return false;
 				}
 			}

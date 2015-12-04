@@ -23,5 +23,6 @@ module.exports = function(app, log) {
 	app.post("/addCategory", categoryLib.addCategory);
 	app.post("/addBookmark", accountLib.bookmark);
 	app.post("/rateRecipe", recipeLib.rateRecipe);
+	app.post("/removeBookmark", accountLib.removeBookmark);
 
 };

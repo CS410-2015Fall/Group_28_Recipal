@@ -15,10 +15,11 @@ RecipeSchema = mongoose.Schema({
     ingredients:    [String],
     categories:     [String],
     accountRef:     String,
+    image:          String,
     dateCreated:    { type: Date, default: Date.now }
 });
 
-RecipeSchema.statics.addRecipe = function(name, duration, difficulty, rating, steps, ingredients, categories, accountRef, done) {
+RecipeSchema.statics.addRecipe = function(name, duration, difficulty, rating, steps, ingredients, categories, accountRef, image, done) {
     var Recipe = this;
     return Recipe.create({
         name       :    name,
@@ -29,6 +30,7 @@ RecipeSchema.statics.addRecipe = function(name, duration, difficulty, rating, st
         ingredients:    ingredients,
         categories :    categories,
         accountRef :    accountRef,
+        image      :    image,
     }, function(err, object) {
         if(err) 
             log.error('Unable to create Recipe object:%s', err);

@@ -27,6 +27,9 @@ Add a Recipe <br>
   	Recipe Name:<br>
   	<input type="text" name="name" ng-model="addRecipeCtrl.name"><br>
 
+  	Image:<br>
+  	<input type="text" name="image" ng-model="addRecipeCtrl.image"><br>
+
   	Duration (in seconds): <br>
   	<input type="text" name="duration" ng-model="addRecipeCtrl.duration"><br>
 
@@ -49,7 +52,8 @@ Add a Recipe <br>
   	 <div ng-repeat="step in addRecipeCtrl.steps">
   	 	Step {{ 1 + $index}} :
   	 	Description: <input type="text" name="steps" ng-model='addRecipeCtrl.steps[$index].description'> 
-  	 	Timer: <input type="text" name="steps" ng-model='addRecipeCtrl.steps[$index].timer'><br>
+  	 	Timer: <input type="text" name="steps" ng-model='addRecipeCtrl.steps[$index].timer'>
+  	 	ImageURL: <input type="text" name="steps" ng-model='addRecipeCtrl.steps[$index].img'><br>
   	 </div>
 
   	 <button type="button" ng-click="addRecipeCtrl.addStep()">Add step</button><br>

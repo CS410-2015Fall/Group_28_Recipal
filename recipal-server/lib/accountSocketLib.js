@@ -22,7 +22,7 @@ module.exports = function(io) {
 		    	} else {
 		    		if (typeof(account) != "undefined" && account != null) {
 		    			if (account.length === 1) {
-		    				var bookmarks = account.bookmarks;
+		    				var bookmarks = account[0].bookmarks;
 		    				Recipe.find({name:{ $in: bookmarks}}, function(err, recipes) {
 		    					if (err) {
 		    						socket.emit("bookmarks", []);

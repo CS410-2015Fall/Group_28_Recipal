@@ -23,6 +23,7 @@ angular.module('webFrontEnd').controller('addRecipeController', ['$http',
                     ingredients: ingredients,
                     categories: categories,
                     steps: ctrl.steps,
+                    image: ctrl.image,
                 };
             console.log("data is " + JSON.stringify(data));
     		var postReq = {

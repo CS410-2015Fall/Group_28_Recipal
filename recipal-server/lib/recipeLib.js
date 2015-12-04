@@ -11,6 +11,7 @@ exports.createRecipe = function(req, res) {
     var categories =    req.body.categories;
     var author     =    author;
     var ingredients =   req.body.ingredients;
+    var image = req.body.image;
     console.log(categories);
     if (typeof name === 'string') {
         name = name.toLowerCase();
@@ -36,7 +37,7 @@ exports.createRecipe = function(req, res) {
         });
     }
     
-    Recipe.addRecipe(name, duration, difficulty, {count: 0, rating: 0}, steps, ingredients, categories, author, function(err, recipe){
+    Recipe.addRecipe(name, duration, difficulty, {count: 0, rating: 0}, steps, ingredients, categories, author, image, function(err, recipe){
         if (err) {
             console.log("error creating recipe: " + err);
             res.status(400).send("error making your recipe D:");

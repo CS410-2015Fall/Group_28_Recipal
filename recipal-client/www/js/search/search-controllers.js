@@ -57,6 +57,7 @@ angular.module('search.controllers', ['socket.services', 'account.services', 'fa
 
     searchController.onRecipeSelect = function(recipe) {
         // TODO: move currentRecipe into a service?
+        
         $rootScope.currentRecipe = recipe;
         $rootScope.$evalAsync();
         $state.go('app.recipe');

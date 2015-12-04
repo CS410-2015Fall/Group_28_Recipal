@@ -84,6 +84,20 @@ angular.module('account.services', ['socket.services', 'settings.services', 'sto
 				console.log("INFO: Receive add favorites error status: " + response.statusText);
 			});
 		},
+
+		removeFavorites: function(recipe) {
+			if (this.status.code !== 1) {
+				console.log("DEBUG: did not remove favorite on server: Not logged in");
+				return;
+			}
+			// Add favorites
+			$http({ method: 'POST', url: socketService.url + '/removeBookmark', data: {username: this.accountInfo.username, password: this.accountInfo.password, name: recipe.name}})
+			.then(function successCallback(response) {
+				console.log("INFO: Receive remove favorites success status: " + response.statusText + "\n" + JSON.stringify(response.data));
+			}, function errorCallback(response) {
+				console.log("INFO: Receive remove favorites error status: " + response.statusText);
+			});
+		},
 		getFavorites: function(callback) {
 			if (this.status.code !== 1) {
 				console.log("DEBUG: did not get favorites from server: Not logged in");
