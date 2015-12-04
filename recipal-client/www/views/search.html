@@ -13,8 +13,10 @@
                 <div ng-switch="searching.value">
                 <button ng-switch-when="true" class="button button-block button-dark" disabled>Please wait...</button>
                 <button ng-switch-default class="button button-block button-energized" type="submit">Search</button>
-                </div>	
-			<div id="searchlist" align="center" class="row">
+                </div>
+			</div>
+        </form>
+        <div id="searchlist" align="center" class="row">
 				<div class="col">
 					<button class="button button-small button-clear">Sort By</button>
 				</div>
@@ -24,9 +26,7 @@
 				<div class="col">
 					<button class="button button-small button-clear ion-ribbon-b" ng-click="searchCtrl.sortDifficulty()"> Difficulty</button>
 				</div>
-			</div>
-			</div>
-        </form>
+		</div>
 		
          <!-- Dynamic search results -->
         <div id="searchlist" ng-repeat="result in searchResults">
