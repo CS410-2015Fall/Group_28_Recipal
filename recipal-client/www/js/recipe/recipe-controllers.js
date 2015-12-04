@@ -6,6 +6,7 @@ angular.module('recipe.controllers', ['socket.services', 'notification.services'
 	function($http, $scope, $rootScope, socketService, notificationService, txt2speechService) {
 
 	var recipeCtrl = this;
+	var audio = new Audio("res/sound/alarm.mp3");
 	$scope.recipe = $rootScope.currentRecipe;
 	$scope.currentPage = 0;
 	$scope.currentDescription = "";
@@ -36,6 +37,10 @@ angular.module('recipe.controllers', ['socket.services', 'notification.services'
 	};
 	
 	recipeCtrl.ingredientsChecker = function() {
+		if ($scope.checked.length < $scope.recipe.ingredients.length) {
+			$scope.ingredientsChecked = false;
+		    return;
+		}
 		console.log("DEBUG: " + $scope.checked);
 		for (var i = 0;  i < $scope.checked.length; i++) {
 		    if ($scope.checked[i] !== true) {
@@ -74,6 +79,9 @@ angular.module('recipe.controllers', ['socket.services', 'notification.services'
 			$scope.timerState = false;
 			clearInterval(timer);
 			$scope.timerButton = "Done!";
+			audio.play();
+			setTimeout(function(){alert("TIMER IS DONE!");},1000);
+			
 		} else {
 			$scope.timerSeconds = timeLeft % 60;
 			$scope.timerMinutes = Math.floor(timeLeft / 60) % 60;
@@ -154,6 +162,7 @@ angular.module('recipe.controllers', ['socket.services', 'notification.services'
 			}
 			$scope.currentDescription = $scope.recipe.steps[$scope.currentPage - 1].description;
 			if ($scope.recipe.steps[$scope.currentPage - 1].img) {
+				$scope.currentImage = "";
 				$scope.currentImage = $scope.recipe.steps[$scope.currentPage - 1].img;
 				$scope.imageAvailable = true; 
 			} else {
@@ -183,6 +192,7 @@ angular.module('recipe.controllers', ['socket.services', 'notification.services'
 			}
 			$scope.currentDescription = $scope.recipe.steps[$scope.currentPage - 1].description;
 			if ($scope.recipe.steps[$scope.currentPage - 1].img) {
+				$scope.currentImage = "";
 				$scope.currentImage = $scope.recipe.steps[$scope.currentPage - 1].img;
 				$scope.imageAvailable = true; 
 			} else {
