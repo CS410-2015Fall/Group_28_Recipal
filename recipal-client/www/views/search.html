@@ -25,11 +25,10 @@
             <div class='col'>Select</div>
         </div>
         <div ng-repeat="result in searchResults">
-            <div class='row'>
-                <!-- <div class='col' ng-switch="result.isFavorite"> -->
-                    <button ng-class="{'button button-icon icon ion-android-star': result.isFavorite, 'button button-icon icon ion-android-star-outline': !result.isFavorite }" ng-click='searchCtrl.onFavoriteToggle(result)'></button>
-                    <!-- <button ng-switch-default class="button button-icon icon ion-android-star-outline" ng-click='searchCtrl.onFavoriteToggle(result)'></button> -->
-                <!-- </div> -->
+            <div class='row row-center'>
+                <div class='col'>
+                    <button ng-class="{'button button-icon icon ion-ios-heart': result.isFavorite, 'button button-icon icon ion-ios-heart-outline': !result.isFavorite }" ng-click='searchCtrl.onFavoriteToggle(result)'></button>
+                </div>
                 <div class='col-33'>{{result.name}}</div>
                 <div class='col'>{{result.rating.rating}}</div>
                 <div class='col'>{{result.difficulty}}</div>

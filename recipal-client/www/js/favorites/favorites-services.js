@@ -7,11 +7,8 @@ angular.module('favorites.services', ['socket.services', 'settings.services', 's
 		init: function() {
 			if (settingsService.settings.localStor) {
 				var savedFavorites = storageService.get("favorites");
-				if (savedFavorites)	{
+				if (savedFavorites)
 					favorites = storageService.get("favorites");
-					//console.log("DEBUG: Got favorites from storage: " + JSON.stringify(favorites));
-				}
-				//else console.log("DEBUG: could not load favorites from storage");
 			}
 			else 
 				storageService.remove("favorites");
@@ -43,6 +40,8 @@ angular.module('favorites.services', ['socket.services', 'settings.services', 's
 				storageService.set("favorites", _favorites_);
 			favorites = storageService.get("favorites");
 		},
+		// Get favorites from server and compare with local, local with remote if duplicated,
+		// else upload local to server and add remote to local storage 
 		getFavorites: function(callback) {
 			var favoritesService = this;
 			if (accountService.status.code === 1)
@@ -52,14 +51,18 @@ angular.module('favorites.services', ['socket.services', 'settings.services', 's
 					for (i = 0; i < favorites.length; i++) {
 						var j;
 						for (j = 0; j < _favorites_.length; j++) {
+							// Override local if equals
 							if (favorites[i]._id === _favorites_[j]._id) {
-							_favorites_.splice(j--, 1);
-							break;
+								angular.copy(_favorites_[j], favorites[i]);
+								_favorites_.splice(j--, 1);
+								break;
 							}
 						}
+						// Upload unique locals
 						if (j === _favorites_.length)
 							accountService.addFavorites(favorites[i]);
 					}
+					// Concat the rest of remote and put to local storage
 					favorites = favorites.concat(_favorites_);
 					favoritesService.setLocalFavorites(favorites);
 					callback(favorites);

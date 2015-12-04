@@ -5,11 +5,11 @@
 <div ng-controller="FavoritesCtrl as favCtrl"
 <!-- Dynamic favorites -->
         <div class='row' ng-hide="favorites.length == 0">
-            <div class='col'></div>
             <div class='col-33'>Recipe</div>
             <div class='col' ng-click='favCtrl.sortRating()'>Rating</div>
             <div class='col' ng-click='favCtrl.sortDifficulty()'>Difficulty</div>
             <div class='col'>Select</div>
+            <div class='col'></div>
         </div>
         <div ng-repeat="recipe in favorites">
             <div class='row'>
