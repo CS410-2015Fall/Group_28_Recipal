@@ -2,24 +2,26 @@
 <ion-content>
 <div class="pagelayout"><br>
 	<h1>Favourites</h1>
-<div ng-controller="FavoritesCtrl as favCtrl"
-<!-- Dynamic favorites -->
-        <div class='row' ng-hide="favorites.length == 0">
-            <div class='col-33'>Recipe</div>
-            <div class='col' ng-click='favCtrl.sortRating()'>Rating</div>
-            <div class='col' ng-click='favCtrl.sortDifficulty()'>Difficulty</div>
-            <div class='col'>Select</div>
-            <div class='col'></div>
+    <div ng-controller="FavoritesCtrl as favCtrl"
+    <!-- Dynamic favorites -->
+    <div class='row row-center' ng-hide="favorites.length == 0">
+        <div class='col-33'>Recipe</div>
+        <div class='col' ng-click='favCtrl.sortRating()'>Rating</div>
+        <div class='col' ng-click='favCtrl.sortDifficulty()'>Difficulty</div>
+    </div>
+
+    <div ng-repeat="recipe in favorites">
+        <ion-slide-box show-pager="false" on-slide-changed="favCtrl.onFavoriteToggle(recipe)">
+        <ion-slide>
+        <div class='row row-center' on-tap='favCtrl.onRecipeSelect(recipe)'>
+            <div class='col-33'>{{recipe.name}}</div>
+            <div class='col'>{{recipe.rating.rating}}</div>
+            <div class='col'>{{recipe.difficulty}}</div>
         </div>
-        <div ng-repeat="recipe in favorites">
-            <div class='row'>
-                <div class='col-33'>{{recipe.name}}</div>
-                <div class='col'>{{recipe.rating.rating}}</div>
-                <div class='col'>{{recipe.difficulty}}</div>
-                <div class='col'><button ng-click='favCtrl.onRecipeSelect(recipe)'>Select</button></div>
-                <div class='col'><button ng-click='favCtrl.onFavoriteToggle(recipe)'>Unfavorite</button></div>
-            </div>
-        </div>
+        </ion-slide>
+        <ion-slide></ion-slide>
+        </ion-slide-box>
+    </div>
 </div>
 </div>
 </ion-content>

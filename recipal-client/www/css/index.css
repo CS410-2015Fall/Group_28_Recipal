@@ -94,3 +94,8 @@ a.login-links {
 .hidden {
   display: none !important;
 }
+
+.row {
+	border-bottom: solid gray;
+	background: white;
+}
