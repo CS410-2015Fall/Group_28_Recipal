@@ -64,10 +64,12 @@ angular.module('search.controllers', ['socket.services', 'account.services', 'fa
     }
 
 
-    searchController.onFavoriteToggle = function(recipe) {
+    searchController.onFavoriteToggle = function(_recipe_) {
         // TODO: move favorites list into a service?
+       var recipe = angular.copy(_recipe_);
+       delete recipe.isFavorite;
        favoritesService.toggleFavorite(recipe);
-       recipe.isFavorite = !recipe.isFavorite;
+       _recipe_.isFavorite = !_recipe_.isFavorite;
        // TODO: UI update
     }
 
