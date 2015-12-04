@@ -2,13 +2,23 @@
 <ion-content>
 <div class="pagelayout"><br>
 	<h1>Favourites</h1>
-    <div ng-controller="FavoritesCtrl as favCtrl"
+    <div ng-controller="FavoritesCtrl as favCtrl">
 	
 	
-	
-	
+	<div class="row">
+		<div align="right" class="col">
+			<button class="button button-small button-clear">Sort By</button>
+		</div>
+		<div align="center" class="col">
+			<button class="button button-small button-clear ion-ios-star-outline" ng-click="favCtrl.sortRating()"> Rating</button>
+		</div>
+			<div align="left" class="col">
+				<button class="button button-small button-clear ion-ribbon-b" ng-click="favCtrl.sortDifficulty()"> Difficulty</button>
+			</div>
+	</div>
+	<br>
     <!-- Dynamic favorites -->
-    <div class='row row-center' ng-hide="favorites.length == 0">
+    <div id="favlist" class='row row-center' ng-hide="favorites.length == 0">
 		<div class='col-20'></div>
         <div class='col'><b>RECIPE</b></div>
         <div class='col' ng-click='favCtrl.sortRating()'><b>RATING</b></div>
