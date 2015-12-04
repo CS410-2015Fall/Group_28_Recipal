@@ -19,11 +19,11 @@ angular.module('search.controllers', ['socket.services', 'account.services', 'fa
         favoritesService.getFavorites(function(favorites) {
                 console.log("DEBUG: Got favorites: " + "\n" + JSON.stringify(favorites));
                 $scope.favorites = favorites;
-                matchFavorites();
+                searchController.matchFavorites();
         });
     });
 
-    function matchFavorites() {
+    searchController.matchFavorites = function() {
         // TODO : very slow, but no easy way to do this, including to speed up inner loop using binary search somehow
         var i;
         for (i = 0; i < $rootScope.searchResults.length; i++) {
@@ -48,7 +48,7 @@ angular.module('search.controllers', ['socket.services', 'account.services', 'fa
         socketService.on($scope.searchSockId, 'search', function(recipeArr) {
             console.log("INFO: Receive " + (recipeArr? recipeArr.length : 0) + " search result(s)");
             $rootScope.searchResults = recipeArr;
-            matchFavorites();
+            searchController.matchFavorites();
             $scope.$evalAsync();
             $scope.searching.value = false;
         });

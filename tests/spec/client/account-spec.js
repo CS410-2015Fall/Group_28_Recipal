@@ -2,7 +2,7 @@
 
 describe('account', function() {
     beforeEach(module('account.services'));
-    beforeEach(module('settings.services.mock'));
+    beforeEach(module('settings.services'));
     beforeEach(module('socket.services.mock'));
 
     var $httpBackend;
@@ -22,6 +22,7 @@ describe('account', function() {
         $httpBackend = $injector.get("$httpBackend");
 
         socketService.url = "";
+        settingsService.settings= {};
     }));
 
     afterEach(function() {
@@ -89,8 +90,9 @@ describe('account', function() {
     it('logout without save', function() { 
         angular.copy(accountInfo, accountService.accountInfo);
         accountService.status = {code: 1, error: ""};
-        settingsService.saveLoginInfo = {username: false, password: false};
-        
+        settingsService.settings.saveUsername = false;
+        settingsService.settings.rememberMe = false;
+
         accountService.logout();
         
         expect(JSON.stringify(accountService.accountInfo)).toEqual(JSON.stringify({name: "Guest"}));
@@ -100,12 +102,13 @@ describe('account', function() {
         it('logout with save username only', function() {
         angular.copy(accountInfo, accountService.accountInfo);
         accountService.status = {code: 1, error: ""};
-        settingsService.saveLoginInfo = {username: true, password: false};
+
+        settingsService.settings.saveUsername = true;
+        settingsService.settings.rememberMe = false;
 
         accountService.logout();
        
         expect(JSON.stringify(accountService.accountInfo)).toEqual(JSON.stringify({name: "Guest", username: accountInfo.username}));
         expect(JSON.stringify(accountService.status)).toEqual(JSON.stringify({code: 0, error: "Log out successful"}));
     });
-
 });

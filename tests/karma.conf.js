@@ -21,7 +21,8 @@ module.exports = function(config) {
       'node_modules/ngstorage/ngStorage.js',
       '../recipal-client/www/js/**/*.js',
       'node_modules/hackify-server/test/controllers.test.js',
-      'spec/client/**/*.js'
+      'spec/client/mocks/*.js',
+      'spec/client/*.js'
     ],
 
     // preprocess matching files before serving them to the browser

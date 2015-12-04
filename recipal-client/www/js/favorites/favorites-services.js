@@ -1,7 +1,7 @@
 "use strict";
 
-angular.module('favorites.services', ['socket.services', 'settings.services', 'storage.services', 'account.services'])
-.factory('favoritesService', function($http, socketService, settingsService, storageService, accountService) {
+angular.module('favorites.services', ['settings.services', 'storage.services', 'account.services'])
+.factory('favoritesService', function(settingsService, storageService, accountService) {
 	var favorites = [];
 	return {
 		init: function() {
@@ -36,9 +36,11 @@ angular.module('favorites.services', ['socket.services', 'settings.services', 's
 			return true;
 		},
 		setLocalFavorites: function(_favorites_) {
-			if (settingsService.settings.localStor === true)
+			if (settingsService.settings.localStor === true) {
 				storageService.set("favorites", _favorites_);
-			favorites = storageService.get("favorites");
+				favorites = storageService.get("favorites");
+			}
+			else favorites = _favorites_;
 		},
 		// Get favorites from server and compare with local, local with remote if duplicated,
 		// else upload local to server and add remote to local storage 
