@@ -1,7 +1,7 @@
 <ion-view view-title="Recipe Search">
 <ion-content>
 <div class="search-page"><br>
-    <h1>Recipe Search</h1>
+    <center><h1>Recipe Search</h1></center>
 
     <div ng-controller="SearchCtrl as searchCtrl">
         <form ng-submit="searchCtrl.search()">
@@ -29,7 +29,7 @@
         </form>
 		
          <!-- Dynamic search results -->
-        <div ng-repeat="result in searchResults">
+        <div id="searchlist" ng-repeat="result in searchResults">
             <div class='row row-center'>
                 <div>
                     <button ng-class="{'button button-icon icon ion-ios-heart': result.isFavorite, 'button button-icon icon ion-ios-heart-outline': !result.isFavorite }" ng-click='searchCtrl.onFavoriteToggle(result)'></button>

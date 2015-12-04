@@ -8,7 +8,6 @@ h2 {
 }
 
 h3 {
-	font-size: 35px;
 	font-weight: bold;
 	text-transform: uppercase;
 }
@@ -16,6 +15,23 @@ h3 {
 a.item{
 	border: 0px;
 }
+
+img.circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+#favlist {
+	border-bottom: solid 1px #C8C8C8;
+	background: white;
+}
+
+#searchlist {
+	border-bottom: solid 1px #C8C8C8;
+	background: white;
+}
+
 
 p.error-text {
 	color: #FF0000;
