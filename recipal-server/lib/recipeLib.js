@@ -86,6 +86,7 @@ exports.getRecipeAuthor = function(req, res) {
 
 
 exports.updateRecipe = function(req, res) {
+    var oldName    =    req.body.oldName;
     var name       =    req.body.name;
     var duration   =    req.body.duration;
     var difficulty =    req.body.difficulty;
@@ -96,13 +97,14 @@ exports.updateRecipe = function(req, res) {
     var ingredients =   req.body.ingredients;
     var image = req.body.image;
     
-    Recipe.findOne({name:name}, function(err, recipe){
+    Recipe.findOne({name:oldName}, function(err, recipe){
         if (err) {
             console.log("error creating recipe: " + err);
             res.status(400).send("error making your recipe D:");
         } else {
-            if (!recipe) {
+            if (recipe === undefined || recipe === null) {
                 res.status(400).send();
+                return;
             }
             recipe.name = name;
             recipe.duration = duration;

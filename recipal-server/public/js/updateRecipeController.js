@@ -13,6 +13,7 @@ angular.module('webFrontEnd').controller('updateRecipeController', ['$http', '$r
         ctrl.load = function(recipe) {
             console.log("recipe is " + JSON.stringify(recipe));
         	ctrl.name = recipe.name;
+            ctrl.oldname = recipe.name;
             console.log("name is " + ctrl.name);
         	ctrl.difficulty = recipe.difficulty;
         	ctrl.duration = recipe.duration;
@@ -58,6 +59,7 @@ angular.module('webFrontEnd').controller('updateRecipeController', ['$http', '$r
     		var ingredients = ctrl.ingredients.split(',');
     		var categories = ctrl.categories.split(',');
     		var data = {
+                    oldname: ctrl.oldName,
                     name: ctrl.name,
                     difficulty: ctrl.difficulty,
                     duration: ctrl.duration,
