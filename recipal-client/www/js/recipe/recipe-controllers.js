@@ -204,7 +204,7 @@ angular.module('recipe.controllers', ['socket.services', 'notification.services'
 			}
 		}
 	}
-	$scope.ratingDescription = "How did you like this Recipe?"
+	$scope.ratingDescription = "How did you like this recipe?"
 	recipeCtrl.loadRating();
 	var rated = false;
 	recipeCtrl.rate = function (rating) {

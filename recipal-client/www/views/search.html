@@ -1,7 +1,7 @@
 <ion-view view-title="Recipe Search">
 <ion-content>
 <div class="search-page"><br>
-    <h1>Recipe Search</h1>
+    <center><h1>Recipe Search</h1></center>
 
     <div ng-controller="SearchCtrl as searchCtrl">
         <form ng-submit="searchCtrl.search()">
@@ -13,27 +13,37 @@
                 <div ng-switch="searching.value">
                 <button ng-switch-when="true" class="button button-block button-dark" value="disable" >Please wait...</button>
                 <button ng-switch-default class="button button-block button-energized" type="submit">Search</button>
-                </div>
-        </div>
+                </div>	
+			<div id="searchlist" align="center" class="row">
+				<div class="col">
+					<button class="button button-small button-clear">Sort By</button>
+				</div>
+				<div class="col">
+					<button class="button button-small button-clear ion-ios-star-outline" ng-click="searchCtrl.sortRating()"> Rating</button>
+				</div>
+				<div class="col">
+					<button class="button button-small button-clear ion-ribbon-b" ng-click="searchCtrl.sortDifficulty()"> Difficulty</button>
+				</div>
+			</div>
+			</div>
         </form>
-        <!-- Dynamic search results -->
-        <div class='row' ng-hide="searchResults.length == 0">
-            <div class='col'></div>
-            <div class='col-33'>Recipe</div>
-            <div class='col' ng-click='searchCtrl.sortRating()'>Rating</div>
-            <div class='col' ng-click='searchCtrl.sortDifficulty()'>Difficulty</div>
-            <div class='col'>Select</div>
-        </div>
-        <div ng-repeat="result in searchResults">
-            <div class='row'>
-                <!-- <div class='col' ng-switch="result.isFavorite"> -->
-                    <button ng-class="{'button button-icon icon ion-android-star': result.isFavorite, 'button button-icon icon ion-android-star-outline': !result.isFavorite }" ng-click='searchCtrl.onFavoriteToggle(result)'></button>
-                    <!-- <button ng-switch-default class="button button-icon icon ion-android-star-outline" ng-click='searchCtrl.onFavoriteToggle(result)'></button> -->
-                <!-- </div> -->
-                <div class='col-33'>{{result.name}}</div>
-                <div class='col'>{{result.rating.rating}}</div>
-                <div class='col'>{{result.difficulty}}</div>
-                <div class='col'><button ng-click='searchCtrl.onRecipeSelect(result)'>Select</button></div>
+		
+         <!-- Dynamic search results -->
+        <div id="searchlist" ng-repeat="result in searchResults">
+            <div class='row row-center'>
+                <div>
+                    <button ng-class="{'button button-icon icon ion-ios-heart': result.isFavorite, 'button button-icon icon ion-ios-heart-outline': !result.isFavorite }" ng-click='searchCtrl.onFavoriteToggle(result)'></button>
+                </div>
+				<div class="col">
+					<a class="item item-thumbnail-right" ng-click="searchCtrl.onRecipeSelect(result)">
+						<img src="{{result.image}}"/>
+						<center><br>
+						<h3>{{result.name}}</h3>
+						<p>Rating: {{result.rating.rating}}<br>
+						   Difficulty: {{result.difficulty}}</p>
+						</center>
+					</a>
+				</div>
             </div>
         </div>
     </div>
