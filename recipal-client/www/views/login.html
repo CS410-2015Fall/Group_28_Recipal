@@ -16,12 +16,16 @@
 		  <li class="item item-toggle">
 			Save username
 			<label class="toggle toggle-energized">
-			<input type="checkbox" ng-model="settings.saveUsername">
+			<!-- Force username to appear true when rememberMe is on -->
+			<div ng-switch="settings.rememberMe">
+			<input ng-switch-when="true" type="checkbox" disabled checked>
+			<input ng-switch-default type="checkbox" ng-model="settings.saveUsername">
 			<div class="track"><div class="handle"></div></div>
+			</div>
 			</label>
 		  </li>
 		  <li class="item item-toggle">
-			Save password
+			Remember me
 			<label class="toggle toggle-energized">
 			<input type="checkbox" ng-model="settings.rememberMe">
 			<div class="track"><div class="handle"></div></div>

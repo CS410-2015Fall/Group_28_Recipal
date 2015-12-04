@@ -12,7 +12,8 @@ angular.module('storage.services', ['ngStorage'])
 			return $localStorage[key];
 		},
 		remove: function(key) {
-			console.log("DEBUG: Not supported ");
+			console.log("DEBUG: Deleting from storage - " + key + "\n" + JSON.stringify($localStorage[key]));
+			delete $localStorage[key];
 		}
 	}
 }]);

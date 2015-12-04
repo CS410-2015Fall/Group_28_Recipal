@@ -10,6 +10,19 @@ angular.module('account.services', ['socket.services', 'settings.services', 'sto
 		init: function() {
 			angular.copy(defaultAcc, this.accountInfo);
 			accountSockId = socketService.connect("/account");
+			// TODO: refactor this logic out
+			if (settingsService.settings.localStor) {
+				var savedInfo = storageService.get("accountInfo");
+				if (!savedInfo)
+					return;
+				// Restore username into the login page if save username or rememberMe is on
+				if (settingsService.settings.saveUsername || settingsService.settings.rememberMe) 
+					this.accountInfo.username = savedInfo.username;
+				// Auto login if rememberMe is on
+				if (settingsService.settings.rememberMe)
+					this.login(savedInfo, function(){}, function(){});
+			}
+			else storageService.remove("accountInfo");
 		},
 		login: function(loginInfo, successCb, errorCb) {
 			var accountService = this;
@@ -28,14 +41,14 @@ angular.module('account.services', ['socket.services', 'settings.services', 'sto
 				angular.copy({code: 0, error: "Log in failed"}, accountService.status);
 				errorCb();
 			});
-			// TODO: Save login info (proper way is cookies) according to settings
-			// savedLogin = {};
-			// if (settingsService.settings.saveUsername)
-			// 	savedLogin.username = loginInfo.username;
-			// if (settingsService.settings.rememberMe && settingsService.settings.localStor) {
-			// 	this.savedLogin.password = loginInfo.password;
-			// 	storageService.set("loginInfo", this.savedInfo);
-			// }
+			if (settingsService.settings.localStor) {
+				var savedInfo = {};
+				if (settingsService.settings.saveUsername || settingsService.settings.rememberMe)
+					savedInfo.username = loginInfo.username;
+				if (settingsService.settings.rememberMe)
+					savedInfo.password = loginInfo.password;
+				storageService.set("accountInfo", savedInfo);
+			}
 		},
 		createAccount: function(createInfo, successCb, errorCb) {
 			var accountService = this;
@@ -53,8 +66,17 @@ angular.module('account.services', ['socket.services', 'settings.services', 'sto
 			});
 		},
 		logout: function() {
-			this.accountInfo = defaultAcc;
+			var username = this.accountInfo.username;
+			angular.copy(defaultAcc, this.accountInfo);
 
+			// Delete password storage if user explicitly logs out, and username if it's not on
+			storageService.remove("accountInfo");
+			if (settingsService.settings.saveUsername || settingsService.settings.rememberMe) {
+				this.accountInfo.username = username;
+				storageService.set("accountInfo", {username: username});
+			}
+
+			settingsService.settings.rememberMe = false;
 			this.status.code = 0;
 			this.status.error = "Log out successful";
 		},
