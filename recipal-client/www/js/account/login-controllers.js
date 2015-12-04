@@ -8,6 +8,7 @@ angular.module('account.loginControllers', ['account.services', 'settings.servic
 		$scope.settings = settingsService.settings;
 
 		this.login = function() {
+			console.log(JSON.stringify($scope.settings));
 			accountService.login(this.loginData, 
 				function(data) {
 					$scope.status = accountService.status;

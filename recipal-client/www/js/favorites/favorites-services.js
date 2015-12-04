@@ -15,15 +15,6 @@ angular.module('favorites.services', ['socket.services', 'settings.services', 's
 			}
 			else 
 				storageService.remove("favorites");
-			// accountService.getFavorites(function(favorites) {
-			// 	this.favorites
-			// });
-			// this.socketId = socketService.connect("/account");
-			// socketService.on(socketId, "bookmarks", function(favorites) {
-			// 	console.log("DEBUG: Received favorites from server: " + JSON.stringify(favorites));
-			// 	if (settingsService.settings.localStor) storageService.set("favorites", favorites);
-			// 	this.favorites = favorites;
-			// });
 		},
 		toggleFavorite: function(recipe) {
 			var i;
