@@ -69,6 +69,7 @@ angular.module('recipe.controllers', ['socket.services', 'notification.services'
 	recipeCtrl.loadTimer = function() {
 		timeLeft = $scope.recipe.steps[$scope.currentPage - 1].timer;
 		recipeCtrl.updateTimer(timeLeft);
+		$scope.timerButton = "Start";
 	};
 
 	recipeCtrl.updateTimer = function(timeLeft) {
@@ -169,8 +170,8 @@ angular.module('recipe.controllers', ['socket.services', 'notification.services'
 				$scope.currentImage = "";
 				$scope.imageAvailable = false;
 			}
+			txt2speechService.speak($scope.currentDescription);
 		}
-		txt2speechService.speak($scope.currentDescription);
 		console.log("DEBUG: next step");
 	};
 
