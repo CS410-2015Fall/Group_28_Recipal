@@ -1,5 +1,5 @@
-angular.module('webFrontEnd').controller('addRecipeController', ['$http', 
-    function($http) {
+angular.module('webFrontEnd').controller('addRecipeController', ['$http', '$rootScope',
+    function($http, $rootScope) {
     	var ctrl = this;
     	ctrl.name = "";
     	ctrl.difficulty = 0;
@@ -13,6 +13,10 @@ angular.module('webFrontEnd').controller('addRecipeController', ['$http',
     		console.log(ctrl.name);
     	}
 
+        ctrl.removeStep = function() {
+            ctrl.steps.pop();
+        }
+
     	ctrl.submitRecipe = function() {
     		var ingredients = ctrl.ingredients.split(',');
     		var categories = ctrl.categories.split(',');
@@ -24,6 +28,7 @@ angular.module('webFrontEnd').controller('addRecipeController', ['$http',
                     categories: categories,
                     steps: ctrl.steps,
                     image: ctrl.image,
+                    author: $rootScope.username,
                 };
             console.log("data is " + JSON.stringify(data));
     		var postReq = {

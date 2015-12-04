@@ -24,5 +24,8 @@ module.exports = function(app, log) {
 	app.post("/addBookmark", accountLib.bookmark);
 	app.post("/rateRecipe", recipeLib.rateRecipe);
 	app.post("/removeBookmark", accountLib.removeBookmark);
+	app.post("/getRecipeAuthor", recipeLib.getRecipeAuthor);
+	app.post("/updateRecipe", recipeLib.updateRecipe);
+	app.post("/deleteRecipe", recipeLib.deleteRecipe);
 
 };

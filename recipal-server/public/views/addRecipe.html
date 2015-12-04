@@ -1,0 +1,40 @@
+	<div ng-controller="addRecipeController as addRecipeCtrl">
+    Add a Recipe <br>
+
+  	Recipe Name:<br>
+  	<input type="text" name="name" ng-model="addRecipeCtrl.name"><br>
+
+  	Image:<br>
+  	<input type="text" name="image" ng-model="addRecipeCtrl.image"><br>
+
+  	Duration (in seconds): <br>
+  	<input type="text" name="duration" ng-model="addRecipeCtrl.duration"><br>
+
+  	Difficuly:<br>
+  	<select name="difficulty" ng-model="addRecipeCtrl.difficulty">
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="4">5</option>
+	</select><br>
+
+  	Categories (separated by ,):<br>
+  	<input type="text" name="categories" ng-model='addRecipeCtrl.categories'><br>
+
+  	Ingredients (separated by ,):<br>
+  	<input type="text" name="ingredients" ng-model='addRecipeCtrl.ingredients'><br>
+
+  	Steps:
+  	 <div ng-repeat="step in addRecipeCtrl.steps">
+  	 	Step {{ 1 + $index}} :
+  	 	Description: <input type="text" name="steps" ng-model='addRecipeCtrl.steps[$index].description'> 
+  	 	Timer: <input type="text" name="steps" ng-model='addRecipeCtrl.steps[$index].timer'>
+  	 	ImageURL: <input type="text" name="steps" ng-model='addRecipeCtrl.steps[$index].img'><br>
+  	 </div>
+
+  	 <button type="button" ng-click="addRecipeCtrl.addStep()">Add step</button><br>
+     <button type="button" ng-click="addRecipeCtrl.removeStep()">Remove Step</button><br>
+  	 <br>
+  	 <button type"button" ng-click="addRecipeCtrl.submitRecipe()"> Add Recipe </button><br>
+  	<div>

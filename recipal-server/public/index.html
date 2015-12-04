@@ -11,7 +11,8 @@
 
 <body>
 
-Add a Recipe <br>
+
+
 
 <script src="/lib/socket.io.js"></script>
 <script src="/lib/socket.io-stream.js"></script>
@@ -21,46 +22,28 @@ Add a Recipe <br>
 <script src="/lib/angular-route.js"></script>
 <script src="/js/app.js"></script>
 <script src="/js/addRecipeController.js"></script>
+<script src="/js/mainController.js"></script>
+<script src="/js/updateRecipeController.js"></script>
 
-	<div ng-controller="addRecipeController as addRecipeCtrl">
+  <div ng-controller="mainController as mainCtrl"> 
+    <div ng-include src="'views/login.html'" ng-show="!mainCtrl.loggedIn"></div>
+    <div ng-show="mainCtrl.loggedIn">
+      <button type"button" ng-click="mainCtrl.toggleAdd()"> Add Recipe </button>
+      <button type"button" ng-click="mainCtrl.toggleUpdate()"> Update Recipe </button>
+      <div ng-show="mainCtrl.loggedIn">
+      <div ng-include src="'views/addRecipe.html'" ng-show="mainCtrl.addRecipe"></div>
+      <div ng-controller="updateRecipeController as updateCtrl">
+        <div ng-repeat="recipe in mainCtrl.recipes" ng-show="mainCtrl.updateRecipe">
+          <div> {{recipe.name}} </div>
+          <button type"button" ng-click="updateCtrl.load(recipe); mainCtrl.toggleOneUpdate()"> Update Recipe </button>
+          <button type"button" ng-click="updateCtrl.deleteRecipe(recipe); mainCtrl.getRecipes()"> Delete Recipe </button> <br>
+        </div>
+        <div ng-include src="'views/updateRecipe.html'"></div>
+      </div>
+      
+    </div>
 
-  	Recipe Name:<br>
-  	<input type="text" name="name" ng-model="addRecipeCtrl.name"><br>
-
-  	Image:<br>
-  	<input type="text" name="image" ng-model="addRecipeCtrl.image"><br>
-
-  	Duration (in seconds): <br>
-  	<input type="text" name="duration" ng-model="addRecipeCtrl.duration"><br>
-
-  	Difficuly:<br>
-  	<select name="difficulty" ng-model="addRecipeCtrl.difficulty">
-		<option value="1">1</option>
-		<option value="2">2</option>
-		<option value="3">3</option>
-		<option value="4">4</option>
-		<option value="4">5</option>
-	</select><br>
-
-  	Categories (separated by ,):<br>
-  	<input type="text" name="categories" ng-model='addRecipeCtrl.categories'><br>
-
-  	Ingredients (separated by ,):<br>
-  	<input type="text" name="ingredients" ng-model='addRecipeCtrl.ingredients'><br>
-
-  	Steps:
-  	 <div ng-repeat="step in addRecipeCtrl.steps">
-  	 	Step {{ 1 + $index}} :
-  	 	Description: <input type="text" name="steps" ng-model='addRecipeCtrl.steps[$index].description'> 
-  	 	Timer: <input type="text" name="steps" ng-model='addRecipeCtrl.steps[$index].timer'>
-  	 	ImageURL: <input type="text" name="steps" ng-model='addRecipeCtrl.steps[$index].img'><br>
-  	 </div>
-
-  	 <button type="button" ng-click="addRecipeCtrl.addStep()">Add step</button><br>
-  	 <br>
-  	 <button type"button" ng-click="addRecipeCtrl.submitRecipe()"> Add Recipe </button><br>
-  	<div>
-
+  </div>
 </body>
 
 

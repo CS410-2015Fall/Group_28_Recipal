@@ -9,7 +9,7 @@ exports.createRecipe = function(req, res) {
     var rating     =    req.body.rating;
     var steps      =    req.body.steps;
     var categories =    req.body.categories;
-    var author     =    author;
+    var author     =    req.body.author;
     var ingredients =   req.body.ingredients;
     var image = req.body.image;
     console.log(categories);
@@ -68,4 +68,64 @@ var changeRating = function(recipeRating, rating) {
     var newCount = count + 1;
     var newRating = (ratingTotal + rating) / newCount;
     return {count: newCount, rating: newRating};
+}
+
+exports.getRecipeAuthor = function(req, res) {
+    var name = req.body.author;
+    if (typeof name === 'undefined') {
+        res.status(200).send({});
+    }
+    Recipe.find({accountRef:name}, function(err, recipes) {
+        if (err) {
+            console.log("error getting recipes for author " + err);
+        } else {
+            res.status(200).send(recipes);
+        }
+    })
+}
+
+
+exports.updateRecipe = function(req, res) {
+    var name       =    req.body.name;
+    var duration   =    req.body.duration;
+    var difficulty =    req.body.difficulty;
+    var rating     =    req.body.rating;
+    var steps      =    req.body.steps;
+    var categories =    req.body.categories;
+    var author     =    req.body.author;
+    var ingredients =   req.body.ingredients;
+    var image = req.body.image;
+    
+    Recipe.findOne({name:name}, function(err, recipe){
+        if (err) {
+            console.log("error creating recipe: " + err);
+            res.status(400).send("error making your recipe D:");
+        } else {
+            if (!recipe) {
+                res.status(400).send();
+            }
+            recipe.name = name;
+            recipe.duration = duration;
+            recipe.difficulty = difficulty;
+            recipe.rating = rating;
+            recipe.steps = steps;
+            recipe.categories = categories;
+            recipe.author = author;
+            recipe.ingredients = ingredients;
+            recipe.image = image;
+            recipe.save();
+            res.status(200).send(recipe);
+        }
+    });
+}
+
+exports.deleteRecipe = function(req, res) {
+    var name = req.body.name;
+    Recipe.remove({name: name}, function(err) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.status(200).send();
+        }
+    });
 }
