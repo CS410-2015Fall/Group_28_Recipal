@@ -36,6 +36,10 @@ angular.module('recipe.controllers', ['socket.services', 'notification.services'
 	};
 	
 	recipeCtrl.ingredientsChecker = function() {
+		if ($scope.checked.length < $scope.recipe.ingredients.length) {
+			$scope.ingredientsChecked = false;
+		    return;
+		}
 		console.log("DEBUG: " + $scope.checked);
 		for (var i = 0;  i < $scope.checked.length; i++) {
 		    if ($scope.checked[i] !== true) {

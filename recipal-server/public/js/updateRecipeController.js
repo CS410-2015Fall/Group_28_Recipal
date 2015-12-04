@@ -59,7 +59,7 @@ angular.module('webFrontEnd').controller('updateRecipeController', ['$http', '$r
     		var ingredients = ctrl.ingredients.split(',');
     		var categories = ctrl.categories.split(',');
     		var data = {
-                    oldname: ctrl.oldName,
+                    oldName: ctrl.oldname,
                     name: ctrl.name,
                     difficulty: ctrl.difficulty,
                     duration: ctrl.duration,

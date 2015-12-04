@@ -5,7 +5,7 @@
 <div ng-controller="RecipeCtrl as recipeCtrl">
 		
 	<div id="recipe-title-img" class="row">
-	  <div class="col" ng-show="{{recipeImageAvailable}}"><img width="100px" ng-src="{{recipeImage}}"/></div>
+	  <div class="col" ng-show="{{recipeImageAvailable || ''}}"><img width="100px" ng-src="{{recipeImage}}"/></div>
 	  <div class="col"><h2>{{recipe.name}}</h2></div>
 	</div>
 	
@@ -46,7 +46,7 @@
 		  </div>
 		</div>
 		
-		<div><img class="recipeimage" ng-src="{{currentImage}}" ng-show="imageAvailable"></div>
+		<div><img class="recipeimage" ng-src="{{currentImage || ''}}" ng-show="imageAvailable"></div>
 		
 	</div>
 	
