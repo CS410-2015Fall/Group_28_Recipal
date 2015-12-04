@@ -3,7 +3,7 @@
 angular.module('account.services.mock', [])
 .factory('accountService', function() {
 	return {
-		remoteFavorites: [];
+		remoteFavorites: [],
 		accountInfo: {},
 		status: {code: 0, error: ""},
 		init: function() {

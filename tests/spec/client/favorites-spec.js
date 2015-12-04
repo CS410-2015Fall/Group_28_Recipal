@@ -12,11 +12,12 @@ describe('favorites', function() {
     var favoritesService;
     var $rootScope;
 
-    beforeEach(inject(function(_storageService_, _accountService_, _settingsService_, _$rootScope_, $injector) {
+    beforeEach(inject(function(_storageService_, _accountService_, _settingsService_, _$rootScope_, $injector, _favoritesService_) {
         accountService =_accountService_;
         settingsService = _settingsService_;
         $rootScope = _$rootScope_;
         settingsService.settings= {};
+        favoritesService = _favoritesService_;
     }));
 
     it('set/get favorites no remote no storage', function() { 
@@ -37,7 +38,7 @@ describe('favorites', function() {
     it('toggleFavorites turn on no remote no storage', function() { 
         accountService.status.code = 0;
         favoritesService.setLocalFavorites([{name: "pizza", _id: "15"}]);
-        favoritesService.toggleFavorites({name: "bower", _id: "9"});
+        favoritesService.toggleFavorite({name: "bower", _id: "9"});
 
         var received = false;
         favoritesService.getFavorites(function(favorites) {
@@ -53,7 +54,7 @@ describe('favorites', function() {
     it('toggleFavorites turn off no remote no storage', function() { 
         accountService.status.code = 0;
         favoritesService.setLocalFavorites([{name: "pizza", _id: "15"}, {name: "bower", _id: "9"}]);
-        favoritesService.toggleFavorites({name: "bower", _id: "9"});
+        favoritesService.toggleFavorite({name: "bower", _id: "9"});
 
         var received = false;
         favoritesService.getFavorites(function(favorites) {
