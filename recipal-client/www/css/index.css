@@ -7,6 +7,16 @@ h2 {
 	font-family: Courier;
 }
 
+h3 {
+	font-size: 35px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+a.item{
+	border: 0px;
+}
+
 p.error-text {
 	color: #FF0000;
 	text-transform: uppercase;
@@ -93,9 +103,4 @@ a.login-links {
 
 .hidden {
   display: none !important;
-}
-
-.row {
-	border-bottom: solid gray;
-	background: white;
 }

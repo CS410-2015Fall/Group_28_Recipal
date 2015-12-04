@@ -19,20 +19,36 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
+	  	<ion-item ng-show="status.code">
+		  <div class="row">
+			<div class="col">
+				<img width="100px" height="100px" src="img/logo-3.jpg"/> 
+			</div>
+			<div class="col col-center">
+				{{accountInfo.username}}<br>
+				{{accountInfo.name}}
+			</div>
+		  </div>
+		</ion-item>
         <ion-item ng-hide="status.code" menu-close href="#/app/login">
+		  <i class="icon ion-log-in"></i>
           Login & Sign Up
         </ion-item>
         <ion-item menu-close href="#/app/search">
+		  <i class="icon ion-ios-search"></i>
           Search
         </ion-item>
         <ion-item menu-close href="#/app/favorites">
+		  <i class="icon ion-android-favorite-outline"></i>
           Favorites
         </ion-item>
         <br><br>
         <ion-item menu-close href="#/app/account">
+		 <i class="icon ion-gear-a"></i>	
           Account & Settings
         </ion-item>
         <ion-item menu-close href="#/app/help">
+		 <i class="icon ion-ios-information-outline"></i>
           Help
         </ion-item>
       </ion-list>
