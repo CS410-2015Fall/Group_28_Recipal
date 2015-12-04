@@ -6,6 +6,7 @@ angular.module('recipe.controllers', ['socket.services', 'notification.services'
 	function($http, $scope, $rootScope, socketService, notificationService, txt2speechService) {
 
 	var recipeCtrl = this;
+	var audio = new Audio("res/sound/alarm.mp3");
 	$scope.recipe = $rootScope.currentRecipe;
 	$scope.currentPage = 0;
 	$scope.currentDescription = "";
@@ -78,6 +79,9 @@ angular.module('recipe.controllers', ['socket.services', 'notification.services'
 			$scope.timerState = false;
 			clearInterval(timer);
 			$scope.timerButton = "Done!";
+			audio.play();
+			setTimeout(function(){alert("TIMER IS DONE!");},1000);
+			
 		} else {
 			$scope.timerSeconds = timeLeft % 60;
 			$scope.timerMinutes = Math.floor(timeLeft / 60) % 60;
