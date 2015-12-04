@@ -53,7 +53,7 @@ angular.module('favorites.services', ['socket.services', 'settings.services', 's
 						for (j = 0; j < _favorites_.length; j++) {
 							// Override local if equals
 							if (favorites[i]._id === _favorites_[j]._id) {
-								angular.copy(_favorites_[j], favorites[i]);
+								favorites[i] = _favorites_[j];
 								_favorites_.splice(j--, 1);
 								break;
 							}

@@ -125,6 +125,7 @@ angular.module('account.services', ['socket.services', 'settings.services', 'sto
 				console.log("DEBUG: did not get favorites from server: Not logged in");
 				callback([]);
 			}
+			console.log("DEBUG: Retrieving remote favorites");
 			socketService.emit(accountSockId, "bookmarks", {username: this.accountInfo.username, password: this.accountInfo.password});
 			socketService.on(accountSockId, "bookmarks", callback);
 	}
