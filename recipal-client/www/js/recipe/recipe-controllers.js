@@ -154,6 +154,7 @@ angular.module('recipe.controllers', ['socket.services', 'notification.services'
 			}
 			$scope.currentDescription = $scope.recipe.steps[$scope.currentPage - 1].description;
 			if ($scope.recipe.steps[$scope.currentPage - 1].img) {
+				$scope.currentImage = "";
 				$scope.currentImage = $scope.recipe.steps[$scope.currentPage - 1].img;
 				$scope.imageAvailable = true; 
 			} else {
@@ -183,6 +184,7 @@ angular.module('recipe.controllers', ['socket.services', 'notification.services'
 			}
 			$scope.currentDescription = $scope.recipe.steps[$scope.currentPage - 1].description;
 			if ($scope.recipe.steps[$scope.currentPage - 1].img) {
+				$scope.currentImage = "";
 				$scope.currentImage = $scope.recipe.steps[$scope.currentPage - 1].img;
 				$scope.imageAvailable = true; 
 			} else {
