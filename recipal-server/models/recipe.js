@@ -5,7 +5,7 @@ var category  = require('./category');
 var ingredient  = require('./ingredient');
 
 RecipeSchema = mongoose.Schema({
-    name:           String, 
+    name:            {type: String, required: true, index:{unique:true}}, 
     // duration in seconds
     duration:       Number,
     // 0 to 5
