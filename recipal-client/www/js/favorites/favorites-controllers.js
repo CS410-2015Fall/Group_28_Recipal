@@ -4,14 +4,11 @@ angular.module('favorites.controllers', ['account.services', 'storage.services',
 .controller('FavoritesCtrl', ['$scope', '$state', '$rootScope', 'storageService', 'accountService', 'settingsService', 'favoritesService', 
     function($scope, $state, $rootScope, storageService, accountService, settingsService, favoritesService) {
 	var favoritesCtrl = this;
-	$scope.favorites; 
+	$scope.favorites;
+    favoritesCtrl.isRefreshing = false; 
 
 	$scope.$on('$ionicView.beforeEnter', function() {
-			favoritesService.getFavorites(function(favorites) {
-                $scope.favorites = favorites;
-                $scope.$evalAsync();
-                console.log("DEBUG: Got favorites " + JSON.stringify(favorites));
-            });
+		favoritesCtrl.refresh();
 	});
 
     favoritesCtrl.onFavoriteToggle = function(recipe) {
@@ -24,6 +21,20 @@ angular.module('favorites.controllers', ['account.services', 'storage.services',
         $rootScope.currentRecipe = recipe;
         $rootScope.$evalAsync();
         $state.go('app.recipe');
+    }
+
+    favoritesCtrl.refresh = function() {
+        if (favoritesCtrl.isRefreshing === true)
+            return;
+        
+        console.log("Refreshing");
+        favoritesCtrl.isRefreshing = true;
+        favoritesService.getFavorites(function(favorites) {
+                $scope.favorites = favorites;
+                $scope.$evalAsync();
+                console.log("DEBUG: Got favorites " + JSON.stringify(favorites));
+                favoritesCtrl.isRefreshing = false;
+        });
     }
 
     // 1 = ascending
