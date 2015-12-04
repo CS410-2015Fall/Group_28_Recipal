@@ -4,10 +4,9 @@
 	
 <div ng-controller="RecipeCtrl as recipeCtrl">
 		
-	<div id="recipe-title-img" class="row" margin-bottom="5px" >
+	<div id="recipe-title-img" class="row">
 	  <div class="col" ng-show="{{recipeImageAvailable}}"><img width="100px" ng-src="{{recipeImage}}"/></div>
 	  <div class="col"><h2>{{recipe.name}}</h2></div>
-
 	</div>
 	
 	<div id="ingredientslist-container" ng-show="(currentPage == 0)">
@@ -36,40 +35,37 @@
 					<div class="smalltext">Seconds</div>
 				</div>
 			</div>
-			<button class="button button-energized" ng-click="recipeCtrl.toggleTimer()">{{timerButton}}</button>
-			<button class="button button-energized" ng-click="recipeCtrl.restartTimer()">Restart</button>
+			<button class="button button-icon icon ion-ios-stopwatch-outline" ng-click="recipeCtrl.toggleTimer()"> {{timerButton}}</button>
+			<button class="button button-icon icon ion-ios-reload" ng-click="recipeCtrl.restartTimer()"> Restart</button>
 		</div>
 		</div>
-
-		<div><img class="recipeimage" ng-src="{{currentImage}}" ng-show="imageAvailable"></div>
-
 
 		<div id="instructions-container" class="row">
 		  <div class="col">
-			<font size="6">
-				<div id="instructions">
-					{{currentDescription}}
-				</div>
-			</font>
+				{{currentDescription}}
 		  </div>
 		</div>
+		
+		<div><img class="recipeimage" ng-src="{{currentImage}}" ng-show="imageAvailable"></div>
+		
 	</div>
+	
 	<div ng-show="currentPage == (recipe.steps.length + 1)">
-		{{ratingDescription}}
-		<div style='display: inline-block; margin: 0px; padding: 0px; cursor:pointer;' ng-repeat='idx in ratings track by $index'>
-            <img ng-src="{{imageSource[$index + 1]}}" ng-Click='recipeCtrl.rate($index + 1)'>
+		{{ratingDescription}}<br>
+		<div style='display: inline-block; padding: 5px; cursor:pointer;' ng-repeat='idx in ratings track by $index'>
+            <img height="30px" ng-src="{{imageSource[$index + 1]}}" ng-Click='recipeCtrl.rate($index + 1)'>
         </div>
 	</div>
 
 	<div id="nav-buttons" class="row">
 	  <div class="col col-33">
 		<form ng-click="recipeCtrl.back()">
-		<button class="button button-energized" ng-show="currentPage > 0">Back</button>
+		<button class="button button-outline icon ion-ios-arrow-back" ng-show="currentPage > 0"></button>
 		</form>
 	  </div>
 	  <div class="col col-33 col-offset-33">
 	  	<form ng-click="recipeCtrl.next()">
-		<button class="button button-energized" ng-show="currentPage < (recipe.steps.length + 1)">Next</button>
+		<button class="button button-outline icon ion-ios-arrow-forward" ng-show="currentPage < (recipe.steps.length + 1)"></button>
 		</form>
 	  </div>  
 	</div>

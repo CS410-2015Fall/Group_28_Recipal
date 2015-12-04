@@ -5,6 +5,7 @@ h1 {
 
 h2 {
 	font-family: Courier;
+	text-transform: capitalize;
 }
 
 h3 {
@@ -32,6 +33,27 @@ img.circle {
 	background: white;
 }
 
+#page-container {
+	height: 400px;
+}
+
+#instructions-container {
+	font-size: 30px;
+	font-family: "Century Gothic";
+	padding: 15px;
+	line-height: 110%;
+}
+
+#nav-buttons {
+	font-size: 15px;
+}
+
+img.recipeimage {
+	max-height: 300px;
+	max-width: 300px;
+	padding: 10px;
+	border: solid 2px #00bf96;
+}
 
 p.error-text {
 	color: #FF0000;
@@ -74,14 +96,13 @@ a.login-links {
 
 
 #clockdiv {
-    font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
   font-size: 12px;
-  margin: 0px;
-  padding: 0px;
+  padding: 10px;
   text-transform: uppercase;
   width: 100%;
   font-family: sans-serif;
-  color: #fff;
+  color: #00bf96;
   display: inline-block;
   font-weight: 100;
   text-align: center;
@@ -90,15 +111,15 @@ a.login-links {
 
 #clockdiv > div {
   padding: 10px;
-  
-  background: #00BF96;
+/*   border: solid 2px #00bf96; */
+  background: white;
   display: inline-block;
 }
 
 #clockdiv div > span {
   padding: 15px;
   border-radius: 3px;
-  background: #00816A;
+  background: white;
   display: inline-block;
 }
 
